@@ -57,18 +57,18 @@ export default function ProductSection() {
               ¿Qué es?
             </h2>
             <p className="mt-5 text-gray-500 leading-relaxed">
-              Bordillo técnico de hormigón prefabricado integrado en el
-              perímetro urbano. Una barrera física activa que intercepta
-              roedores en superficie antes de que accedan a edificios e
-              instalaciones.
+              Un bordillo de hormigón prefabricado que forma parte del viario
+              urbano. Por fuera, infraestructura. Por dentro, una cámara
+              preparada para albergar cualquier sistema de control de plagas.
             </p>
 
             {/* Benefits card */}
-            <div className="mt-8 bg-[#2D6A4F] rounded-md p-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="relative mt-8 rounded-md p-8 grid grid-cols-1 sm:grid-cols-2 gap-6 bg-cover bg-center overflow-hidden" style={{ backgroundImage: "url('/images/textura-hormigon.webp')" }}>
+              <div className="absolute inset-0 bg-[#2D6A4F]/90" />
               {benefits.map((item, i) => {
                 const Icon = item.icon;
                 return (
-                  <div key={i}>
+                  <div key={i} className="relative">
                     <Icon className="w-6 h-6 text-white/80 mb-3" strokeWidth={1.5} />
                     <h3 className="text-white font-semibold">{item.title}</h3>
                     <p className="mt-1 text-white/75 text-sm leading-relaxed">

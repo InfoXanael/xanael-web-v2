@@ -1,8 +1,7 @@
 export default function SurfaceSection() {
   return (
-    <section className="relative py-24" style={{ backgroundImage: "url('/images/textura-hormigon.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
-      <div className="absolute inset-0 bg-[#F0F4F2]/85" />
-      <div className="relative max-w-7xl mx-auto px-6">
+    <section className="py-24 bg-[#F0F4F2]">
+      <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="-mt-24">
             <h2 className="text-4xl font-bold text-[#1A4A3A] leading-tight">
