@@ -63,13 +63,13 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <nav className="max-w-[1400px] mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
         <Link href="/">
           <Image
             src="/images/logo/logo.webp"
             alt="Xanael"
-            width={140}
-            height={40}
+            width={170}
+            height={48}
             className={`hidden lg:block transition-all duration-300 ${
               useWhiteText ? "brightness-0 invert" : ""
             }`}
@@ -77,8 +77,8 @@ export default function Header() {
           <Image
             src="/images/logo/logo.webp"
             alt="Xanael"
-            width={100}
-            height={28}
+            width={120}
+            height={34}
             className={`lg:hidden transition-all duration-300 ${
               useWhiteText ? "brightness-0 invert" : ""
             }`}
