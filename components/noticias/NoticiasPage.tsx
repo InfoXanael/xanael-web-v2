@@ -7,7 +7,7 @@ import { noticias } from "@/src/data/noticias";
 import ManifestoSection from "@/components/home/ManifestoSection";
 import Newsletter from "@/components/home/Newsletter";
 
-const categories = ["Todo", "Eventos", "XANAEL", "Instalaciones"];
+const categories = ["Todo", "Eventos", "Innovación", "XANAEL", "Instalaciones"];
 
 export default function NoticiasPage() {
   const [active, setActive] = useState("Todo");

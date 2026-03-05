@@ -7,10 +7,24 @@ interface NewsSectionProps {
   bgColor?: string;
 }
 
+const meses: Record<string, number> = {
+  enero: 0, febrero: 1, marzo: 2, abril: 3, mayo: 4, junio: 5,
+  julio: 6, agosto: 7, septiembre: 8, octubre: 9, noviembre: 10, diciembre: 11,
+};
+
+function parseFecha(fecha: string): number {
+  const parts = fecha.match(/(\d+)\s+de\s+(\w+)\s+de\s+(\d+)/);
+  if (!parts) return 0;
+  return new Date(+parts[3], meses[parts[2].toLowerCase()] ?? 0, +parts[1]).getTime();
+}
+
 export default function NewsSection({ excludeSlug, bgColor = "bg-[#F0F4F2]" }: NewsSectionProps) {
-  const news = excludeSlug
+  const news = (excludeSlug
     ? noticias.filter((n) => n.slug !== excludeSlug)
-    : noticias;
+    : noticias
+  )
+    .sort((a, b) => parseFecha(b.fecha) - parseFecha(a.fecha))
+    .slice(0, 3);
 
   return (
     <section className={`py-24 ${bgColor}`}>
