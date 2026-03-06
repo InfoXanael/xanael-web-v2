@@ -44,12 +44,18 @@ const compactFeatures = [
 ];
 
 const compactGallery = [
-  "/images/solutions/bordillo_1.webp",
+  "/images/solutions/compact_model/bordillo_1.webp",
   "/images/solutions/compact_model/bordillo_2.webp",
   "/images/solutions/compact_model/bordillo_3.webp",
 ];
 
+const tapaImages = [
+  "/images/solutions/compact_model/tapa_1.webp",
+  "/images/solutions/compact_model/tapa_2.webp",
+];
+
 const compactSpecs = [
+  ["Peso", "24 kg"],
   ["Alto total", "25 cm"],
   ["Alto hasta línea de corte", "15 cm"],
   ["Largo", "50 cm"],
@@ -88,6 +94,7 @@ export default function SolucionesPage() {
   const [galleryIdx, setGalleryIdx] = useState(0);
   const [magnify, setMagnify] = useState({ active: false, x: 50, y: 50 });
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
+  const [tapaIdx, setTapaIdx] = useState(0);
 
   const [isDesktop, setIsDesktop] = useState(false);
 
@@ -378,7 +385,7 @@ export default function SolucionesPage() {
               </div>
 
               {/* Accordions */}
-              <div className="mt-16 space-y-3 lg:w-1/2">
+              <div className="mt-8 space-y-3 lg:w-1/2">
                 {/* Especificaciones */}
                 <div className="border border-gray-200 rounded-md overflow-hidden bg-white">
                   <button
@@ -445,7 +452,71 @@ export default function SolucionesPage() {
                         className="overflow-hidden"
                       >
                         <div className="px-6 pb-6 text-sm text-gray-600 leading-relaxed">
-                          El Modelo Compact se instala en el perímetro del viario urbano por técnicos certificados. No requiere intervención estructural posterior.
+                          No requiere obras adicionales una vez instalado. La cámara interior es accesible en todo momento por la tapa superior sin necesidad de herramientas especiales.
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Tapa personalizable */}
+                <div className="border border-gray-200 rounded-md overflow-hidden bg-white">
+                  <button
+                    onClick={() => toggleAccordion("tapa")}
+                    className="w-full flex items-center justify-between px-6 py-4 text-left font-semibold text-[#1A4A3A] hover:bg-gray-50 transition-colors"
+                  >
+                    Tapa de fundición personalizable
+                    <ChevronDown
+                      className={`w-5 h-5 shrink-0 transition-transform duration-200 ${
+                        openAccordion === "tapa" ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  <AnimatePresence>
+                    {openAccordion === "tapa" && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-6 pb-6">
+                          <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                            Cada bordillo XANAEL incorpora una tapa de fundición certificada EN124 clase B125. El escudo central es personalizable con el emblema del municipio o entidad.
+                          </p>
+                          <div className="relative">
+                            <div className="relative w-full aspect-[21/9] bg-[#F5F5F5] rounded-md overflow-hidden">
+                              <Image
+                                src={tapaImages[tapaIdx]}
+                                alt={`Tapa personalizable - vista ${tapaIdx + 1}`}
+                                fill
+                                className="object-cover"
+                              />
+                            </div>
+                            <button
+                              onClick={(e) => { e.stopPropagation(); setTapaIdx((i) => (i === 0 ? tapaImages.length - 1 : i - 1)); }}
+                              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 shadow-md flex items-center justify-center hover:bg-white transition-colors"
+                            >
+                              <ChevronLeft className="w-4 h-4 text-[#1A1A1A]" />
+                            </button>
+                            <button
+                              onClick={(e) => { e.stopPropagation(); setTapaIdx((i) => (i === tapaImages.length - 1 ? 0 : i + 1)); }}
+                              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 shadow-md flex items-center justify-center hover:bg-white transition-colors"
+                            >
+                              <ChevronRight className="w-4 h-4 text-[#1A1A1A]" />
+                            </button>
+                            <div className="flex justify-center gap-2 mt-3">
+                              {tapaImages.map((_, i) => (
+                                <button
+                                  key={i}
+                                  onClick={(e) => { e.stopPropagation(); setTapaIdx(i); }}
+                                  className={`w-2 h-2 rounded-full transition-colors ${
+                                    tapaIdx === i ? "bg-[#2D6A4F]" : "bg-gray-300"
+                                  }`}
+                                />
+                              ))}
+                            </div>
+                          </div>
                         </div>
                       </motion.div>
                     )}

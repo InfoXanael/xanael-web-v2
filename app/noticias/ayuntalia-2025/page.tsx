@@ -159,7 +159,7 @@ export default function AyuntaliaPage() {
               src="/images/news/new-1/ayuntalia-2025-3.webp"
               alt="El equipo de XANAEL atendiendo visitantes en Ayuntalia 2025"
               fill
-              className="object-cover object-bottom"
+              className="object-cover object-[center_35%]"
             />
           </div>
           <figcaption className="mt-3 text-sm text-gray-400 text-center">
