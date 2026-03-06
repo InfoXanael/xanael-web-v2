@@ -7,9 +7,9 @@ import { Shield, Leaf } from "lucide-react";
 const benefits = [
   {
     icon: Shield,
-    title: "Prevención permanente sin químicos",
+    title: "Prevención permanente en superficie",
     description:
-      "Instalado una vez, actúa 24/7 sin intervenciones químicas continuas ni mantenimiento invasivo.",
+      "Puntos de intervención fijos en el viario. Accede, trata y cierra cuando lo necesites.",
   },
   {
     icon: Leaf,

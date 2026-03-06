@@ -116,8 +116,8 @@ export default function Expocida2026Page() {
         </div>
 
         {/* Grid 2 columnas: bordillos */}
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <figure>
+        <figure className="mt-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="relative w-full aspect-[4/3] bg-[#2A2A2A] rounded-md overflow-hidden">
               <Image
                 src="/images/news/new-4/bordillo-1.webp"
@@ -126,24 +126,19 @@ export default function Expocida2026Page() {
                 className="object-cover"
               />
             </div>
-            <figcaption className="mt-3 text-sm text-gray-400 text-center">
-              Prototipo XANAEL expuesto en EXPOCIDA 2026
-            </figcaption>
-          </figure>
-          <figure>
             <div className="relative w-full aspect-[4/3] bg-[#2A2A2A] rounded-md overflow-hidden">
               <Image
                 src="/images/news/new-4/bordillo-2.webp"
-                alt="Detalle de la cámara interior accesible"
+                alt="Prototipo XANAEL expuesto en EXPOCIDA 2026"
                 fill
                 className="object-cover"
               />
             </div>
-            <figcaption className="mt-3 text-sm text-gray-400 text-center">
-              Detalle de la cámara interior accesible
-            </figcaption>
-          </figure>
-        </div>
+          </div>
+          <figcaption className="mt-3 text-sm text-gray-400 text-center">
+            Prototipo XANAEL expuesto en EXPOCIDA 2026
+          </figcaption>
+        </figure>
 
         {/* Texto 4 */}
         <p className="mt-12 text-gray-600 leading-relaxed">

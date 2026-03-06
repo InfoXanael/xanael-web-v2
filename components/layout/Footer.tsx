@@ -18,7 +18,7 @@ export default function Footer() {
             <h4 className="font-semibold mb-4">Navegación</h4>
             <ul className="space-y-2 text-sm text-white/70">
               <li><Link href="/" className="hover:text-xanael-accent transition-colors">Inicio</Link></li>
-              <li><Link href="/soluciones" className="hover:text-xanael-accent transition-colors">Soluciones</Link></li>
+              <li><Link href="/soluciones" className="hover:text-xanael-accent transition-colors">Infraestructuras</Link></li>
               <li><Link href="/colaboradores" className="hover:text-xanael-accent transition-colors">Colaboradores</Link></li>
               <li><Link href="/noticias" className="hover:text-xanael-accent transition-colors">Noticias</Link></li>
               <li><Link href="/nosotros" className="hover:text-xanael-accent transition-colors">Nosotros</Link></li>

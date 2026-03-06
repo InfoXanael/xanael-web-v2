@@ -53,7 +53,8 @@ export default function MunicipaliaPage() {
               src="/images/news/new-2/municipalia-2.webp"
               alt="Stand de XANAEL lleno de visitantes en Municipalia 2025"
               fill
-              className="object-cover object-top"
+              className="object-cover"
+              style={{ objectPosition: "center 30%" }}
             />
           </div>
         </figure>
