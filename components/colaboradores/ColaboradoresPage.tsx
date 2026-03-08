@@ -10,7 +10,7 @@ import Newsletter from "@/components/home/Newsletter";
 /* ───────── diagram nodes ───────── */
 
 const nodes = [
-  { icon: Truck, label: "Distribuidor", desc: "Comercializa XANAEL en tu zona", interest: "distribuidor" },
+  { icon: Truck, label: "Distribuidor", desc: "Distribuye e impulsa XANAEL en tu zona", interest: "distribuidor" },
   { icon: HardHat, label: "Instalador", desc: "Instala y mantén el sistema", interest: "instalador" },
   { icon: HelpCircle, label: "Otro", desc: "¿Tienes otra forma de colaborar?", interest: "otro" },
 ];
@@ -85,7 +85,7 @@ export default function ColaboradoresPage() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mt-6 text-gray-500 text-lg leading-relaxed max-w-2xl"
         >
-          Encuentra tu forma de colaborar con XANAEL.
+          Descubre cómo puedes colaborar con XANAEL en tu zona.
         </motion.p>
         <motion.button
           initial={{ opacity: 0, y: 10 }}
@@ -94,7 +94,7 @@ export default function ColaboradoresPage() {
           onClick={scrollToForm}
           className="mt-8 inline-block text-sm font-semibold bg-[#1A1A1A] text-white px-7 py-3 rounded-md hover:bg-[#333] transition-colors duration-300"
         >
-          Conviértete en colaborador
+          Unirme como colaborador
         </motion.button>
       </header>
 
@@ -130,7 +130,7 @@ export default function ColaboradoresPage() {
                   <Truck className="w-6 h-6 text-[#2D6A4F]" strokeWidth={1.5} />
                 </div>
                 <p className="mt-3 text-sm font-semibold text-[#2D6A4F] text-center">Distribuidor</p>
-                <p className="mt-1 text-xs text-gray-400 text-center max-w-[160px]">Comercializa XANAEL en tu zona</p>
+                <p className="mt-1 text-xs text-gray-400 text-center max-w-[160px]">Distribuye e impulsa XANAEL en tu zona</p>
               </div>
 
               {/* Center node */}

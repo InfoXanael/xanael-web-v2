@@ -181,10 +181,10 @@ export default function SolucionesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1A1A1A] tracking-tight leading-tight">
-                Infraestructura urbana preventiva
+                Infraestructura urbana sanitaria preventiva
               </h1>
               <p className="mt-6 text-gray-500 text-lg leading-relaxed max-w-lg">
-                Hormigón prefabricado integrado en el viario urbano. Por fuera, bordillo. Por dentro, infraestructura sanitaria.
+                Por fuera, bordillo urbano. Por dentro, infraestructura sanitaria preparada para la detección y control de plagas.
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
                 <Link
