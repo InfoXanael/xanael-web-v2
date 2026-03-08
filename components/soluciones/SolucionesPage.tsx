@@ -126,6 +126,8 @@ export default function SolucionesPage() {
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
   const [tapaIdx, setTapaIdx] = useState(0);
 
+  const [formSending, setFormSending] = useState(false);
+  const [formSent, setFormSent] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
@@ -606,13 +608,41 @@ export default function SolucionesPage() {
           <div className="absolute inset-0 bg-[#2A2A2A]/[0.95]" />
           <div className="relative p-8 md:p-12 lg:p-16">
             <h2 className="text-2xl font-bold text-white tracking-tight">
-              Solicita información sobre XANAEL
+              Solicita información para implantar XANAEL
             </h2>
             <p className="mt-4 text-white/60 leading-relaxed">
-              Completa el formulario y nuestro equipo se pondrá en contacto contigo.
+              Completa el formulario y nuestro equipo te informará sobre implantación, distribución o colaboración con XANAEL.
             </p>
 
-            <form className="mt-10 max-w-2xl space-y-4">
+            <form
+              className="mt-10 max-w-2xl space-y-4"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                if (formSending) return;
+                setFormSending(true);
+                const fd = new FormData(e.currentTarget);
+                try {
+                  await fetch("/api/formularios", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                      tipo: "comercial",
+                      nombre: fd.get("nombre"),
+                      email: fd.get("email"),
+                      telefono: fd.get("telefono"),
+                      empresa: fd.get("empresa"),
+                      sector: fd.get("interes"),
+                      mensaje: fd.get("mensaje"),
+                    }),
+                  });
+                  setFormSent(true);
+                } catch {
+                  alert("Error al enviar el formulario. Inténtalo de nuevo.");
+                } finally {
+                  setFormSending(false);
+                }
+              }}
+            >
               <input type="text" name="nombre" placeholder="Nombre completo" required className={inputClass} />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -624,6 +654,20 @@ export default function SolucionesPage() {
                 <input type="text" name="empresa" placeholder="Empresa" className={inputClass} />
                 <input type="text" name="provincia" placeholder="Provincia" className={inputClass} />
               </div>
+
+              <select
+                name="interes"
+                required
+                defaultValue=""
+                className={`${inputClass} appearance-none`}
+              >
+                <option value="" disabled className="text-white/50">¿En qué estás interesado?</option>
+                <option value="implantacion_municipio">Implantación en municipio</option>
+                <option value="instalacion_empresa">Instalación en empresa / industria</option>
+                <option value="distribucion">Distribución</option>
+                <option value="colaboracion_tecnica">Colaboración técnica</option>
+                <option value="informacion_general">Información general</option>
+              </select>
 
               <textarea
                 name="mensaje"
@@ -646,12 +690,17 @@ export default function SolucionesPage() {
                 </span>
               </label>
 
-              <button
-                type="submit"
-                className="mt-4 bg-white text-[#1A4A3A] font-semibold text-sm px-7 py-3 rounded-md hover:bg-white/90 transition-colors"
-              >
-                Enviar solicitud
-              </button>
+              {formSent ? (
+                <p className="text-white font-medium">Formulario enviado correctamente. Nos pondremos en contacto contigo.</p>
+              ) : (
+                <button
+                  type="submit"
+                  disabled={formSending}
+                  className="mt-4 bg-white text-[#1A4A3A] font-semibold text-sm px-7 py-3 rounded-md hover:bg-white/90 transition-colors disabled:opacity-50"
+                >
+                  {formSending ? "Enviando..." : "Enviar solicitud"}
+                </button>
+              )}
             </form>
           </div>
         </div>
