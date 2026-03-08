@@ -12,6 +12,13 @@ export const metadata: Metadata = {
   title: "Xanael - Infraestructura Urbana Sanitaria Preventiva",
   description:
     "Infraestructura urbana sanitaria preventiva que prepara la ciudad frente a plagas en superficie. Prevén, monitoriza y actúa de forma segura y sostenible.",
+  icons: {
+    icon: [
+      { url: "/images/favicon/favicon.ico" },
+      { url: "/images/favicon/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+    ],
+    apple: "/images/favicon/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({

@@ -82,8 +82,8 @@ export default function MauticPage() {
             0
           )
         );
-      } catch (err: any) {
-        setError(err.message || "Error de conexión con Mautic");
+      } catch (err: unknown) {
+        setError(err instanceof Error ? err.message : "Error de conexión con Mautic");
       } finally {
         setLoading(false);
       }

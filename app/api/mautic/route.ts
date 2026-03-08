@@ -1,5 +1,39 @@
 import { NextRequest, NextResponse } from "next/server";
 
+interface MauticContact {
+  id: number;
+  dateAdded: string;
+  fields?: { all?: { firstname?: string; lastname?: string; email?: string } };
+}
+
+interface MauticSegment {
+  id: number;
+  name: string;
+  alias: string;
+  leadCount?: number;
+}
+
+interface MauticCampaign {
+  id: number;
+  name: string;
+  isPublished: boolean;
+  dateAdded: string;
+  dateModified: string;
+  leadCount?: number;
+}
+
+interface MauticEmail {
+  id: number;
+  name: string;
+  subject: string;
+  isPublished: boolean;
+  dateAdded: string;
+  sentCount?: number;
+  readCount?: number;
+  clickCount?: number;
+  clickThroughCount?: number;
+}
+
 const MAUTIC_URL = process.env.MAUTIC_URL || "";
 const MAUTIC_USER = process.env.MAUTIC_USER || "";
 const MAUTIC_PASSWORD = process.env.MAUTIC_PASSWORD || "";
@@ -36,56 +70,68 @@ export async function GET(request: NextRequest) {
           mauticFetch("/contacts?limit=10&search=!is:anonymous&orderBy=date_added&orderByDir=desc"),
           mauticFetch("/contacts?limit=1&search=!is:anonymous"),
         ]);
-        const contacts = Object.values(data.contacts || {}).map((c: any) => ({
-          id: c.id,
-          nombre: `${c.fields?.all?.firstname || ""} ${c.fields?.all?.lastname || ""}`.trim(),
-          email: c.fields?.all?.email || "",
-          fechaAlta: c.dateAdded,
-        }));
+        const contacts = Object.values(data.contacts || {} as Record<string, MauticContact>).map((c) => {
+          const contact = c as MauticContact;
+          return {
+            id: contact.id,
+            nombre: `${contact.fields?.all?.firstname || ""} ${contact.fields?.all?.lastname || ""}`.trim(),
+            email: contact.fields?.all?.email || "",
+            fechaAlta: contact.dateAdded,
+          };
+        });
         return NextResponse.json({ total: totalData.total || 0, contacts });
       }
 
       case "segmentos": {
         const data = await mauticFetch("/segments?limit=50");
-        const segments = Object.values(data.lists || {}).map((s: any) => ({
-          id: s.id,
-          nombre: s.name,
-          alias: s.alias,
-          contactos: Number(s.leadCount ?? 0),
-        }));
+        const segments = Object.values(data.lists || {} as Record<string, MauticSegment>).map((s) => {
+          const seg = s as MauticSegment;
+          return {
+            id: seg.id,
+            nombre: seg.name,
+            alias: seg.alias,
+            contactos: Number(seg.leadCount ?? 0),
+          };
+        });
         return NextResponse.json({ total: segments.length, segments });
       }
 
       case "campañas":
       case "campanas": {
         const data = await mauticFetch("/campaigns?limit=50");
-        const campaigns = Object.values(data.campaigns || {}).map((c: any) => ({
-          id: c.id,
-          nombre: c.name,
-          publicada: c.isPublished,
-          fechaCreacion: c.dateAdded,
-          fechaModificacion: c.dateModified,
-          contactos: Number(c.leadCount ?? 0),
-        }));
+        const campaigns = Object.values(data.campaigns || {} as Record<string, MauticCampaign>).map((c) => {
+          const camp = c as MauticCampaign;
+          return {
+            id: camp.id,
+            nombre: camp.name,
+            publicada: camp.isPublished,
+            fechaCreacion: camp.dateAdded,
+            fechaModificacion: camp.dateModified,
+            contactos: Number(camp.leadCount ?? 0),
+          };
+        });
         return NextResponse.json({ total: campaigns.length, campaigns });
       }
 
       case "emails": {
         const data = await mauticFetch("/emails?limit=20&orderBy=id&orderByDir=desc");
-        const emails = Object.values(data.emails || {}).map((e: any) => ({
-          id: e.id,
-          nombre: e.name,
-          asunto: e.subject,
-          publicado: e.isPublished,
-          fechaCreacion: e.dateAdded,
-          enviados: Number(e.sentCount ?? 0),
-          leidos: Number(e.readCount ?? 0),
-          tasaApertura:
-            Number(e.sentCount) > 0
-              ? Math.round((Number(e.readCount) / Number(e.sentCount)) * 100)
-              : 0,
-          clics: Number(e.clickCount ?? e.clickThroughCount ?? 0),
-        }));
+        const emails = Object.values(data.emails || {} as Record<string, MauticEmail>).map((e) => {
+          const em = e as MauticEmail;
+          return {
+            id: em.id,
+            nombre: em.name,
+            asunto: em.subject,
+            publicado: em.isPublished,
+            fechaCreacion: em.dateAdded,
+            enviados: Number(em.sentCount ?? 0),
+            leidos: Number(em.readCount ?? 0),
+            tasaApertura:
+              Number(em.sentCount) > 0
+                ? Math.round((Number(em.readCount) / Number(em.sentCount)) * 100)
+                : 0,
+            clics: Number(em.clickCount ?? em.clickThroughCount ?? 0),
+          };
+        });
         return NextResponse.json({ total: data.total || 0, emails });
       }
 
@@ -95,10 +141,11 @@ export async function GET(request: NextRequest) {
           { status: 400 }
         );
     }
-  } catch (error: any) {
-    console.error("Error Mautic API:", error.message);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Error desconocido";
+    console.error("Error Mautic API:", message);
     return NextResponse.json(
-      { error: `No se pudo conectar con Mautic: ${error.message}` },
+      { error: `No se pudo conectar con Mautic: ${message}` },
       { status: 502 }
     );
   }
