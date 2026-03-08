@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── App models ───
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  image     String?
+  createdAt DateTime @default(now())
+}
+
+model FormSubmission {
+  id         String   @id @default(cuid())
+  tipo       String
+  nombre     String
+  email      String
+  telefono   String?
+  empresa    String?
+  sector     String?
+  mensaje    String
+  estado     String   @default("nuevo")
+  notas      String?
+  syncMautic Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model PipelineLead {
+  id              String    @id @default(cuid())
+  nombre          String
+  empresa         String?
+  email           String?
+  telefono        String?
+  origen          String?
+  etapa           String    @default("lead")
+  notas           String?
+  ultimoContacto  DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
