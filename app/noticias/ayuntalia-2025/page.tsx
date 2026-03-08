@@ -2,6 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { Shield, Leaf, Eye, Target } from "lucide-react";
 import NewsSection from "@/components/home/NewsSection";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "XANAEL en Ayuntalia 2025: primera presentación institucional | Xanael",
+};
 
 const pillars = [
   {

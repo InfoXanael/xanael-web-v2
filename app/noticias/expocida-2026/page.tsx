@@ -1,6 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import NewsSection from "@/components/home/NewsSection";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "XANAEL en EXPOCIDA 2026: dos días que marcan un antes y un después | Xanael",
+};
 
 export default function Expocida2026Page() {
   return (

@@ -92,6 +92,7 @@ function RGPDCheckbox() {
     <label className="flex items-start gap-3 mt-6 cursor-pointer">
       <input
         type="checkbox"
+        name="rgpd"
         required
         className="mt-1 w-4 h-4 rounded border-white/30 bg-transparent accent-white shrink-0"
       />
@@ -107,13 +108,13 @@ function FormComercial() {
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <input type="text" placeholder="Nombre completo" className={inputClass} />
-        <input type="email" placeholder="Email" className={inputClass} />
-        <input type="tel" placeholder="Teléfono" className={inputClass} />
-        <input type="text" placeholder="Empresa / Organización" className={inputClass} />
+        <input type="text" name="nombre" placeholder="Nombre completo" required className={inputClass} />
+        <input type="email" name="email" placeholder="Email" required className={inputClass} />
+        <input type="tel" name="telefono" placeholder="Teléfono" className={inputClass} />
+        <input type="text" name="empresa" placeholder="Empresa / Organización" className={inputClass} />
       </div>
       <div className="mt-4 relative">
-        <select className={selectClass} defaultValue="">
+        <select name="sector" className={selectClass} defaultValue="">
           <option value="" disabled className="text-gray-900">
             Sector
           </option>
@@ -127,7 +128,7 @@ function FormComercial() {
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
         </svg>
       </div>
-      <textarea placeholder="Mensaje" rows={4} className={`${inputClass} mt-4 resize-none`} />
+      <textarea name="mensaje" placeholder="Mensaje" required rows={4} className={`${inputClass} mt-4 resize-none`} />
       <RGPDCheckbox />
       <button type="submit" className="mt-6 bg-white text-[#1A4A3A] font-semibold text-sm px-7 py-3 rounded-md hover:bg-white/90 transition-colors">
         Enviar consulta
@@ -140,10 +141,10 @@ function FormGeneral() {
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <input type="text" placeholder="Nombre" className={inputClass} />
-        <input type="email" placeholder="Email" className={inputClass} />
+        <input type="text" name="nombre" placeholder="Nombre" required className={inputClass} />
+        <input type="email" name="email" placeholder="Email" required className={inputClass} />
       </div>
-      <textarea placeholder="Mensaje" rows={4} className={`${inputClass} mt-4 resize-none`} />
+      <textarea name="mensaje" placeholder="Mensaje" required rows={4} className={`${inputClass} mt-4 resize-none`} />
       <RGPDCheckbox />
       <button type="submit" className="mt-6 bg-white text-[#1A4A3A] font-semibold text-sm px-7 py-3 rounded-md hover:bg-white/90 transition-colors">
         Enviar
@@ -156,7 +157,7 @@ function FormInstalador() {
   return (
     <>
       <div className="relative mb-4">
-        <select className={selectClass} defaultValue="">
+        <select name="tipo_colaboracion" className={selectClass} defaultValue="">
           <option value="" disabled className="text-gray-900">Tipo de colaboración</option>
           <option value="instalador" className="text-gray-900">Instalador certificado</option>
           <option value="distribuidor" className="text-gray-900">Distribuidor</option>
@@ -168,14 +169,14 @@ function FormInstalador() {
         </svg>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <input type="text" placeholder="Nombre" className={inputClass} />
-        <input type="email" placeholder="Email" className={inputClass} />
-        <input type="tel" placeholder="Teléfono" className={inputClass} />
-        <input type="text" placeholder="Empresa" className={inputClass} />
-        <input type="text" placeholder="Provincia" className={inputClass} />
-        <input type="text" placeholder="Años de experiencia en el sector" className={inputClass} />
+        <input type="text" name="nombre" placeholder="Nombre" required className={inputClass} />
+        <input type="email" name="email" placeholder="Email" required className={inputClass} />
+        <input type="tel" name="telefono" placeholder="Teléfono" className={inputClass} />
+        <input type="text" name="empresa" placeholder="Empresa" className={inputClass} />
+        <input type="text" name="provincia" placeholder="Provincia" className={inputClass} />
+        <input type="text" name="experiencia" placeholder="Años de experiencia en el sector" className={inputClass} />
       </div>
-      <textarea placeholder="Mensaje" rows={4} className={`${inputClass} mt-4 resize-none`} />
+      <textarea name="mensaje" placeholder="Mensaje" required rows={4} className={`${inputClass} mt-4 resize-none`} />
       <RGPDCheckbox />
       <button type="submit" className="mt-6 bg-white text-[#1A4A3A] font-semibold text-sm px-7 py-3 rounded-md hover:bg-white/90 transition-colors">
         Solicitar información
@@ -188,11 +189,11 @@ function FormTecnico() {
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <input type="text" placeholder="Nombre" className={inputClass} />
-        <input type="email" placeholder="Email" className={inputClass} />
+        <input type="text" name="nombre" placeholder="Nombre" required className={inputClass} />
+        <input type="email" name="email" placeholder="Email" required className={inputClass} />
       </div>
-      <input type="tel" placeholder="Teléfono" className={`${inputClass} mt-4`} />
-      <textarea placeholder="Descripción del problema" rows={5} className={`${inputClass} mt-4 resize-none`} />
+      <input type="tel" name="telefono" placeholder="Teléfono" className={`${inputClass} mt-4`} />
+      <textarea name="mensaje" placeholder="Descripción del problema" required rows={5} className={`${inputClass} mt-4 resize-none`} />
       <RGPDCheckbox />
       <button type="submit" className="mt-6 bg-white text-[#1A4A3A] font-semibold text-sm px-7 py-3 rounded-md hover:bg-white/90 transition-colors">
         Enviar

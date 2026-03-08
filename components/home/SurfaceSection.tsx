@@ -7,9 +7,16 @@ export default function SurfaceSection() {
             <h2 className="text-4xl font-bold text-[#1A4A3A] leading-tight">
               ¿Puede la superficie urbana<br />estar protegida?
             </h2>
-            <p className="mt-4 text-gray-600 leading-relaxed">
-              El problema es real. El crecimiento de las poblaciones de plagas es imparable sin una respuesta estructural.
-            </p>
+            <div className="mt-4 text-gray-600 leading-relaxed">
+              <p>El problema es real.</p>
+              <p className="mt-3">Las ciudades llevan décadas actuando en dos capas:</p>
+              <ul className="mt-2 list-disc list-inside">
+                <li>el subsuelo (alcantarillado)</li>
+                <li>el interior de edificios</li>
+              </ul>
+              <p className="mt-3">Pero existe una tercera capa donde las plagas emergen, se desplazan y encuentran alimento:</p>
+              <p className="mt-2 font-semibold text-[#1A4A3A]">la superficie urbana.</p>
+            </div>
           </div>
 
           <div className="relative w-full aspect-video">

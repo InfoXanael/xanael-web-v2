@@ -9,13 +9,13 @@ const benefits = [
     icon: Shield,
     title: "Prevención permanente en superficie",
     description:
-      "Puntos de intervención fijos en el viario. Accede, trata y cierra cuando lo necesites.",
+      "Puntos de intervención fijos integrados en el viario urbano. Permiten detección temprana, monitorización y control cuando sea necesario.",
   },
   {
     icon: Leaf,
     title: "Integrado en la infraestructura urbana",
     description:
-      "Forma parte del diseño físico de la ciudad. No es un dispositivo portátil, es arquitectura sanitaria permanente.",
+      "Forma parte del diseño físico de la ciudad. No es un dispositivo portátil: es infraestructura sanitaria permanente.",
   },
 ];
 
@@ -23,12 +23,12 @@ const accordions = [
   {
     question: "¿Cómo funciona?",
     answer:
-      "Los roedores urbanos siguen rutas fijas por bordillos y aceras. XANAEL intercepta esas rutas integrando compartimentos de control directamente en el bordillo, actuando antes de que el problema llegue al edificio.",
+      "Los roedores urbanos siguen rutas habituales por bordillos y aceras.\n\nXANAEL intercepta esas rutas integrando puntos de detección y control directamente en el bordillo.\n\nDe esta forma permite detectar y actuar antes de que el problema llegue a los edificios.",
   },
   {
     question: "¿Para quién es?",
     answer:
-      "Municipios, industria alimentaria, empresas de control de plagas y constructoras que buscan una solución preventiva, certificable y permanente.",
+      "Municipios, industrias, empresas de control de plagas y todo tipo de espacios con viario exterior.\n\nCentros comerciales, colegios, parques temáticos, hoteles, parques públicos, piscinas o complejos industriales donde existan calles, aceras o zonas de tránsito en superficie.",
   },
 ];
 
@@ -57,9 +57,12 @@ export default function ProductSection() {
               ¿Qué es?
             </h2>
             <p className="mt-5 text-gray-500 leading-relaxed">
-              Un bordillo de hormigón prefabricado que forma parte del viario
-              urbano. Por fuera, infraestructura. Por dentro, una cámara
-              preparada para albergar cualquier sistema de control de plagas.
+              XANAEL es una infraestructura urbana sanitaria preventiva integrada en el viario de la ciudad.
+            </p>
+            <p className="mt-3 text-gray-600 leading-relaxed">
+              Exteriormente forma parte del bordillo urbano.
+              <br />
+              En su interior incorpora una cámara técnica preparada para la detección temprana, monitorización y control de plagas urbanas.
             </p>
 
             {/* Benefits card */}
@@ -110,7 +113,7 @@ export default function ProductSection() {
                     </svg>
                   </button>
                   {openIndex === i && (
-                    <div className="relative px-5 pb-4 text-sm text-gray-500 leading-relaxed">
+                    <div className="relative px-5 pb-4 text-sm text-gray-500 leading-relaxed whitespace-pre-line">
                       {item.answer}
                     </div>
                   )}

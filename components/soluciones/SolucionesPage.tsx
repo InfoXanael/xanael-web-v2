@@ -43,6 +43,17 @@ const compactFeatures = [
   "Compatible con cualquier sistema de control de plagas",
 ];
 
+const standardFeatures = [
+  "Integración total en el viario urbano",
+  "Acceso interior circular para colocación de cebo para termitas",
+  "Dos ranuras laterales para varilla con cebo",
+  "Sin bandeja técnica — cámara diáfana de acceso directo",
+  "Tapa de fundición certificada EN124 clase B125",
+  "Tornillos de seguridad con llave única propietaria",
+  "Escudo central personalizable",
+  "Compatible con cualquier sistema de control de plagas",
+];
+
 const compactGallery = [
   "/images/infrastructure/compact_model/bordillo_1.webp",
   "/images/infrastructure/compact_model/bordillo_2.webp",
@@ -87,12 +98,12 @@ const compactSpecs = [
 const standardSpecs = [
   ["Peso", "42 kg"],
   ["Material cuerpo", "Hormigón prefabricado"],
+  ["Acceso interior", "Circular, para cebo de termitas"],
+  ["Ranuras laterales", "2, para varilla con cebo"],
   ["Tapa — material", "Fundición"],
   ["Tapa — normativa", "EN124 clase B125"],
   ["Tapa — escudo central", "Personalizable"],
   ["Tapa — fijación", "Tornillos de llave única propietaria"],
-  ["Bandeja técnica — material", "Plástico impreso en 3D"],
-  ["Bandeja técnica — acceso", "Extraíble por la parte superior"],
 ];
 
 const ventajas = [
@@ -138,6 +149,7 @@ export default function SolucionesPage() {
   }, [magnify.active]);
 
   const currentGallery = selectedModel === "compact" ? compactGallery : standardGallery;
+  const currentFeatures = selectedModel === "compact" ? compactFeatures : standardFeatures;
   const currentSpecs = selectedModel === "compact" ? compactSpecs : standardSpecs;
   const currentTapa = selectedModel === "compact" ? compactTapaImages : standardTapaImages;
 
@@ -189,7 +201,7 @@ export default function SolucionesPage() {
                 </Link>
               </div>
             </div>
-            <div className="relative w-full aspect-[4/3] scale-[1.3] origin-center">
+            <div className="relative w-full aspect-[4/3] lg:scale-[1.3] origin-center overflow-hidden">
               <Image
                 src="/images/infrastructure/bordillo_1.webp"
                 alt="Bordillo técnico Xanael"
@@ -224,7 +236,7 @@ export default function SolucionesPage() {
       {/* ─── 3. PROBLEMAS QUE RESOLVEMOS ─── */}
       <section className="bg-white">
         <div className="grid grid-cols-1 lg:grid-cols-2">
-          <div className="flex items-center px-6 lg:pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] lg:pr-16 py-24">
+          <div className="flex items-center px-6 lg:pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] lg:pr-24 py-24">
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-[#1A4A3A] tracking-tight">
                 Problemas que resolvemos
@@ -266,11 +278,11 @@ export default function SolucionesPage() {
           </div>
 
           {/* Model selector cards */}
-          <div className="mt-10 flex justify-center gap-6">
+          <div className="mt-10 grid grid-cols-2 sm:flex sm:justify-center gap-4 sm:gap-6">
             {/* Compact */}
             <button
               onClick={() => switchModel("compact")}
-              className={`w-[240px] rounded-t-lg rounded-b-none overflow-hidden transition-all duration-200 ${
+              className={`w-full sm:w-[240px] rounded-t-lg rounded-b-none overflow-hidden transition-all duration-200 ${
                 selectedModel === "compact"
                   ? "bg-white shadow-md ring-2 ring-[#2D6A4F]"
                   : "bg-white/50 hover:bg-white/70"
@@ -292,7 +304,7 @@ export default function SolucionesPage() {
             {/* Standard */}
             <button
               onClick={() => switchModel("standard")}
-              className={`w-[240px] rounded-t-lg rounded-b-none overflow-hidden transition-all duration-200 ${
+              className={`w-full sm:w-[240px] rounded-t-lg rounded-b-none overflow-hidden transition-all duration-200 ${
                 selectedModel === "standard"
                   ? "bg-white shadow-md ring-2 ring-[#2D6A4F]"
                   : "bg-white/50 hover:bg-white/70"
@@ -337,7 +349,7 @@ export default function SolucionesPage() {
                     : "Bordillo técnico de hormigón prefabricado de mayores dimensiones, diseñado para instalación en perímetros de mayor envergadura y zonas de alta demanda."}
                 </p>
                 <ul className="mt-8 space-y-3">
-                  {compactFeatures.map((f, i) => (
+                  {currentFeatures.map((f, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <Check className="w-5 h-5 text-[#2D6A4F] shrink-0 mt-0.5" strokeWidth={2} />
                       <span className="text-gray-600 text-sm leading-relaxed">{f}</span>
@@ -596,20 +608,22 @@ export default function SolucionesPage() {
             </p>
 
             <form className="mt-10 max-w-2xl space-y-4">
-              <input type="text" placeholder="Nombre completo" className={inputClass} />
+              <input type="text" name="nombre" placeholder="Nombre completo" required className={inputClass} />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <input type="email" placeholder="Email" className={inputClass} />
-                <input type="tel" placeholder="Teléfono" className={inputClass} />
+                <input type="email" name="email" placeholder="Email" required className={inputClass} />
+                <input type="tel" name="telefono" placeholder="Teléfono" className={inputClass} />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <input type="text" placeholder="Empresa" className={inputClass} />
-                <input type="text" placeholder="Provincia" className={inputClass} />
+                <input type="text" name="empresa" placeholder="Empresa" className={inputClass} />
+                <input type="text" name="provincia" placeholder="Provincia" className={inputClass} />
               </div>
 
               <textarea
+                name="mensaje"
                 placeholder="Mensaje"
+                required
                 rows={4}
                 className={`${inputClass} resize-none`}
               />
@@ -617,6 +631,7 @@ export default function SolucionesPage() {
               <label className="flex items-start gap-3 cursor-pointer">
                 <input
                   type="checkbox"
+                  name="rgpd"
                   required
                   className="mt-1 w-4 h-4 rounded border-white/30 bg-transparent accent-white shrink-0"
                 />

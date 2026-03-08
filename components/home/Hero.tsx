@@ -35,9 +35,8 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.15, ease: [0.4, 0, 0.2, 1] }}
             className="mt-6 text-lg text-white/80 leading-relaxed"
           >
-            Control estructural de plagas integrado en infraestructura urbana.
-            Solución preventiva permanente para municipios, industria alimentaria
-            y espacios públicos.
+            Sistema integrado en aceras y bordillos para la detección temprana
+            y el control preventivo de plagas urbanas.
           </motion.p>
 
           <motion.div

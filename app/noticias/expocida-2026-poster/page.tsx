@@ -1,6 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import NewsSection from "@/components/home/NewsSection";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "XANAEL presenta su póster técnico en EXPOCIDA 2026 | Xanael",
+};
 
 export default function ExpocidaPosterPage() {
   return (
