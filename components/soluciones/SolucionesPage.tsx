@@ -40,7 +40,7 @@ const compactFeatures = [
   "Tornillos de seguridad con llave única propietaria",
   "Escudo central personalizable",
   "Agujeros de acceso con entrada diagonal anti-infiltración",
-  "Compatible con distintos sistemas de detección, monitorización y control de plagas",
+  "Compatible con sistemas de detección, monitorización y control de plagas",
 ];
 
 const standardFeatures = [
@@ -345,7 +345,7 @@ export default function SolucionesPage() {
                 </h3>
                 <p className="mt-4 text-gray-600 leading-relaxed">
                   {selectedModel === "compact"
-                    ? "Bordillo técnico de hormigón prefabricado para instalación en aceras, perímetros de edificios y viario urbano. Cámara interior accesible con bandeja técnica extraíble."
+                    ? "Bordillo técnico de hormigón prefabricado diseñado para integrarse en aceras, perímetros de edificios y viario urbano. Incorpora una cámara interior accesible con bandeja técnica extraíble, preparada para integrar sistemas de detección temprana, monitorización y control de plagas."
                     : "Bordillo técnico de hormigón prefabricado de mayores dimensiones, diseñado para instalación en perímetros de mayor envergadura y zonas de alta demanda."}
                 </p>
                 <ul className="mt-8 space-y-3">
