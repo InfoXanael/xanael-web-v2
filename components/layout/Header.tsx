@@ -66,7 +66,7 @@ export default function Header() {
       <nav className="max-w-[1400px] mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
         <Link href="/">
           <Image
-            src="/images/logo/logo.svg"
+            src="/images/logo/logo.webp"
             alt="Xanael"
             width={170}
             height={48}
@@ -75,7 +75,7 @@ export default function Header() {
             }`}
           />
           <Image
-            src="/images/logo/logo.svg"
+            src="/images/logo/logo.webp"
             alt="Xanael"
             width={120}
             height={34}
