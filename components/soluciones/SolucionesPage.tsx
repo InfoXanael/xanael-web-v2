@@ -107,12 +107,12 @@ const standardSpecs = [
 ];
 
 const ventajas = [
-  "Único sistema de infraestructura preventiva en superficie urbana",
+  "Primer sistema de infraestructura preventiva de plagas integrado en la superficie urbana",
   "Compatible con cualquier empresa de control de plagas",
-  "No sustituye — complementa los sistemas existentes",
+  "No sustituye los sistemas existentes: los complementa",
   "Instalación única, sin intervenciones estructurales posteriores",
-  "Alineado con la directiva europea GIP/IPM",
-  "Registrable exclusivamente por técnicos autorizados",
+  "Alineado con la gestión integrada de plagas (GIP / IPM) de la normativa europea",
+  "Acceso registrable exclusivamente por técnicos autorizados",
 ];
 
 const inputClass =
@@ -504,8 +504,11 @@ export default function SolucionesPage() {
                       exit={{ opacity: 0, height: 0 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-6 text-sm text-gray-600 leading-relaxed">
-                        No requiere obras adicionales una vez instalado. La cámara interior es accesible en todo momento por la tapa superior sin necesidad de herramientas especiales.
+                      <div className="px-6 pb-6 text-sm text-gray-600 leading-relaxed space-y-2">
+                        <p>Se instala como un elemento más del bordillo urbano.</p>
+                        <p>Una vez colocado, no requiere obras adicionales.</p>
+                        <p>La cámara interior es accesible desde la tapa superior para tareas de revisión, monitorización o control.</p>
+                        <p>Se instala durante la ejecución del viario o sustituyendo bordillos existentes.</p>
                       </div>
                     </motion.div>
                   )}
@@ -534,9 +537,11 @@ export default function SolucionesPage() {
                       className="overflow-hidden"
                     >
                       <div className="px-6 pb-6">
-                        <p className="text-sm text-gray-600 leading-relaxed">
-                          Cada bordillo XANAEL incorpora una tapa de fundición certificada EN124 clase B125. El escudo central es personalizable con el emblema del municipio o entidad.
-                        </p>
+                        <div className="text-sm text-gray-600 leading-relaxed space-y-2">
+                          <p>Cada bordillo XANAEL incorpora una tapa de fundición certificada EN124 clase B125.</p>
+                          <p>El escudo central puede personalizarse con el emblema del municipio o entidad, reforzando su integración en el espacio público.</p>
+                          <p>Esto permite que XANAEL forme parte visible del mobiliario urbano del municipio.</p>
+                        </div>
                         {currentTapa.length > 0 && (
                           <div className="relative mt-4">
                             <div className="relative w-full aspect-[21/9] bg-[#F5F5F5] rounded-md overflow-hidden">
@@ -565,7 +570,7 @@ export default function SolucionesPage() {
           <div className="flex items-center px-6 lg:pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] lg:pr-16 py-14">
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-                Ventaja competitiva
+                Ventajas del sistema XANAEL
               </h2>
               <ul className="mt-8 space-y-4">
                 {ventajas.map((v, i) => (
