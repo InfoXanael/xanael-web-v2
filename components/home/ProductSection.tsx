@@ -3,39 +3,23 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Shield, Leaf } from "lucide-react";
-
-const benefits = [
-  {
-    icon: Shield,
-    title: "Prevención permanente en superficie",
-    description:
-      "Puntos de intervención fijos integrados en el viario urbano. Permiten detección temprana, monitorización y control cuando sea necesario.",
-  },
-  {
-    icon: Leaf,
-    title: "Integrado en la infraestructura urbana",
-    description:
-      "Forma parte del diseño físico de la ciudad. No es un dispositivo portátil: es infraestructura sanitaria permanente.",
-  },
-];
-
-const accordions = [
-  {
-    question: "¿Cómo funciona?",
-    answer:
-      "Los roedores urbanos siguen rutas habituales por bordillos y aceras.\n\nXANAEL intercepta esas rutas integrando puntos de detección y control directamente en el bordillo.\n\nDe esta forma permite detectar y actuar antes de que el problema llegue a los edificios.",
-  },
-  {
-    question: "¿Para quién es?",
-    answer:
-      "Municipios, industrias, empresas de control de plagas y todo tipo de espacios con viario exterior.\n\nCentros comerciales, colegios, parques temáticos, hoteles, parques públicos, piscinas o complejos industriales donde existan calles, aceras o zonas de tránsito en superficie.",
-  },
-];
+import { useTranslations } from "next-intl";
 
 const defaultImage = "/images/ProductSection/img_1.webp";
 
 export default function ProductSection() {
+  const t = useTranslations("Product");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const benefits = [
+    { icon: Shield, title: t("benefit1Title"), description: t("benefit1Desc") },
+    { icon: Leaf, title: t("benefit2Title"), description: t("benefit2Desc") },
+  ];
+
+  const accordions = [
+    { question: t("q1"), answer: t("a1") },
+    { question: t("q2"), answer: t("a2") },
+  ];
 
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
 
@@ -50,19 +34,19 @@ export default function ProductSection() {
             <div className="flex items-center gap-2">
               <span className="text-[#1A4A3A] text-lg font-bold leading-none">+</span>
               <span className="text-sm font-semibold tracking-wider uppercase text-[#1A4A3A]">
-                Sobre
+                {t("label")}
               </span>
             </div>
             <h2 className="mt-3 text-4xl font-bold text-[#1A4A3A] leading-tight">
-              ¿Qué es?
+              {t("title")}
             </h2>
             <p className="mt-5 text-gray-500 leading-relaxed">
-              XANAEL es una infraestructura urbana sanitaria preventiva integrada en el viario de la ciudad.
+              {t("desc1")}
             </p>
             <p className="mt-3 text-gray-600 leading-relaxed">
-              Exteriormente forma parte del bordillo urbano.
+              {t("desc2")}
               <br />
-              En su interior incorpora una cámara técnica preparada para la detección temprana, monitorización y control de plagas urbanas.
+              {t("desc2b")}
             </p>
 
             {/* Benefits card */}
@@ -124,7 +108,6 @@ export default function ProductSection() {
 
           {/* Right column — dynamic image */}
           <div className="relative w-full bg-[#2A2A2A] rounded-md overflow-hidden">
-            {/* Default: img_1.jpg */}
             <Image
               src={defaultImage}
               alt="Producto Xanael"
@@ -133,8 +116,6 @@ export default function ProductSection() {
                 activeView === -1 ? "opacity-100" : "opacity-0"
               }`}
             />
-
-            {/* Accordion 0: img_2.jpg */}
             <Image
               src="/images/ProductSection/img_2.webp"
               alt="Cómo funciona Xanael"
@@ -143,8 +124,6 @@ export default function ProductSection() {
                 activeView === 0 ? "opacity-100" : "opacity-0"
               }`}
             />
-
-            {/* Accordion 1: img_3 + img_4 stacked vertically */}
             <div
               className={`absolute inset-0 flex flex-col transition-opacity duration-300 ${
                 activeView === 1 ? "opacity-100" : "opacity-0"

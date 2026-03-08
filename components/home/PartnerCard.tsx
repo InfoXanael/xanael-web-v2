@@ -1,10 +1,13 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 
 export default function PartnerCard() {
+  const t = useTranslations("Partner");
+
   return (
     <section className="py-24 bg-[#F0F4F2]">
       <div className="max-w-7xl mx-auto px-6">
@@ -17,14 +20,11 @@ export default function PartnerCard() {
         >
           <div className="md:max-w-lg">
             <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
-              ¿Quieres colaborar?
+              {t("title")}
             </h2>
-            <p className="mt-3 text-white/70 leading-relaxed">
-              Forma parte de la red XANAEL. Instala, distribuye o representa la solución en tu territorio.
-            </p>
           </div>
           <Button asChild size="lg" className="shrink-0 bg-xanael-accent text-white hover:bg-xanael-green">
-            <Link href="/colaboradores">Más información</Link>
+            <Link href="/colaboradores">{t("cta")}</Link>
           </Button>
         </motion.div>
       </div>

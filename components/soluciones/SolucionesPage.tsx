@@ -1,9 +1,10 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
 import {
   Layers,
   DoorOpen,
@@ -18,20 +19,7 @@ import ManifestoSection from "@/components/home/ManifestoSection";
 import Newsletter from "@/components/home/Newsletter";
 
 /* ── data ── */
-const features = [
-  { icon: Layers, title: "Integración total", text: "Se integra directamente en el viario urbano, no como un elemento añadido" },
-  { icon: DoorOpen, title: "Cámara interior accesible", text: "Compatible con distintos sistemas de detección, monitorización y control de plagas" },
-  { icon: Cuboid, title: "Hormigón prefabricado", text: "Elemento constructivo estándar, sin mantenimiento estructural" },
-  { icon: ShieldCheck, title: "Patentado en España", text: "Primer sistema de infraestructura preventiva de plagas integrado en superficie urbana" },
-];
-
-const problemas = [
-  "La superficie urbana no disponía de infraestructura preventiva propia",
-  "El control de plagas tradicional actúa cuando el problema ya ha aparecido",
-  "Sin infraestructura física, la prevención depende de intervenciones externas",
-  "Los edificios e instalaciones quedan expuestos desde el perímetro urbano",
-  "La gestión integrada de plagas (GIP) carecía de una capa de control en superficie",
-];
+const featureIcons = [Layers, DoorOpen, Cuboid, ShieldCheck];
 
 const compactFeatures = [
   "Integración total en el viario urbano",
@@ -106,20 +94,15 @@ const standardSpecs = [
   ["Tapa — fijación", "Tornillos de llave única propietaria"],
 ];
 
-const ventajas = [
-  "Primer sistema de infraestructura preventiva de plagas integrado en la superficie urbana",
-  "Compatible con cualquier empresa de control de plagas",
-  "No sustituye los sistemas existentes: los complementa",
-  "Instalación única, sin intervenciones estructurales posteriores",
-  "Alineado con la gestión integrada de plagas (GIP / IPM) de la normativa europea",
-  "Acceso registrable exclusivamente por técnicos autorizados",
-];
 
 const inputClass =
   "w-full bg-white/[0.08] border border-white/30 rounded-md px-4 py-3 text-sm text-white placeholder:text-white/50 outline-none focus:border-white/50 transition-colors";
 
 /* ── component ── */
 export default function SolucionesPage() {
+  const t = useTranslations("Infrastructure");
+  const tc = useTranslations("Common");
+
   const [selectedModel, setSelectedModel] = useState<"compact" | "standard">("compact");
   const [galleryIdx, setGalleryIdx] = useState(0);
   const [magnify, setMagnify] = useState({ active: false, x: 50, y: 50 });
@@ -167,15 +150,20 @@ export default function SolucionesPage() {
   const nextSlide = () => setGalleryIdx((i) => (i === currentGallery.length - 1 ? 0 : i + 1));
   const toggleAccordion = (id: string) => setOpenAccordion(openAccordion === id ? null : id);
 
+  const featureTitleKeys = ["feat1Title", "feat2Title", "feat3Title", "feat4Title"] as const;
+  const featureTextKeys = ["feat1Text", "feat2Text", "feat3Text", "feat4Text"] as const;
+  const problemKeys = ["problem1", "problem2", "problem3", "problem4", "problem5"] as const;
+  const advKeys = ["adv1", "adv2", "adv3", "adv4", "adv5", "adv6"] as const;
+
   return (
     <div className="pt-24">
       {/* ─── 1. HERO ─── */}
       <section className="bg-[#F5F5F5]">
         <div className="max-w-7xl mx-auto px-6 py-6">
           <nav className="flex items-center gap-2 text-sm text-gray-400">
-            <Link href="/" className="hover:text-[#1A1A1A] transition-colors">Inicio</Link>
+            <Link href="/" className="hover:text-[#1A1A1A] transition-colors">{tc("home")}</Link>
             <span>/</span>
-            <span className="text-[#1A1A1A]">Infraestructuras</span>
+            <span className="text-[#1A1A1A]">{t("breadcrumb")}</span>
           </nav>
         </div>
 
@@ -183,23 +171,23 @@ export default function SolucionesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1A1A1A] tracking-tight leading-tight">
-                Infraestructura urbana sanitaria preventiva
+                {t("heroTitle")}
               </h1>
               <p className="mt-6 text-gray-500 text-lg leading-relaxed max-w-lg">
-                Por fuera, bordillo urbano. Por dentro, infraestructura sanitaria preparada para la detección y control de plagas.
+                {t("heroSubtitle")}
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
                 <Link
                   href="/contacto"
                   className="text-sm font-semibold px-6 py-3 rounded-md bg-[#2D6A4F] text-white hover:bg-[#1A4A3A] transition-colors"
                 >
-                  Solicitar información
+                  {t("requestInfo")}
                 </Link>
                 <Link
                   href="/colaboradores"
                   className="text-sm font-semibold px-6 py-3 rounded-md border border-gray-300 text-[#1A1A1A] hover:bg-gray-100 transition-colors"
                 >
-                  Colaborar
+                  {t("collaborate")}
                 </Link>
               </div>
             </div>
@@ -221,16 +209,13 @@ export default function SolucionesPage() {
       <section className="bg-[#1A1A1A]">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-            {features.map((f) => {
-              const Icon = f.icon;
-              return (
-                <div key={f.title}>
-                  <Icon className="w-7 h-7 text-white/80 mb-4" strokeWidth={1.5} />
-                  <h3 className="text-white font-semibold">{f.title}</h3>
-                  <p className="mt-2 text-white/60 text-sm leading-relaxed">{f.text}</p>
-                </div>
-              );
-            })}
+            {featureIcons.map((Icon, idx) => (
+              <div key={featureTitleKeys[idx]}>
+                <Icon className="w-7 h-7 text-white/80 mb-4" strokeWidth={1.5} />
+                <h3 className="text-white font-semibold">{t(featureTitleKeys[idx])}</h3>
+                <p className="mt-2 text-white/60 text-sm leading-relaxed">{t(featureTextKeys[idx])}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -241,13 +226,13 @@ export default function SolucionesPage() {
           <div className="flex items-center px-6 lg:pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] lg:pr-24 py-24">
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-[#1A4A3A] tracking-tight">
-                Problemas que resolvemos
+                {t("problemsTitle")}
               </h2>
               <ul className="mt-10 space-y-5">
-                {problemas.map((p, i) => (
-                  <li key={i} className="flex items-start gap-3">
+                {problemKeys.map((key) => (
+                  <li key={key} className="flex items-start gap-3">
                     <Check className="w-5 h-5 text-[#2D6A4F] shrink-0 mt-0.5" strokeWidth={2} />
-                    <span className="text-gray-600 leading-relaxed">{p}</span>
+                    <span className="text-gray-600 leading-relaxed">{t(key)}</span>
                   </li>
                 ))}
               </ul>
@@ -269,13 +254,13 @@ export default function SolucionesPage() {
         <div className="max-w-7xl mx-auto px-6 pt-16 pb-0">
           <div className="text-center">
             <h2 className="text-3xl sm:text-4xl font-bold text-[#1A4A3A] tracking-tight">
-              Tipos de infraestructura disponibles
+              {t("modelsTitle")}
             </h2>
             <Link
               href="/contacto"
               className="mt-5 inline-block text-sm font-semibold px-6 py-3 rounded-md border border-[#2D6A4F] text-[#2D6A4F] hover:bg-[#2D6A4F] hover:text-white transition-colors"
             >
-              ¿Necesitas ayuda?
+              {t("needHelp")}
             </Link>
           </div>
 
@@ -293,13 +278,13 @@ export default function SolucionesPage() {
               <div className="relative w-full h-[190px]">
                 <Image
                   src="/images/infrastructure/bordillo_1.webp"
-                  alt="Modelo Compact"
+                  alt={t("compact")}
                   fill
                   className="object-contain p-1"
                 />
               </div>
               <div className="py-3 px-2 text-center">
-                <span className="text-sm font-semibold text-[#1A1A1A]">Modelo Compact</span>
+                <span className="text-sm font-semibold text-[#1A1A1A]">{t("compact")}</span>
               </div>
             </button>
 
@@ -315,13 +300,13 @@ export default function SolucionesPage() {
               <div className="relative w-full h-[190px]">
                 <Image
                   src="/images/infrastructure/standard_model/bordillo_1.webp"
-                  alt="Modelo Standard"
+                  alt={t("standard")}
                   fill
                   className="object-contain p-1"
                 />
               </div>
               <div className="py-3 px-2 text-center">
-                <span className="text-sm font-semibold text-[#1A1A1A]">Modelo Standard</span>
+                <span className="text-sm font-semibold text-[#1A1A1A]">{t("standard")}</span>
               </div>
             </button>
           </div>
@@ -343,12 +328,10 @@ export default function SolucionesPage() {
               {/* Left: info */}
               <div>
                 <h3 className="text-2xl sm:text-3xl font-bold text-[#1A1A1A] tracking-tight">
-                  {selectedModel === "compact" ? "Modelo Compact" : "Modelo Standard"}
+                  {selectedModel === "compact" ? t("compact") : t("standard")}
                 </h3>
                 <p className="mt-4 text-gray-600 leading-relaxed">
-                  {selectedModel === "compact"
-                    ? "Bordillo técnico de hormigón prefabricado diseñado para integrarse en aceras, perímetros de edificios y viario urbano. Incorpora una cámara interior accesible con bandeja técnica extraíble, preparada para integrar sistemas de detección temprana, monitorización y control de plagas."
-                    : "Bordillo técnico de hormigón prefabricado de mayores dimensiones, diseñado para instalación en perímetros de mayor envergadura y zonas de alta demanda."}
+                  {selectedModel === "compact" ? t("compactDesc") : t("standardDesc")}
                 </p>
                 <ul className="mt-8 space-y-3">
                   {currentFeatures.map((f, i) => (
@@ -363,7 +346,7 @@ export default function SolucionesPage() {
                     href="/contacto"
                     className="text-sm font-semibold px-6 py-3 rounded-md bg-[#2D6A4F] text-white hover:bg-[#1A4A3A] transition-colors"
                   >
-                    Solicitar información
+                    {t("requestInfo")}
                   </Link>
                 </div>
               </div>
@@ -400,7 +383,7 @@ export default function SolucionesPage() {
                 >
                   <Image
                     src={currentGallery[galleryIdx]}
-                    alt={`${selectedModel === "compact" ? "Modelo Compact" : "Modelo Standard"} - imagen ${galleryIdx + 1}`}
+                    alt={`${selectedModel === "compact" ? t("compact") : t("standard")} - imagen ${galleryIdx + 1}`}
                     fill
                     className="object-contain p-6 transition-transform duration-300"
                     style={{
@@ -447,7 +430,7 @@ export default function SolucionesPage() {
                   onClick={() => toggleAccordion("specs")}
                   className="w-full flex items-center justify-between px-6 py-4 text-left font-semibold text-[#1A4A3A] hover:bg-gray-50 transition-colors"
                 >
-                  Especificaciones
+                  {t("specsTitle")}
                   <ChevronDown
                     className={`w-5 h-5 shrink-0 transition-transform duration-200 ${
                       openAccordion === "specs" ? "rotate-180" : ""
@@ -466,8 +449,8 @@ export default function SolucionesPage() {
                         <table className="w-full text-sm">
                           <thead>
                             <tr className="border-b border-gray-200">
-                              <th className="text-left py-3 pr-4 font-semibold text-[#1A1A1A]">Especificación</th>
-                              <th className="text-left py-3 font-semibold text-[#1A1A1A]">Valor</th>
+                              <th className="text-left py-3 pr-4 font-semibold text-[#1A1A1A]">{t("specLabel")}</th>
+                              <th className="text-left py-3 font-semibold text-[#1A1A1A]">{t("specValue")}</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -491,7 +474,7 @@ export default function SolucionesPage() {
                   onClick={() => toggleAccordion("install")}
                   className="w-full flex items-center justify-between px-6 py-4 text-left font-semibold text-[#1A4A3A] hover:bg-gray-50 transition-colors"
                 >
-                  Instalación
+                  {t("installTitle")}
                   <ChevronDown
                     className={`w-5 h-5 shrink-0 transition-transform duration-200 ${
                       openAccordion === "install" ? "rotate-180" : ""
@@ -507,10 +490,10 @@ export default function SolucionesPage() {
                       className="overflow-hidden"
                     >
                       <div className="px-6 pb-6 text-sm text-gray-600 leading-relaxed space-y-2">
-                        <p>Se instala como un elemento más del bordillo urbano.</p>
-                        <p>Una vez colocado, no requiere obras adicionales.</p>
-                        <p>La cámara interior es accesible desde la tapa superior para tareas de revisión, monitorización o control.</p>
-                        <p>Se instala durante la ejecución del viario o sustituyendo bordillos existentes.</p>
+                        <p>{t("install1")}</p>
+                        <p>{t("install2")}</p>
+                        <p>{t("install3")}</p>
+                        <p>{t("install4")}</p>
                       </div>
                     </motion.div>
                   )}
@@ -523,7 +506,7 @@ export default function SolucionesPage() {
                   onClick={() => toggleAccordion("tapa")}
                   className="w-full flex items-center justify-between px-6 py-4 text-left font-semibold text-[#1A4A3A] hover:bg-gray-50 transition-colors"
                 >
-                  Tapa de fundición personalizable
+                  {t("tapaTitle")}
                   <ChevronDown
                     className={`w-5 h-5 shrink-0 transition-transform duration-200 ${
                       openAccordion === "tapa" ? "rotate-180" : ""
@@ -540,9 +523,9 @@ export default function SolucionesPage() {
                     >
                       <div className="px-6 pb-6">
                         <div className="text-sm text-gray-600 leading-relaxed space-y-2">
-                          <p>Cada bordillo XANAEL incorpora una tapa de fundición certificada EN124 clase B125.</p>
-                          <p>El escudo central puede personalizarse con el emblema del municipio o entidad, reforzando su integración en el espacio público.</p>
-                          <p>Esto permite que XANAEL forme parte visible del mobiliario urbano del municipio.</p>
+                          <p>{t("tapa1")}</p>
+                          <p>{t("tapa2")}</p>
+                          <p>{t("tapa3")}</p>
                         </div>
                         {currentTapa.length > 0 && (
                           <div className="relative mt-4">
@@ -572,13 +555,13 @@ export default function SolucionesPage() {
           <div className="flex items-center px-6 lg:pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] lg:pr-16 py-14">
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-                Ventajas del sistema XANAEL
+                {t("advantagesTitle")}
               </h2>
               <ul className="mt-8 space-y-4">
-                {ventajas.map((v, i) => (
-                  <li key={i} className="flex items-start gap-3">
+                {advKeys.map((key) => (
+                  <li key={key} className="flex items-start gap-3">
                     <Check className="w-5 h-5 text-white/70 shrink-0 mt-0.5" strokeWidth={2} />
-                    <span className="text-white/80 leading-relaxed">{v}</span>
+                    <span className="text-white/80 leading-relaxed">{t(key)}</span>
                   </li>
                 ))}
               </ul>
@@ -608,10 +591,10 @@ export default function SolucionesPage() {
           <div className="absolute inset-0 bg-[#2A2A2A]/[0.95]" />
           <div className="relative p-8 md:p-12 lg:p-16">
             <h2 className="text-2xl font-bold text-white tracking-tight">
-              Solicita información para implantar XANAEL
+              {t("formTitle")}
             </h2>
             <p className="mt-4 text-white/60 leading-relaxed">
-              Completa el formulario y nuestro equipo te informará sobre implantación, distribución o colaboración con XANAEL.
+              {t("formSubtitle")}
             </p>
 
             <form
@@ -643,16 +626,16 @@ export default function SolucionesPage() {
                 }
               }}
             >
-              <input type="text" name="nombre" placeholder="Nombre completo" required className={inputClass} />
+              <input type="text" name="nombre" placeholder={t("formName")} required className={inputClass} />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <input type="email" name="email" placeholder="Email" required className={inputClass} />
-                <input type="tel" name="telefono" placeholder="Teléfono" className={inputClass} />
+                <input type="email" name="email" placeholder={t("formEmail")} required className={inputClass} />
+                <input type="tel" name="telefono" placeholder={t("formPhone")} className={inputClass} />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <input type="text" name="empresa" placeholder="Empresa" className={inputClass} />
-                <input type="text" name="provincia" placeholder="Provincia" className={inputClass} />
+                <input type="text" name="empresa" placeholder={t("formCompany")} className={inputClass} />
+                <input type="text" name="provincia" placeholder={t("formProvince")} className={inputClass} />
               </div>
 
               <select
@@ -661,17 +644,17 @@ export default function SolucionesPage() {
                 defaultValue=""
                 className={`${inputClass} appearance-none`}
               >
-                <option value="" disabled className="text-white/50">¿En qué estás interesado?</option>
-                <option value="implantacion_municipio">Implantación en municipio</option>
-                <option value="instalacion_empresa">Instalación en empresa / industria</option>
-                <option value="distribucion">Distribución</option>
-                <option value="colaboracion_tecnica">Colaboración técnica</option>
-                <option value="informacion_general">Información general</option>
+                <option value="" disabled className="text-white/50">{t("formInterest")}</option>
+                <option value="implantacion_municipio">{t("interestMunicipality")}</option>
+                <option value="instalacion_empresa">{t("interestCompany")}</option>
+                <option value="distribucion">{t("interestDistribution")}</option>
+                <option value="colaboracion_tecnica">{t("interestTechnical")}</option>
+                <option value="informacion_general">{t("interestGeneral")}</option>
               </select>
 
               <textarea
                 name="mensaje"
-                placeholder="Mensaje"
+                placeholder={t("formMessage")}
                 required
                 rows={4}
                 className={`${inputClass} resize-none`}
@@ -685,20 +668,19 @@ export default function SolucionesPage() {
                   className="mt-1 w-4 h-4 rounded border-white/30 bg-transparent accent-white shrink-0"
                 />
                 <span className="text-xs text-white/60 leading-relaxed">
-                  He leído y acepto la{" "}
-                  <span className="underline">política de privacidad</span>. Tus datos serán tratados conforme al RGPD.
+                  {t("formRgpd")}
                 </span>
               </label>
 
               {formSent ? (
-                <p className="text-white font-medium">Formulario enviado correctamente. Nos pondremos en contacto contigo.</p>
+                <p className="text-white font-medium">{t("formSent")}</p>
               ) : (
                 <button
                   type="submit"
                   disabled={formSending}
                   className="mt-4 bg-white text-[#1A4A3A] font-semibold text-sm px-7 py-3 rounded-md hover:bg-white/90 transition-colors disabled:opacity-50"
                 >
-                  {formSending ? "Enviando..." : "Enviar solicitud"}
+                  {formSending ? t("formSending") : t("formSubmit")}
                 </button>
               )}
             </form>

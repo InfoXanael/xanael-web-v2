@@ -2,11 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
-
-const fullText =
-  "La ciudad también puede protegerse. XANAEL integra la prevención de plagas directamente en la infraestructura urbana. Permanente, discreto y sin mantenimiento invasivo.";
-
-const words = fullText.split(" ");
+import { useTranslations } from "next-intl";
 
 function AnimatedWord({
   word,
@@ -29,6 +25,7 @@ function AnimatedWord({
 }
 
 export default function ManifestoSection() {
+  const t = useTranslations("Manifesto");
   const containerRef = useRef<HTMLElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -36,6 +33,7 @@ export default function ManifestoSection() {
     offset: ["start 0.8", "end 0.5"],
   });
 
+  const words = t("text").split(" ");
   const totalWords = words.length;
 
   return (

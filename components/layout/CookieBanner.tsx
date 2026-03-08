@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function CookieBanner() {
+  const t = useTranslations("CookieBanner");
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -23,24 +24,23 @@ export default function CookieBanner() {
       <div className="max-w-5xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4">
         <p className="text-sm text-[#1A1A1A] flex-1 flex items-start gap-2">
           <svg className="w-4 h-4 text-[#2D6A4F] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>Esta web utiliza cookies para mejorar tu experiencia de navegación.
-          Al continuar, aceptas su uso.{" "}
-          <Link href="/cookies" className="text-[#2D6A4F] underline">
-            Más información
-          </Link></span>
+          <span>{t("text")}{" "}
+          <a href="/cookies" className="text-[#2D6A4F] underline">
+            {t("moreInfo")}
+          </a></span>
         </p>
         <div className="flex gap-2 shrink-0">
           <button
             onClick={() => accept("all")}
             className="px-4 py-2 bg-[#2D6A4F] text-white text-sm font-medium rounded-md hover:bg-[#245a42] transition-colors"
           >
-            Aceptar todas
+            {t("acceptAll")}
           </button>
           <button
             onClick={() => accept("essential")}
             className="px-4 py-2 bg-gray-200 text-[#1A1A1A] text-sm font-medium rounded-md hover:bg-gray-300 transition-colors"
           >
-            Solo necesarias
+            {t("essentialOnly")}
           </button>
         </div>
       </div>

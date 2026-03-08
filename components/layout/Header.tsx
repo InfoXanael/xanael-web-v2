@@ -1,41 +1,42 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
+import { usePathname, useRouter, Link } from "@/i18n/navigation";
+import { useState, useEffect, useRef, useTransition } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const navLinks = [
-  { href: "/", label: "Inicio" },
-  { href: "/infraestructuras", label: "Infraestructuras" },
-  // { href: "/sectores/ayuntamientos", label: "Ayuntamientos" },
-  // { href: "/sectores/control-de-plagas", label: "Control de Plagas" },
-  // { href: "/sectores/industria", label: "Industria" },
-  { href: "/colaboradores", label: "Colaboradores" },
-  { href: "/noticias", label: "Noticias" },
-  { href: "/nosotros", label: "Nosotros" },
-];
+import { useLocale, useTranslations } from "next-intl";
 
 const languages = [
-  { code: "ES", label: "Español", flag: "https://flagcdn.com/es.svg" },
-  { code: "EN", label: "English", flag: "https://flagcdn.com/gb.svg" },
-  { code: "FR", label: "Français", flag: "https://flagcdn.com/fr.svg" },
-  { code: "IT", label: "Italiano", flag: "https://flagcdn.com/it.svg" },
-  { code: "PT", label: "Português", flag: "https://flagcdn.com/pt.svg" },
+  { code: "es" as const, label: "Español", flag: "https://flagcdn.com/es.svg" },
+  { code: "en" as const, label: "English", flag: "https://flagcdn.com/gb.svg" },
+  { code: "fr" as const, label: "Français", flag: "https://flagcdn.com/fr.svg" },
+  { code: "it" as const, label: "Italiano", flag: "https://flagcdn.com/it.svg" },
+  { code: "pt" as const, label: "Português", flag: "https://flagcdn.com/pt.svg" },
 ];
 
 export default function Header() {
+  const t = useTranslations("Header");
   const pathname = usePathname();
+  const router = useRouter();
+  const locale = useLocale();
+  const [, startTransition] = useTransition();
+
   const isHome = pathname === "/";
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
-  const [selectedLang, setSelectedLang] = useState(languages[0]);
   const langRef = useRef<HTMLDivElement>(null);
 
-  // On home page, transparent header uses white text (over dark hero)
-  // On inner pages, transparent header uses dark text (over light backgrounds)
+  const currentLang = languages.find((l) => l.code === locale) || languages[0];
+
+  const navLinks = [
+    { href: "/" as const, label: t("home") },
+    { href: "/infraestructuras" as const, label: t("infrastructure") },
+    { href: "/colaboradores" as const, label: t("collaborators") },
+    { href: "/noticias" as const, label: t("news") },
+    { href: "/nosotros" as const, label: t("about") },
+  ];
+
   const useWhiteText = isHome && !scrolled;
 
   useEffect(() => {
@@ -54,6 +55,13 @@ export default function Header() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  function switchLocale(newLocale: string) {
+    setLangOpen(false);
+    startTransition(() => {
+      router.replace(pathname, { locale: newLocale });
+    });
+  }
 
   return (
     <header
@@ -112,8 +120,8 @@ export default function Header() {
               }`}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={selectedLang.flag} alt={selectedLang.code} width={20} height={14} className="inline-block" />
-              <span>{selectedLang.code}</span>
+              <img src={currentLang.flag} alt={currentLang.code} width={20} height={14} className="inline-block" />
+              <span>{currentLang.code.toUpperCase()}</span>
               <svg
                 className={`w-3 h-3 transition-transform duration-200 ${langOpen ? "rotate-180" : ""}`}
                 fill="none"
@@ -130,19 +138,16 @@ export default function Header() {
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
-                    onClick={() => {
-                      setSelectedLang(lang);
-                      setLangOpen(false);
-                    }}
+                    onClick={() => switchLocale(lang.code)}
                     className={`w-full flex items-center gap-2 px-3 py-2 text-sm transition-colors ${
-                      selectedLang.code === lang.code
+                      locale === lang.code
                         ? "bg-gray-100 text-xanael-green font-medium"
                         : "text-xanael-text hover:bg-gray-50"
                     }`}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={lang.flag} alt={lang.code} width={20} height={14} className="inline-block" />
-                    <span>{lang.code}</span>
+                    <span>{lang.code.toUpperCase()}</span>
                   </button>
                 ))}
               </div>
@@ -153,7 +158,7 @@ export default function Header() {
             href="/contacto"
             className="text-sm font-semibold px-5 py-2.5 rounded-md bg-[#2D6A4F] text-white hover:bg-xanael-dark transition-all duration-300"
           >
-            Contacto
+            {t("contact")}
           </Link>
         </div>
 
@@ -195,16 +200,16 @@ export default function Header() {
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
-                    onClick={() => setSelectedLang(lang)}
+                    onClick={() => switchLocale(lang.code)}
                     className={`flex items-center gap-1.5 px-3 py-1.5 text-sm transition-colors rounded-md ${
-                      selectedLang.code === lang.code
+                      locale === lang.code
                         ? "bg-gray-100 text-xanael-green font-medium"
                         : "text-xanael-text hover:bg-gray-50"
                     }`}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={lang.flag} alt={lang.code} width={20} height={14} className="inline-block" />
-                    <span>{lang.code}</span>
+                    <span>{lang.code.toUpperCase()}</span>
                   </button>
                 ))}
               </div>
@@ -214,7 +219,7 @@ export default function Header() {
                 onClick={() => setMobileOpen(false)}
                 className="text-sm font-semibold bg-xanael-green text-white px-5 py-2.5 rounded-md text-center hover:bg-xanael-dark transition-colors"
               >
-                Contacto
+                {t("contact")}
               </Link>
             </div>
           </motion.div>

@@ -1,16 +1,18 @@
-import { BarChart3 } from "lucide-react";
-
 export default function AnalyticsPage() {
   return (
-    <div className="flex items-center justify-center min-h-[60vh]">
-      <div className="rounded-md bg-white border border-gray-200 p-12 text-center">
-        <BarChart3 className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-        <h1 className="text-2xl font-bold text-[#1A4A3A] mb-2">Analytics</h1>
-        <p className="text-gray-400 mb-2">Próximamente</p>
-        <p className="text-sm text-gray-400 max-w-md">
-          Aquí podrás consultar estadísticas de uso, métricas de dispositivos y reportes detallados de tu infraestructura XANAEL.
-        </p>
+    <div className="p-6">
+      <h1 className="text-2xl font-semibold text-[#1A1A1A] mb-6">Analytics</h1>
+      <div className="bg-white rounded-md border border-gray-200 overflow-hidden">
+        <iframe
+          src="https://lookerstudio.google.com/embed/reporting/20355340-a063-4e26-a501-a2e56169e008"
+          width="100%"
+          height="800"
+          frameBorder={0}
+          style={{ border: 0 }}
+          allowFullScreen
+          sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+        />
       </div>
     </div>
-  );
+  )
 }

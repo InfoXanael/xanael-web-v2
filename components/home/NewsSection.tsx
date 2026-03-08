@@ -1,6 +1,9 @@
-import Link from "next/link";
+"use client";
+
 import Image from "next/image";
+import { Link } from "@/i18n/navigation";
 import { noticias } from "@/src/data/noticias";
+import { useTranslations } from "next-intl";
 
 interface NewsSectionProps {
   excludeSlug?: string;
@@ -19,6 +22,7 @@ function parseFecha(fecha: string): number {
 }
 
 export default function NewsSection({ excludeSlug, bgColor = "bg-[#F0F4F2]" }: NewsSectionProps) {
+  const t = useTranslations("News");
   const news = (excludeSlug
     ? noticias.filter((n) => n.slug !== excludeSlug)
     : noticias
@@ -30,7 +34,7 @@ export default function NewsSection({ excludeSlug, bgColor = "bg-[#F0F4F2]" }: N
     <section className={`py-24 ${bgColor}`}>
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-3xl font-bold text-[#1A4A3A] tracking-tight">
-          Últimas noticias
+          {t("title")}
         </h2>
 
         <div className="mt-12 flex flex-wrap gap-6">
@@ -59,10 +63,10 @@ export default function NewsSection({ excludeSlug, bgColor = "bg-[#F0F4F2]" }: N
                 </p>
                 <div className="mt-4 flex justify-end">
                   <Link
-                    href={item.href}
+                    href={item.href as "/noticias"}
                     className="text-sm font-medium text-[#2D6A4F] hover:text-[#1A4A3A] transition-colors"
                   >
-                    Leer más →
+                    {t("readMore")}
                   </Link>
                 </div>
               </div>
@@ -75,7 +79,7 @@ export default function NewsSection({ excludeSlug, bgColor = "bg-[#F0F4F2]" }: N
             href="/noticias"
             className="inline-block text-sm font-semibold bg-[#1A4A3A] text-white px-7 py-3 rounded-md hover:bg-[#153d2f] transition-colors duration-300"
           >
-            Ver todas las noticias
+            {t("viewAll")}
           </Link>
         </div>
       </div>

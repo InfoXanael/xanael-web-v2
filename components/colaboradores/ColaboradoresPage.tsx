@@ -1,27 +1,12 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Truck, HardHat, HelpCircle } from "lucide-react";
 import ManifestoSection from "@/components/home/ManifestoSection";
 import Newsletter from "@/components/home/Newsletter";
-
-/* ───────── diagram nodes ───────── */
-
-const nodes = [
-  { icon: Truck, label: "Distribuidor", desc: "Distribuye e impulsa XANAEL en tu zona", interest: "distribuidor" },
-  { icon: HardHat, label: "OAX (Operador Autorizado XANAEL)", desc: "Instala y mantén el sistema", interest: "instalador" },
-  { icon: HelpCircle, label: "Otro", desc: "¿Tienes otra forma de colaborar?", interest: "otro" },
-];
-
-/* ───────── steps ───────── */
-
-const steps = [
-  { num: "1.", text: "Descubre qué tipo de colaboración encaja contigo" },
-  { num: "2.", text: "Rellena el formulario de contacto" },
-  { num: "3.", text: "Nuestro equipo se pondrá en contacto contigo" },
-];
+import { useTranslations } from "next-intl";
 
 /* ───────── input classes ───────── */
 
@@ -34,8 +19,27 @@ const selectClass =
 /* ───────── component ───────── */
 
 export default function ColaboradoresPage() {
+  const t = useTranslations("Collaborators");
+  const c = useTranslations("Common");
+
   const [interests, setInterests] = useState<string[]>([]);
   const [otherText, setOtherText] = useState("");
+
+  /* ───────── diagram nodes ───────── */
+
+  const nodes = [
+    { icon: Truck, label: t("distributor"), desc: t("distributorDesc"), interest: "distribuidor" },
+    { icon: HardHat, label: t("oax"), desc: t("oaxDesc"), interest: "instalador" },
+    { icon: HelpCircle, label: t("other"), desc: t("otherDesc"), interest: "otro" },
+  ];
+
+  /* ───────── steps ───────── */
+
+  const steps = [
+    { num: "1.", text: t("step1") },
+    { num: "2.", text: t("step2") },
+    { num: "3.", text: t("step3") },
+  ];
 
   const toggleInterest = (val: string) => {
     setInterests((prev) =>
@@ -62,10 +66,10 @@ export default function ColaboradoresPage() {
       <div className="max-w-7xl mx-auto px-6 py-6">
         <nav className="flex items-center gap-2 text-sm text-gray-400">
           <Link href="/" className="hover:text-[#2D6A4F] transition-colors">
-            Inicio
+            {c("home")}
           </Link>
           <span>/</span>
-          <span className="text-[#1A4A3A]">Colaboradores</span>
+          <span className="text-[#1A4A3A]">{t("breadcrumb")}</span>
         </nav>
       </div>
 
@@ -77,7 +81,7 @@ export default function ColaboradoresPage() {
           transition={{ duration: 0.6 }}
           className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1A4A3A] tracking-tight leading-tight max-w-4xl"
         >
-          Red de Colaboradores
+          {t("title")}
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 15 }}
@@ -85,7 +89,7 @@ export default function ColaboradoresPage() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mt-6 text-gray-500 text-lg leading-relaxed max-w-2xl"
         >
-          Descubre cómo puedes colaborar con XANAEL en tu zona.
+          {t("subtitle")}
         </motion.p>
         <motion.button
           initial={{ opacity: 0, y: 10 }}
@@ -94,7 +98,7 @@ export default function ColaboradoresPage() {
           onClick={scrollToForm}
           className="mt-8 inline-block text-sm font-semibold bg-[#1A1A1A] text-white px-7 py-3 rounded-md hover:bg-[#333] transition-colors duration-300"
         >
-          Unirme como colaborador
+          {t("joinCta")}
         </motion.button>
       </header>
 
@@ -129,8 +133,8 @@ export default function ColaboradoresPage() {
                 <div className="w-[90px] h-[90px] rounded-full bg-[#D8DDD9] flex items-center justify-center mx-auto group-hover:bg-[#C8CEC9] group-hover:scale-[1.15] transition-all duration-300 ease-out">
                   <Truck className="w-6 h-6 text-[#2D6A4F]" strokeWidth={1.5} />
                 </div>
-                <p className="mt-3 text-sm font-semibold text-[#2D6A4F] text-center">Distribuidor</p>
-                <p className="mt-1 text-xs text-gray-400 text-center max-w-[160px]">Distribuye e impulsa XANAEL en tu zona</p>
+                <p className="mt-3 text-sm font-semibold text-[#2D6A4F] text-center">{t("distributor")}</p>
+                <p className="mt-1 text-xs text-gray-400 text-center max-w-[160px]">{t("distributorDesc")}</p>
               </div>
 
               {/* Center node */}
@@ -138,9 +142,9 @@ export default function ColaboradoresPage() {
                 <div className="w-[90px] h-[90px] rounded-full bg-[#D8DDD9] flex items-center justify-center mx-auto group-hover:bg-[#C8CEC9] group-hover:scale-[1.15] transition-all duration-300 ease-out">
                   <HardHat className="w-6 h-6 text-[#2D6A4F]" strokeWidth={1.5} />
                 </div>
-                <p className="mt-3 text-sm font-semibold text-[#2D6A4F] text-center">OAX</p>
-                <p className="mt-1 text-xs text-gray-400 text-center max-w-[160px]">(<strong className="text-[#2D6A4F]">O</strong>perario <strong className="text-[#2D6A4F]">A</strong>utorizado por <strong className="text-[#2D6A4F]">X</strong>anael)</p>
-                <p className="mt-1 text-xs text-gray-400 text-center max-w-[160px]">Instala y mantén el sistema</p>
+                <p className="mt-3 text-sm font-semibold text-[#2D6A4F] text-center">{t("oax")}</p>
+                <p className="mt-1 text-xs text-gray-400 text-center max-w-[160px]">{t.rich("oaxFull", { bold: (chunks) => <strong className="text-[#2D6A4F]">{chunks}</strong> })}</p>
+                <p className="mt-1 text-xs text-gray-400 text-center max-w-[160px]">{t("oaxDesc")}</p>
               </div>
 
               {/* Right node */}
@@ -148,8 +152,8 @@ export default function ColaboradoresPage() {
                 <div className="w-[90px] h-[90px] rounded-full bg-[#D8DDD9] flex items-center justify-center mx-auto group-hover:bg-[#C8CEC9] group-hover:scale-[1.15] transition-all duration-300 ease-out">
                   <HelpCircle className="w-6 h-6 text-[#2D6A4F]" strokeWidth={1.5} />
                 </div>
-                <p className="mt-3 text-sm font-semibold text-[#2D6A4F] text-center">Otro</p>
-                <p className="mt-1 text-xs text-gray-400 text-center max-w-[160px]">¿Tienes otra forma de colaborar?</p>
+                <p className="mt-3 text-sm font-semibold text-[#2D6A4F] text-center">{t("other")}</p>
+                <p className="mt-1 text-xs text-gray-400 text-center max-w-[160px]">{t("otherDesc")}</p>
               </div>
             </div>
           </div>
@@ -182,7 +186,7 @@ export default function ColaboradoresPage() {
 
       {/* ── Cómo funciona ── */}
       <section className="max-w-7xl mx-auto px-6 pb-24">
-        <h2 className="text-2xl font-bold text-[#1A4A3A] tracking-tight">Cómo funciona</h2>
+        <h2 className="text-2xl font-bold text-[#1A4A3A] tracking-tight">{t("howTitle")}</h2>
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
           {steps.map((step) => (
             <div key={step.num} className="flex gap-4 items-start">
@@ -208,7 +212,7 @@ export default function ColaboradoresPage() {
           <div className="absolute inset-0 bg-[#2A2A2A]/[0.95]" />
           <div className="relative p-8 md:p-12 lg:p-16">
             <h2 className="text-2xl font-bold text-white tracking-tight">
-              Formulario de colaboración
+              {t("formTitle")}
             </h2>
 
             <form
@@ -217,14 +221,14 @@ export default function ColaboradoresPage() {
             >
               {/* Interest checkboxes */}
               <p className="text-sm font-semibold text-white/80 mb-4">
-                Estoy interesado en
+                {t("interestedIn")}
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
-                  { val: "distribuidor", label: "Convertirme en distribuidor" },
-                  { val: "instalador", label: "Convertirme en OAX" },
-                  { val: "ambos", label: "Distribuidor y OAX" },
-                  { val: "otro", label: "Otro" },
+                  { val: "distribuidor", label: t("becomeDistributor") },
+                  { val: "instalador", label: t("becomeOAX") },
+                  { val: "ambos", label: t("distributorAndOAX") },
+                  { val: "otro", label: t("other") },
                 ].map((opt) => (
                   <label
                     key={opt.val}
@@ -268,7 +272,7 @@ export default function ColaboradoresPage() {
                 >
                   <input
                     type="text"
-                    placeholder="Describe cómo te gustaría colaborar"
+                    placeholder={t("describeCollab")}
                     value={otherText}
                     onChange={(e) => setOtherText(e.target.value)}
                     className={inputClass}
@@ -278,29 +282,29 @@ export default function ColaboradoresPage() {
 
               {/* Contact fields */}
               <p className="text-sm font-semibold text-white/80 mt-10 mb-4">
-                Datos de contacto
+                {t("contactData")}
               </p>
 
-              <input type="text" placeholder="Nombre completo" className={`${inputClass} mb-4`} />
+              <input type="text" placeholder={t("name")} className={`${inputClass} mb-4`} />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <input type="email" placeholder="Email" className={inputClass} />
-                <input type="tel" placeholder="Teléfono" className={inputClass} />
+                <input type="email" placeholder={t("email")} className={inputClass} />
+                <input type="tel" placeholder={t("phone")} className={inputClass} />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-                <input type="text" placeholder="Empresa" className={inputClass} />
-                <input type="text" placeholder="Provincia" className={inputClass} />
+                <input type="text" placeholder={t("company")} className={inputClass} />
+                <input type="text" placeholder={t("province")} className={inputClass} />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
                 <div className="relative">
                   <select className={selectClass} defaultValue="">
-                    <option value="" disabled className="text-gray-900">Sector de actividad</option>
-                    <option value="plagas" className="text-gray-900">Control de plagas</option>
-                    <option value="construccion" className="text-gray-900">Construcción</option>
-                    <option value="distribucion" className="text-gray-900">Distribución</option>
-                    <option value="otro" className="text-gray-900">Otro</option>
+                    <option value="" disabled className="text-gray-900">{t("activitySector")}</option>
+                    <option value="plagas" className="text-gray-900">{t("pestControl")}</option>
+                    <option value="construccion" className="text-gray-900">{t("construction")}</option>
+                    <option value="distribucion" className="text-gray-900">{t("distribution")}</option>
+                    <option value="otro" className="text-gray-900">{t("other")}</option>
                   </select>
                   <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/50 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -308,11 +312,11 @@ export default function ColaboradoresPage() {
                 </div>
                 <div className="relative">
                   <select className={selectClass} defaultValue="">
-                    <option value="" disabled className="text-gray-900">Años de experiencia</option>
-                    <option value="0" className="text-gray-900">Menos de 1 año</option>
-                    <option value="1-3" className="text-gray-900">1-3 años</option>
-                    <option value="3-5" className="text-gray-900">3-5 años</option>
-                    <option value="5+" className="text-gray-900">Más de 5 años</option>
+                    <option value="" disabled className="text-gray-900">{t("yearsExperience")}</option>
+                    <option value="0" className="text-gray-900">{t("lessThan1")}</option>
+                    <option value="1-3" className="text-gray-900">{t("years1to3")}</option>
+                    <option value="3-5" className="text-gray-900">{t("years3to5")}</option>
+                    <option value="5+" className="text-gray-900">{t("moreThan5")}</option>
                   </select>
                   <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/50 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -321,7 +325,7 @@ export default function ColaboradoresPage() {
               </div>
 
               <textarea
-                placeholder="Cuéntanos cómo podemos colaborar"
+                placeholder={t("tellUs")}
                 rows={4}
                 className={`${inputClass} mt-4 resize-none`}
               />
@@ -334,8 +338,7 @@ export default function ColaboradoresPage() {
                   className="mt-1 w-4 h-4 rounded border-white/30 bg-transparent accent-white shrink-0"
                 />
                 <span className="text-xs text-white/60 leading-relaxed">
-                  He leído y acepto la{" "}
-                  <span className="underline">política de privacidad</span>. Tus datos serán tratados conforme al RGPD.
+                  {t("rgpd")}
                 </span>
               </label>
 
@@ -343,7 +346,7 @@ export default function ColaboradoresPage() {
                 type="submit"
                 className="mt-8 bg-white text-[#1A4A3A] font-semibold text-sm px-7 py-3 rounded-md hover:bg-white/90 transition-colors"
               >
-                Enviar solicitud
+                {t("submit")}
               </button>
             </form>
           </div>

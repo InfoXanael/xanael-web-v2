@@ -1,10 +1,13 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
+import { Link } from "@/i18n/navigation";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 export default function Hero() {
+  const t = useTranslations("Hero");
+
   return (
     <section className="relative h-screen flex items-center overflow-hidden">
       {/* Background image */}
@@ -26,7 +29,7 @@ export default function Hero() {
             transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight"
           >
-            Infraestructura urbana sanitaria preventiva
+            {t("title")}
           </motion.h1>
 
           <motion.p
@@ -35,8 +38,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.15, ease: [0.4, 0, 0.2, 1] }}
             className="mt-6 text-lg text-white/80 leading-relaxed"
           >
-            Sistema integrado en aceras y bordillos para la detección temprana
-            y el control preventivo de plagas urbanas.
+            {t("subtitle")}
           </motion.p>
 
           <motion.div
@@ -49,7 +51,7 @@ export default function Hero() {
               href="/contacto"
               className="inline-block text-sm font-semibold bg-[#2D6A4F] text-white px-7 py-3 rounded-md hover:bg-xanael-dark transition-colors duration-300"
             >
-              Solicita información
+              {t("cta")}
             </Link>
           </motion.div>
         </div>
