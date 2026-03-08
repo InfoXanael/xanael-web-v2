@@ -38,8 +38,8 @@ public/
 ## Autenticación
 Cookie httpOnly: dashboard_session
 Usuarios:
-- ayoub@xanael.es / xanael2026ayoub
-- carlos@xanael.es / xanael2026carlos
+- ayoub@xanael.es / 0xTCZQXlojMBehU2
+- carlos@xanael.es / GsE45YADWCMocEJV
 Middleware protege: /dashboard/*
 Redirige a: /login
 

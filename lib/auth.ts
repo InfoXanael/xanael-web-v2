@@ -1,7 +1,10 @@
 import { cookies } from "next/headers";
 import crypto from "crypto";
 
-const AUTH_SECRET = process.env.AUTH_SECRET || "xanael-dashboard-secret-2026";
+const AUTH_SECRET = process.env.AUTH_SECRET;
+if (!AUTH_SECRET) {
+  throw new Error("AUTH_SECRET env variable is required");
+}
 const COOKIE_NAME = "dashboard_session";
 
 interface AuthUser {
@@ -9,9 +12,9 @@ interface AuthUser {
   name: string;
 }
 
-const USERS: (AuthUser & { password: string })[] = [
-  { email: "ayoub@xanael.es", password: "xanael2026ayoub", name: "Ayoub" },
-  { email: "carlos@xanael.es", password: "xanael2026carlos", name: "Carlos" },
+const USERS: (AuthUser & { passwordHash: string })[] = [
+  { email: "ayoub@xanael.es", passwordHash: "9dcd672a3f5b06b6f8850b2dd4ca4c1d6daa446a29dbe8033faadafe1bb6981d", name: "Ayoub" },
+  { email: "carlos@xanael.es", passwordHash: "b0d5c1b47e6518821148f928f71a5c7f923bb786569f373e1db91bbacd5630dc", name: "Carlos" },
 ];
 
 function sign(payload: string): string {
@@ -42,8 +45,9 @@ export function validateCredentials(
   email: string,
   password: string
 ): AuthUser | null {
+  const hash = crypto.createHash("sha256").update(password).digest("hex");
   const user = USERS.find(
-    (u) => u.email === email && u.password === password
+    (u) => u.email === email && u.passwordHash === hash
   );
   if (!user) return null;
   return { email: user.email, name: user.name };
