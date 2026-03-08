@@ -19,9 +19,12 @@ export default function PoliticaPrivacidadPage() {
               1. Responsable del tratamiento
             </h2>
             <p>
-              <strong>XANAEL S.L.</strong><br />
+              <strong>GRUPO RUBIO SERVICIOS HIGIÉNICOS INTEGRALES S.L.</strong><br />
+              NIF: B31784051<br />
+              Domicilio: Polígono Ultrapuertos, Nave 1, 31500 Tudela, Navarra<br />
+              Teléfono: 678 455 121<br />
               Email: info@xanael.es<br />
-              Web: https://xanael.es
+              Web: xanael.es
             </p>
           </section>
 
@@ -60,9 +63,10 @@ export default function PoliticaPrivacidadPage() {
             </h2>
             <p>
               Los datos enviados a través de los formularios se almacenan en una base de datos
-              propia gestionada internamente por XANAEL. Estos datos son accesibles exclusivamente
-              a través de un panel de administración interno protegido con autenticación segura
-              (cookies httpOnly), al que solo tiene acceso el personal autorizado de XANAEL.
+              propia alojada en el servidor de GRUPO RUBIO SERVICIOS HIGIÉNICOS INTEGRALES S.L.
+              Estos datos son accesibles exclusivamente a través de un panel de administración
+              interno protegido con autenticación segura (cookies httpOnly), al que solo tiene
+              acceso el personal autorizado.
             </p>
             <p className="mt-2">
               Adicionalmente, los datos de contactos comerciales y distribuidores pueden

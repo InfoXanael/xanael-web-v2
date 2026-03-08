@@ -16,7 +16,19 @@ export default function CookiesPage() {
         <div className="bg-white rounded-md border border-gray-200 p-8 space-y-6 text-sm text-[#1A1A1A] leading-relaxed">
           <section>
             <h2 className="text-lg font-semibold text-[#1A4A3A] mb-3">
-              1. ¿Qué son las cookies?
+              1. Responsable
+            </h2>
+            <p>
+              <strong>GRUPO RUBIO SERVICIOS HIGIÉNICOS INTEGRALES S.L.</strong><br />
+              NIF: B31784051<br />
+              Domicilio: Polígono Ultrapuertos, Nave 1, 31500 Tudela, Navarra<br />
+              Email: info@xanael.es
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-lg font-semibold text-[#1A4A3A] mb-3">
+              2. ¿Qué son las cookies?
             </h2>
             <p>
               Las cookies son pequeños archivos de texto que los sitios web almacenan en su
@@ -27,7 +39,7 @@ export default function CookiesPage() {
 
           <section>
             <h2 className="text-lg font-semibold text-[#1A4A3A] mb-3">
-              2. Cookies que utilizamos
+              3. Cookies que utilizamos
             </h2>
 
             <div className="overflow-x-auto mt-3">
@@ -57,7 +69,7 @@ export default function CookiesPage() {
 
           <section>
             <h2 className="text-lg font-semibold text-[#1A4A3A] mb-3">
-              3. Cookies de terceros
+              4. Cookies de terceros
             </h2>
             <p>
               Nuestra web puede incluir contenido embebido de terceros (como vídeos de YouTube)
@@ -68,7 +80,7 @@ export default function CookiesPage() {
 
           <section>
             <h2 className="text-lg font-semibold text-[#1A4A3A] mb-3">
-              4. Gestión de cookies
+              5. Gestión de cookies
             </h2>
             <p>
               Puede configurar su navegador para rechazar o eliminar cookies. Tenga en cuenta
@@ -79,7 +91,7 @@ export default function CookiesPage() {
 
           <section>
             <h2 className="text-lg font-semibold text-[#1A4A3A] mb-3">
-              5. Contacto
+              6. Contacto
             </h2>
             <p>
               Si tiene alguna duda sobre nuestra política de cookies, puede contactarnos en{" "}

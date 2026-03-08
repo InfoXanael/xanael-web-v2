@@ -19,9 +19,12 @@ export default function AvisoLegalPage() {
               1. Datos identificativos
             </h2>
             <p>
-              <strong>XANAEL S.L.</strong><br />
+              <strong>GRUPO RUBIO SERVICIOS HIGIÉNICOS INTEGRALES S.L.</strong><br />
+              NIF: B31784051<br />
+              Domicilio: Polígono Ultrapuertos, Nave 1, 31500 Tudela, Navarra<br />
+              Teléfono: 678 455 121<br />
               Email: info@xanael.es<br />
-              Web: https://xanael.es
+              Web: xanael.es
             </p>
           </section>
 
@@ -30,8 +33,8 @@ export default function AvisoLegalPage() {
               2. Objeto
             </h2>
             <p>
-              El presente aviso legal regula el uso del sitio web https://xanael.es,
-              propiedad de XANAEL S.L. El acceso y uso de este sitio web atribuye la
+              El presente aviso legal regula el uso del sitio web xanael.es,
+              propiedad de GRUPO RUBIO SERVICIOS HIGIÉNICOS INTEGRALES S.L. El acceso y uso de este sitio web atribuye la
               condición de usuario e implica la aceptación plena de las condiciones
               aquí establecidas.
             </p>
@@ -43,7 +46,7 @@ export default function AvisoLegalPage() {
             </h2>
             <p>
               Todos los contenidos del sitio web (textos, imágenes, logotipos, diseños,
-              código fuente, marcas y demás elementos) son propiedad de XANAEL S.L. o de
+              código fuente, marcas y demás elementos) son propiedad de GRUPO RUBIO SERVICIOS HIGIÉNICOS INTEGRALES S.L. o de
               sus legítimos titulares, y están protegidos por las leyes de propiedad
               intelectual e industrial. Queda prohibida su reproducción, distribución o
               transformación sin autorización expresa.
@@ -56,9 +59,10 @@ export default function AvisoLegalPage() {
             </h2>
             <p>
               Los datos personales facilitados a través de los formularios del sitio web
-              se almacenan en una base de datos propia gestionada internamente por XANAEL.
-              El acceso a estos datos está restringido a personal autorizado mediante un
-              panel de administración protegido con autenticación segura.
+              se almacenan en una base de datos propia alojada en el servidor de
+              GRUPO RUBIO SERVICIOS HIGIÉNICOS INTEGRALES S.L. El acceso a estos datos
+              está restringido a personal autorizado mediante un panel de administración
+              interno protegido con autenticación segura.
             </p>
             <p className="mt-2">
               Para más información, consulte nuestra{" "}
@@ -73,7 +77,7 @@ export default function AvisoLegalPage() {
               5. Responsabilidad
             </h2>
             <p>
-              XANAEL S.L. no se hace responsable de los daños o perjuicios que puedan
+              GRUPO RUBIO SERVICIOS HIGIÉNICOS INTEGRALES S.L. no se hace responsable de los daños o perjuicios que puedan
               derivarse de interferencias, omisiones, interrupciones, virus informáticos,
               averías telefónicas o desconexiones en el funcionamiento operativo del sistema,
               así como de retrasos o bloqueos en el uso causados por deficiencias o
@@ -86,7 +90,7 @@ export default function AvisoLegalPage() {
               6. Enlaces externos
             </h2>
             <p>
-              Este sitio web puede contener enlaces a páginas de terceros. XANAEL S.L. no
+              Este sitio web puede contener enlaces a páginas de terceros. GRUPO RUBIO SERVICIOS HIGIÉNICOS INTEGRALES S.L. no
               asume responsabilidad alguna por el contenido, políticas de privacidad o
               prácticas de sitios web de terceros.
             </p>
