@@ -211,8 +211,16 @@ const forms: Record<ContactType, React.ReactNode> = {
 
 /* ───────── main component ───────── */
 
+const TIPO_MAP: Record<ContactType, string> = {
+  comercial: "comercial",
+  general: "general",
+  instalador: "instalador",
+  tecnico: "incidencia",
+};
+
 export default function ContactPage() {
   const [active, setActive] = useState<ContactType>("comercial");
+  const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   return (
     <div className="pt-24 bg-[#F0F4F2] min-h-screen">
@@ -246,7 +254,7 @@ export default function ContactPage() {
             return (
               <button
                 key={ct.id}
-                onClick={() => setActive(ct.id)}
+                onClick={() => { setActive(ct.id); setFormStatus("idle"); }}
                 className={`text-left p-5 rounded-md border transition-all duration-300 ${
                   isActive
                     ? "bg-[#1A4A3A] text-white border-[#1A4A3A] shadow-lg"
@@ -279,17 +287,70 @@ export default function ContactPage() {
           <div className="absolute inset-0 bg-[#1A4A3A]/[0.92]" />
           <div className="relative p-8 md:p-12">
             <AnimatePresence mode="wait">
-              <motion.form
-                key={active}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.25 }}
-                onSubmit={(e) => e.preventDefault()}
-                className="max-w-2xl"
-              >
-                {forms[active]}
-              </motion.form>
+              {formStatus === "success" ? (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.25 }}
+                  className="max-w-2xl py-8"
+                >
+                  <p className="text-white text-lg font-semibold">
+                    Mensaje enviado correctamente
+                  </p>
+                  <p className="text-white/60 text-sm mt-2">
+                    Nos pondremos en contacto contigo lo antes posible.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setFormStatus("idle")}
+                    className="mt-6 bg-white text-[#1A4A3A] font-semibold text-sm px-7 py-3 rounded-md hover:bg-white/90 transition-colors"
+                  >
+                    Enviar otra consulta
+                  </button>
+                </motion.div>
+              ) : (
+                <motion.form
+                  key={active}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.25 }}
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    setFormStatus("loading");
+                    const fd = new FormData(e.currentTarget);
+                    try {
+                      const res = await fetch("/api/formularios", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                          tipo: TIPO_MAP[active],
+                          nombre: fd.get("nombre") || "",
+                          email: fd.get("email") || "",
+                          telefono: fd.get("telefono") || "",
+                          empresa: fd.get("empresa") || "",
+                          sector: fd.get("sector") || "",
+                          mensaje: fd.get("mensaje") || "",
+                        }),
+                      });
+                      if (!res.ok) throw new Error();
+                      setFormStatus("success");
+                    } catch {
+                      setFormStatus("error");
+                    }
+                  }}
+                  className="max-w-2xl"
+                >
+                  {formStatus === "error" && (
+                    <div className="mb-4 bg-red-500/20 border border-red-400/30 text-white text-sm rounded-md p-3">
+                      Ha ocurrido un error, inténtalo de nuevo.
+                    </div>
+                  )}
+                  {forms[active]}
+                </motion.form>
+              )}
             </AnimatePresence>
           </div>
         </div>
