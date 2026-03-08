@@ -7,7 +7,7 @@ export default function Newsletter() {
         <div className="h-[1px] bg-white/20 mb-12" />
         <h3 className="text-lg font-semibold text-white">Mantente informado</h3>
         <p className="mt-2 text-sm text-white/70">
-          Recibe las últimas novedades en tu correo
+          Recibe las últimas novedades
         </p>
         <form
           onSubmit={(e) => e.preventDefault()}

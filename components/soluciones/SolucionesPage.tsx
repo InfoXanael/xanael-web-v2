@@ -19,18 +19,18 @@ import Newsletter from "@/components/home/Newsletter";
 
 /* ── data ── */
 const features = [
-  { icon: Layers, title: "Integración total", text: "Se instala como parte del viario, no como un añadido" },
-  { icon: DoorOpen, title: "Cámara interior accesible", text: "Compatible con cualquier sistema de control de plagas" },
-  { icon: Cuboid, title: "Hormigón prefabricado", text: "Material de construcción estándar, sin mantenimiento estructural" },
-  { icon: ShieldCheck, title: "Patentado en España", text: "Primer sistema de este tipo integrado en superficie urbana" },
+  { icon: Layers, title: "Integración total", text: "Se integra directamente en el viario urbano, no como un elemento añadido" },
+  { icon: DoorOpen, title: "Cámara interior accesible", text: "Compatible con distintos sistemas de detección, monitorización y control de plagas" },
+  { icon: Cuboid, title: "Hormigón prefabricado", text: "Elemento constructivo estándar, sin mantenimiento estructural" },
+  { icon: ShieldCheck, title: "Patentado en España", text: "Primer sistema de infraestructura preventiva de plagas integrado en superficie urbana" },
 ];
 
 const problemas = [
-  "La superficie urbana no tenía infraestructura preventiva propia",
-  "El control de plagas tradicional actúa cuando el problema ya existe",
-  "Sin estructura física, la prevención depende solo de intervenciones externas",
-  "Los edificios e instalaciones quedan expuestos desde el perímetro",
-  "La gestión integrada de plagas (GIP) no tenía capa de superficie",
+  "La superficie urbana no disponía de infraestructura preventiva propia",
+  "El control de plagas tradicional actúa cuando el problema ya ha aparecido",
+  "Sin infraestructura física, la prevención depende de intervenciones externas",
+  "Los edificios e instalaciones quedan expuestos desde el perímetro urbano",
+  "La gestión integrada de plagas (GIP) carecía de una capa de control en superficie",
 ];
 
 const compactFeatures = [
@@ -40,7 +40,7 @@ const compactFeatures = [
   "Tornillos de seguridad con llave única propietaria",
   "Escudo central personalizable",
   "Agujeros de acceso con entrada diagonal anti-infiltración",
-  "Compatible con cualquier sistema de control de plagas",
+  "Compatible con distintos sistemas de detección, monitorización y control de plagas",
 ];
 
 const standardFeatures = [
@@ -51,7 +51,7 @@ const standardFeatures = [
   "Tapa de fundición certificada EN124 clase B125",
   "Tornillos de seguridad con llave única propietaria",
   "Escudo central personalizable",
-  "Compatible con cualquier sistema de control de plagas",
+  "Compatible con distintos sistemas de detección, monitorización y control de plagas",
 ];
 
 const compactGallery = [

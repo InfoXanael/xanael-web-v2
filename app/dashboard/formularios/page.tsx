@@ -20,7 +20,7 @@ interface Formulario {
 
 const TABS = [
   { label: "Comercial", value: "comercial" },
-  { label: "Instaladores", value: "instalador" },
+  { label: "OAX", value: "instalador" },
   { label: "General", value: "general" },
   { label: "Incidencias", value: "incidencia" },
 ];

@@ -159,9 +159,9 @@ function FormInstalador() {
       <div className="relative mb-4">
         <select name="tipo_colaboracion" className={selectClass} defaultValue="">
           <option value="" disabled className="text-gray-900">Tipo de colaboración</option>
-          <option value="instalador" className="text-gray-900">Instalador certificado</option>
+          <option value="instalador" className="text-gray-900">OAX – Operario Autorizado XANAEL</option>
           <option value="distribuidor" className="text-gray-900">Distribuidor</option>
-          <option value="ambos" className="text-gray-900">Instalador y distribuidor</option>
+          <option value="ambos" className="text-gray-900">OAX y distribuidor</option>
           <option value="otro" className="text-gray-900">Otro</option>
         </select>
         <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/50 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

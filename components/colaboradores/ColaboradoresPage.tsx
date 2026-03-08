@@ -11,7 +11,7 @@ import Newsletter from "@/components/home/Newsletter";
 
 const nodes = [
   { icon: Truck, label: "Distribuidor", desc: "Distribuye e impulsa XANAEL en tu zona", interest: "distribuidor" },
-  { icon: HardHat, label: "Instalador", desc: "Instala y mantén el sistema", interest: "instalador" },
+  { icon: HardHat, label: "OAX (Operador Autorizado XANAEL)", desc: "Instala y mantén el sistema", interest: "instalador" },
   { icon: HelpCircle, label: "Otro", desc: "¿Tienes otra forma de colaborar?", interest: "otro" },
 ];
 
@@ -138,7 +138,8 @@ export default function ColaboradoresPage() {
                 <div className="w-[90px] h-[90px] rounded-full bg-[#D8DDD9] flex items-center justify-center mx-auto group-hover:bg-[#C8CEC9] group-hover:scale-[1.15] transition-all duration-300 ease-out">
                   <HardHat className="w-6 h-6 text-[#2D6A4F]" strokeWidth={1.5} />
                 </div>
-                <p className="mt-3 text-sm font-semibold text-[#2D6A4F] text-center">Instalador</p>
+                <p className="mt-3 text-sm font-semibold text-[#2D6A4F] text-center">OAX</p>
+                <p className="mt-1 text-xs text-gray-400 text-center max-w-[160px]">(<strong className="text-[#2D6A4F]">O</strong>perario <strong className="text-[#2D6A4F]">A</strong>utorizado por <strong className="text-[#2D6A4F]">X</strong>anael)</p>
                 <p className="mt-1 text-xs text-gray-400 text-center max-w-[160px]">Instala y mantén el sistema</p>
               </div>
 
@@ -221,8 +222,8 @@ export default function ColaboradoresPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
                   { val: "distribuidor", label: "Convertirme en distribuidor" },
-                  { val: "instalador", label: "Convertirme en instalador certificado" },
-                  { val: "ambos", label: "Distribuidor e instalador" },
+                  { val: "instalador", label: "Convertirme en OAX" },
+                  { val: "ambos", label: "Distribuidor y OAX" },
                   { val: "otro", label: "Otro" },
                 ].map((opt) => (
                   <label
