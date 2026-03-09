@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-import { useState, useEffect, useRef, useTransition } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 
@@ -19,9 +19,7 @@ const languages = [
 export default function Header() {
   const t = useTranslations("Header");
   const rawPathname = usePathname();
-  const router = useRouter();
   const locale = useLocale();
-  const [, startTransition] = useTransition();
 
   // Strip locale prefix to get clean pathname
   let pathname = rawPathname;
@@ -65,11 +63,9 @@ export default function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  function switchLocale(newLocale: string) {
-    setLangOpen(false);
-    startTransition(() => {
-      router.push(`/${newLocale === 'es' ? '' : newLocale + '/'}${pathname.replace(/^\//, '')}`);
-    });
+  function getLocalePath(newLocale: string) {
+    const cleanPath = pathname === "/" ? "" : pathname;
+    return newLocale === "es" ? `/${cleanPath}`.replace(/\/+/g, "/") : `/${newLocale}${cleanPath}`;
   }
 
   return (
@@ -145,9 +141,9 @@ export default function Header() {
             {langOpen && (
               <div className="absolute top-full right-0 mt-1 bg-white shadow-md border border-gray-100 rounded-md overflow-hidden min-w-[110px]">
                 {languages.map((lang) => (
-                  <button
+                  <a
                     key={lang.code}
-                    onClick={() => switchLocale(lang.code)}
+                    href={getLocalePath(lang.code)}
                     className={`w-full flex items-center gap-2 px-3 py-2 text-sm transition-colors ${
                       locale === lang.code
                         ? "bg-gray-100 text-xanael-green font-medium"
@@ -157,7 +153,7 @@ export default function Header() {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={lang.flag} alt={lang.code} width={20} height={14} className="inline-block" />
                     <span>{lang.code.toUpperCase()}</span>
-                  </button>
+                  </a>
                 ))}
               </div>
             )}
@@ -207,9 +203,9 @@ export default function Header() {
               {/* Mobile language selector */}
               <div className="flex items-center gap-2 py-1">
                 {languages.map((lang) => (
-                  <button
+                  <a
                     key={lang.code}
-                    onClick={() => switchLocale(lang.code)}
+                    href={getLocalePath(lang.code)}
                     className={`flex items-center gap-1.5 px-3 py-1.5 text-sm transition-colors rounded-md ${
                       locale === lang.code
                         ? "bg-gray-100 text-xanael-green font-medium"
@@ -219,7 +215,7 @@ export default function Header() {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={lang.flag} alt={lang.code} width={20} height={14} className="inline-block" />
                     <span>{lang.code.toUpperCase()}</span>
-                  </button>
+                  </a>
                 ))}
               </div>
 
