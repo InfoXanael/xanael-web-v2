@@ -64,8 +64,8 @@ export default function Header() {
   }, []);
 
   function getLocalePath(newLocale: string) {
-    const cleanPath = pathname === "/" ? "" : pathname;
-    return newLocale === "es" ? `/${cleanPath}`.replace(/\/+/g, "/") : `/${newLocale}${cleanPath}`;
+    if (newLocale === "es") return pathname || "/";
+    return `/${newLocale}${pathname === "/" ? "" : pathname}`;
   }
 
   return (
