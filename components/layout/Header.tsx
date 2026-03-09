@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { usePathname, useRouter, Link } from "@/i18n/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { Link } from "@/i18n/navigation";
+import { routing } from "@/i18n/routing";
 import { useState, useEffect, useRef, useTransition } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
@@ -16,10 +18,17 @@ const languages = [
 
 export default function Header() {
   const t = useTranslations("Header");
-  const pathname = usePathname();
+  const rawPathname = usePathname();
   const router = useRouter();
   const locale = useLocale();
   const [, startTransition] = useTransition();
+
+  // Strip locale prefix to get clean pathname
+  let pathname = rawPathname;
+  for (const loc of routing.locales) {
+    if (rawPathname === `/${loc}`) { pathname = "/"; break; }
+    if (rawPathname.startsWith(`/${loc}/`)) { pathname = rawPathname.slice(loc.length + 1); break; }
+  }
 
   const isHome = pathname === "/";
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -58,8 +67,11 @@ export default function Header() {
 
   function switchLocale(newLocale: string) {
     setLangOpen(false);
+    const newPath = newLocale === routing.defaultLocale
+      ? pathname
+      : `/${newLocale}${pathname}`;
     startTransition(() => {
-      router.replace(pathname, { locale: newLocale });
+      router.replace(newPath);
     });
   }
 
