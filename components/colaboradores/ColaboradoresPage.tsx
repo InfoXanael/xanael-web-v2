@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Truck, HardHat, HelpCircle } from "lucide-react";
 import ManifestoSection from "@/components/home/ManifestoSection";
 import Newsletter from "@/components/home/Newsletter";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 /* ───────── input classes ───────── */
 
@@ -21,9 +21,26 @@ const selectClass =
 export default function ColaboradoresPage() {
   const t = useTranslations("Collaborators");
   const c = useTranslations("Common");
+  const locale = useLocale();
 
   const [interests, setInterests] = useState<string[]>([]);
   const [otherText, setOtherText] = useState("");
+  const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  /* ───────── form field refs via controlled state ───────── */
+  const [fields, setFields] = useState({
+    nombre: "",
+    email: "",
+    telefono: "",
+    empresa: "",
+    provincia: "",
+    sector: "",
+    experiencia: "",
+    mensaje: "",
+  });
+
+  const setField = (key: keyof typeof fields) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+    setFields((prev) => ({ ...prev, [key]: e.target.value }));
 
   /* ───────── diagram nodes ───────── */
 
@@ -58,6 +75,31 @@ export default function ColaboradoresPage() {
     setTimeout(() => {
       document.getElementById("formulario")?.scrollIntoView({ behavior: "smooth" });
     }, 100);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormStatus("loading");
+    try {
+      const res = await fetch("/api/formularios", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          tipo: "colaborador",
+          nombre: fields.nombre,
+          email: fields.email,
+          telefono: fields.telefono,
+          empresa: fields.empresa,
+          sector: interests.join(", ") + (otherText ? ` (${otherText})` : ""),
+          mensaje: fields.mensaje,
+          locale,
+        }),
+      });
+      if (!res.ok) throw new Error();
+      setFormStatus("success");
+    } catch {
+      setFormStatus("error");
+    }
   };
 
   return (
@@ -113,22 +155,16 @@ export default function ColaboradoresPage() {
                   <polygon points="0 0, 10 3.5, 0 7" fill="#2D6A4F" />
                 </marker>
               </defs>
-              {/* Left arrow: center → distribuidor */}
               <line x1="320" y1="140" x2="165" y2="225" stroke="#2D6A4F" strokeWidth="2" markerEnd="url(#arrowhead)" />
-              {/* Bottom arrow: center → instalador */}
               <line x1="400" y1="175" x2="400" y2="232" stroke="#2D6A4F" strokeWidth="2" markerEnd="url(#arrowhead)" />
-              {/* Right arrow: center → otro */}
               <line x1="480" y1="140" x2="635" y2="225" stroke="#2D6A4F" strokeWidth="2" markerEnd="url(#arrowhead)" />
             </svg>
 
-            {/* Overlay positioned elements */}
             <div className="relative -mt-[380px] h-[380px] max-w-3xl mx-auto">
-              {/* Center circle */}
               <div className="absolute left-1/2 top-[40px] -translate-x-1/2 w-[140px] h-[140px] rounded-full bg-[#2D6A4F] flex items-center justify-center shadow-lg">
                 <span className="text-white font-bold text-lg tracking-wide">XANAEL</span>
               </div>
 
-              {/* Left node */}
               <div className="absolute left-[2%] top-[210px] group cursor-pointer" onClick={() => selectAndScroll("distribuidor")}>
                 <div className="w-[90px] h-[90px] rounded-full bg-[#D8DDD9] flex items-center justify-center mx-auto group-hover:bg-[#C8CEC9] group-hover:scale-[1.15] transition-all duration-300 ease-out">
                   <Truck className="w-6 h-6 text-[#2D6A4F]" strokeWidth={1.5} />
@@ -137,7 +173,6 @@ export default function ColaboradoresPage() {
                 <p className="mt-1 text-xs text-gray-400 text-center max-w-[160px]">{t("distributorDesc")}</p>
               </div>
 
-              {/* Center node */}
               <div className="absolute left-1/2 -translate-x-1/2 top-[265px] group cursor-pointer" onClick={() => selectAndScroll("instalador")}>
                 <div className="w-[90px] h-[90px] rounded-full bg-[#D8DDD9] flex items-center justify-center mx-auto group-hover:bg-[#C8CEC9] group-hover:scale-[1.15] transition-all duration-300 ease-out">
                   <HardHat className="w-6 h-6 text-[#2D6A4F]" strokeWidth={1.5} />
@@ -147,7 +182,6 @@ export default function ColaboradoresPage() {
                 <p className="mt-1 text-xs text-gray-400 text-center max-w-[160px]">{t("oaxDesc")}</p>
               </div>
 
-              {/* Right node */}
               <div className="absolute right-[2%] top-[210px] group cursor-pointer" onClick={() => selectAndScroll("otro")}>
                 <div className="w-[90px] h-[90px] rounded-full bg-[#D8DDD9] flex items-center justify-center mx-auto group-hover:bg-[#C8CEC9] group-hover:scale-[1.15] transition-all duration-300 ease-out">
                   <HelpCircle className="w-6 h-6 text-[#2D6A4F]" strokeWidth={1.5} />
@@ -215,140 +249,167 @@ export default function ColaboradoresPage() {
               {t("formTitle")}
             </h2>
 
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="mt-10 max-w-2xl"
-            >
-              {/* Interest checkboxes */}
-              <p className="text-sm font-semibold text-white/80 mb-4">
-                {t("interestedIn")}
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {[
-                  { val: "distribuidor", label: t("becomeDistributor") },
-                  { val: "instalador", label: t("becomeOAX") },
-                  { val: "ambos", label: t("distributorAndOAX") },
-                  { val: "otro", label: t("other") },
-                ].map((opt) => (
-                  <label
-                    key={opt.val}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-md border cursor-pointer transition-all duration-200 ${
-                      interests.includes(opt.val)
-                        ? "bg-white/15 border-white/50"
-                        : "bg-white/[0.05] border-white/20 hover:border-white/35"
-                    }`}
-                  >
-                    <div
-                      className={`w-4 h-4 rounded-[3px] border-2 flex items-center justify-center shrink-0 transition-colors ${
+            {formStatus === "success" ? (
+              <div className="mt-10 max-w-2xl py-8">
+                <p className="text-white text-lg font-semibold">{t("successTitle")}</p>
+                <p className="text-white/60 text-sm mt-2">{t("successText")}</p>
+                <button
+                  onClick={() => { setFormStatus("idle"); setFields({ nombre: "", email: "", telefono: "", empresa: "", provincia: "", sector: "", experiencia: "", mensaje: "" }); setInterests([]); }}
+                  className="mt-6 bg-white text-[#1A4A3A] font-semibold text-sm px-7 py-3 rounded-md hover:bg-white/90 transition-colors"
+                >
+                  {t("sendAnother")}
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="mt-10 max-w-2xl">
+
+                {formStatus === "error" && (
+                  <div className="mb-6 bg-red-500/20 border border-red-400/30 text-white text-sm rounded-md p-3">
+                    {t("errorText")}
+                  </div>
+                )}
+
+                {/* Interest checkboxes */}
+                <p className="text-sm font-semibold text-white/80 mb-4">
+                  {t("interestedIn")}
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {[
+                    { val: "distribuidor", label: t("becomeDistributor") },
+                    { val: "instalador", label: t("becomeOAX") },
+                    { val: "ambos", label: t("distributorAndOAX") },
+                    { val: "otro", label: t("other") },
+                  ].map((opt) => (
+                    <label
+                      key={opt.val}
+                      className={`flex items-center gap-3 px-4 py-3 rounded-md border cursor-pointer transition-all duration-200 ${
                         interests.includes(opt.val)
-                          ? "bg-white border-white"
-                          : "border-white/40 bg-transparent"
+                          ? "bg-white/15 border-white/50"
+                          : "bg-white/[0.05] border-white/20 hover:border-white/35"
                       }`}
                     >
-                      {interests.includes(opt.val) && (
-                        <svg className="w-2.5 h-2.5 text-[#1A4A3A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3.5}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                      )}
-                    </div>
-                    <span className="text-sm text-white/90">{opt.label}</span>
+                      <div
+                        className={`w-4 h-4 rounded-[3px] border-2 flex items-center justify-center shrink-0 transition-colors ${
+                          interests.includes(opt.val)
+                            ? "bg-white border-white"
+                            : "border-white/40 bg-transparent"
+                        }`}
+                      >
+                        {interests.includes(opt.val) && (
+                          <svg className="w-2.5 h-2.5 text-[#1A4A3A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                          </svg>
+                        )}
+                      </div>
+                      <span className="text-sm text-white/90">{opt.label}</span>
+                      <input
+                        type="checkbox"
+                        className="sr-only"
+                        checked={interests.includes(opt.val)}
+                        onChange={() => toggleInterest(opt.val)}
+                      />
+                    </label>
+                  ))}
+                </div>
+
+                {/* Otro text field */}
+                {interests.includes("otro") && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="mt-3"
+                  >
                     <input
-                      type="checkbox"
-                      className="sr-only"
-                      checked={interests.includes(opt.val)}
-                      onChange={() => toggleInterest(opt.val)}
+                      type="text"
+                      placeholder={t("describeCollab")}
+                      value={otherText}
+                      onChange={(e) => setOtherText(e.target.value)}
+                      className={inputClass}
                     />
-                  </label>
-                ))}
-              </div>
+                  </motion.div>
+                )}
 
-              {/* Otro text field */}
-              {interests.includes("otro") && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="mt-3"
-                >
-                  <input
-                    type="text"
-                    placeholder={t("describeCollab")}
-                    value={otherText}
-                    onChange={(e) => setOtherText(e.target.value)}
-                    className={inputClass}
-                  />
-                </motion.div>
-              )}
+                {/* Contact fields */}
+                <p className="text-sm font-semibold text-white/80 mt-10 mb-4">
+                  {t("contactData")}
+                </p>
 
-              {/* Contact fields */}
-              <p className="text-sm font-semibold text-white/80 mt-10 mb-4">
-                {t("contactData")}
-              </p>
-
-              <input type="text" placeholder={t("name")} className={`${inputClass} mb-4`} />
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <input type="email" placeholder={t("email")} className={inputClass} />
-                <input type="tel" placeholder={t("phone")} className={inputClass} />
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-                <input type="text" placeholder={t("company")} className={inputClass} />
-                <input type="text" placeholder={t("province")} className={inputClass} />
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-                <div className="relative">
-                  <select className={selectClass} defaultValue="">
-                    <option value="" disabled className="text-gray-900">{t("activitySector")}</option>
-                    <option value="plagas" className="text-gray-900">{t("pestControl")}</option>
-                    <option value="construccion" className="text-gray-900">{t("construction")}</option>
-                    <option value="distribucion" className="text-gray-900">{t("distribution")}</option>
-                    <option value="otro" className="text-gray-900">{t("other")}</option>
-                  </select>
-                  <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/50 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </div>
-                <div className="relative">
-                  <select className={selectClass} defaultValue="">
-                    <option value="" disabled className="text-gray-900">{t("yearsExperience")}</option>
-                    <option value="0" className="text-gray-900">{t("lessThan1")}</option>
-                    <option value="1-3" className="text-gray-900">{t("years1to3")}</option>
-                    <option value="3-5" className="text-gray-900">{t("years3to5")}</option>
-                    <option value="5+" className="text-gray-900">{t("moreThan5")}</option>
-                  </select>
-                  <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/50 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </div>
-              </div>
-
-              <textarea
-                placeholder={t("tellUs")}
-                rows={4}
-                className={`${inputClass} mt-4 resize-none`}
-              />
-
-              {/* RGPD */}
-              <label className="flex items-start gap-3 mt-6 cursor-pointer">
                 <input
-                  type="checkbox"
+                  type="text"
+                  placeholder={t("name")}
                   required
-                  className="mt-1 w-4 h-4 rounded border-white/30 bg-transparent accent-white shrink-0"
+                  value={fields.nombre}
+                  onChange={setField("nombre")}
+                  className={`${inputClass} mb-4`}
                 />
-                <span className="text-xs text-white/60 leading-relaxed">
-                  {t("rgpd")}
-                </span>
-              </label>
 
-              <button
-                type="submit"
-                className="mt-8 bg-white text-[#1A4A3A] font-semibold text-sm px-7 py-3 rounded-md hover:bg-white/90 transition-colors"
-              >
-                {t("submit")}
-              </button>
-            </form>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <input type="email" placeholder={t("email")} required value={fields.email} onChange={setField("email")} className={inputClass} />
+                  <input type="tel" placeholder={t("phone")} value={fields.telefono} onChange={setField("telefono")} className={inputClass} />
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                  <input type="text" placeholder={t("company")} value={fields.empresa} onChange={setField("empresa")} className={inputClass} />
+                  <input type="text" placeholder={t("province")} value={fields.provincia} onChange={setField("provincia")} className={inputClass} />
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                  <div className="relative">
+                    <select value={fields.sector} onChange={setField("sector")} className={selectClass} defaultValue="">
+                      <option value="" disabled className="text-gray-900">{t("activitySector")}</option>
+                      <option value="plagas" className="text-gray-900">{t("pestControl")}</option>
+                      <option value="construccion" className="text-gray-900">{t("construction")}</option>
+                      <option value="distribucion" className="text-gray-900">{t("distribution")}</option>
+                      <option value="otro" className="text-gray-900">{t("other")}</option>
+                    </select>
+                    <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/50 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                  <div className="relative">
+                    <select value={fields.experiencia} onChange={setField("experiencia")} className={selectClass} defaultValue="">
+                      <option value="" disabled className="text-gray-900">{t("yearsExperience")}</option>
+                      <option value="0" className="text-gray-900">{t("lessThan1")}</option>
+                      <option value="1-3" className="text-gray-900">{t("years1to3")}</option>
+                      <option value="3-5" className="text-gray-900">{t("years3to5")}</option>
+                      <option value="5+" className="text-gray-900">{t("moreThan5")}</option>
+                    </select>
+                    <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/50 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
+
+                <textarea
+                  placeholder={t("tellUs")}
+                  rows={4}
+                  value={fields.mensaje}
+                  onChange={setField("mensaje")}
+                  className={`${inputClass} mt-4 resize-none`}
+                />
+
+                {/* RGPD */}
+                <label className="flex items-start gap-3 mt-6 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    required
+                    className="mt-1 w-4 h-4 rounded border-white/30 bg-transparent accent-white shrink-0"
+                  />
+                  <span className="text-xs text-white/60 leading-relaxed">
+                    {t("rgpd")}
+                  </span>
+                </label>
+
+                <button
+                  type="submit"
+                  disabled={formStatus === "loading"}
+                  className="mt-8 bg-white text-[#1A4A3A] font-semibold text-sm px-7 py-3 rounded-md hover:bg-white/90 transition-colors disabled:opacity-60"
+                >
+                  {formStatus === "loading" ? "..." : t("submit")}
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </section>
