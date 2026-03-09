@@ -10,24 +10,14 @@ interface NewsSectionProps {
   bgColor?: string;
 }
 
-const meses: Record<string, number> = {
-  enero: 0, febrero: 1, marzo: 2, abril: 3, mayo: 4, junio: 5,
-  julio: 6, agosto: 7, septiembre: 8, octubre: 9, noviembre: 10, diciembre: 11,
-};
-
-function parseFecha(fecha: string): number {
-  const parts = fecha.match(/(\d+)\s+de\s+(\w+)\s+de\s+(\d+)/);
-  if (!parts) return 0;
-  return new Date(+parts[3], meses[parts[2].toLowerCase()] ?? 0, +parts[1]).getTime();
-}
-
 export default function NewsSection({ excludeSlug, bgColor = "bg-[#F0F4F2]" }: NewsSectionProps) {
   const t = useTranslations("News");
+  const cards = useTranslations("NewsCards");
   const news = (excludeSlug
     ? noticias.filter((n) => n.slug !== excludeSlug)
     : noticias
   )
-    .sort((a, b) => parseFecha(b.fecha) - parseFecha(a.fecha))
+    .sort((a, b) => b.sortDate.localeCompare(a.sortDate))
     .slice(0, 3);
 
   return (
@@ -46,20 +36,20 @@ export default function NewsSection({ excludeSlug, bgColor = "bg-[#F0F4F2]" }: N
               <div className="relative aspect-[3/2] bg-[#2A2A2A]">
                 <Image
                   src={item.imagen}
-                  alt={item.titulo}
+                  alt={cards(`${item.cardKey}_title`)}
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="p-6">
                 <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">
-                  {item.categoria}
+                  {cards(`${item.cardKey}_category`)}
                 </span>
                 <h3 className="mt-2 text-base font-bold text-[#1A1A1A] leading-snug">
-                  {item.titulo}
+                  {cards(`${item.cardKey}_title`)}
                 </h3>
                 <p className="mt-2 text-sm text-gray-400 leading-relaxed line-clamp-2">
-                  {item.extracto}
+                  {cards(`${item.cardKey}_excerpt`)}
                 </p>
                 <div className="mt-4 flex justify-end">
                   <Link

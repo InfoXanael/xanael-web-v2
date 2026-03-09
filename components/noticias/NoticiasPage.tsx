@@ -12,18 +12,19 @@ export default function NoticiasPage() {
   const t = useTranslations("NewsPage");
   const n = useTranslations("News");
   const c = useTranslations("Common");
-  const [active, setActive] = useState("Todo");
+  const cards = useTranslations("NewsCards");
+  const [active, setActive] = useState("all");
 
   const categoryKeys = [
-    { key: "all", original: "Todo" },
-    { key: "events", original: "Eventos" },
-    { key: "innovation", original: "Innovación" },
-    { key: "xanael", original: "XANAEL" },
-    { key: "installations", original: "Instalaciones" },
+    { key: "all", filterValue: "all" },
+    { key: "events", filterValue: "events" },
+    { key: "innovation", filterValue: "innovation" },
+    { key: "xanael", filterValue: "xanael" },
+    { key: "installations", filterValue: "installations" },
   ] as const;
 
   const filtered =
-    active === "Todo"
+    active === "all"
       ? noticias
       : noticias.filter((item) => item.categoria === active);
 
@@ -53,9 +54,9 @@ export default function NoticiasPage() {
           {categoryKeys.map((cat) => (
             <button
               key={cat.key}
-              onClick={() => setActive(cat.original)}
+              onClick={() => setActive(cat.filterValue)}
               className={`px-5 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
-                active === cat.original
+                active === cat.filterValue
                   ? "bg-[#1A1A1A] text-white"
                   : "bg-[#F0F0F0] text-[#1A1A1A] border border-gray-200 hover:bg-[#E0E0E0]"
               }`}
@@ -78,17 +79,17 @@ export default function NoticiasPage() {
                 <div className="relative aspect-[3/2] bg-[#E0E0E0]">
                   <Image
                     src={item.imagen}
-                    alt={item.titulo}
+                    alt={cards(`${item.cardKey}_title`)}
                     fill
                     className="object-cover"
                   />
                 </div>
                 <div className="p-5">
                   <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">
-                    {item.categoria}
+                    {cards(`${item.cardKey}_category`)}
                   </span>
                   <h3 className="mt-2 text-sm font-bold text-[#1A1A1A] leading-snug">
-                    {item.titulo}
+                    {cards(`${item.cardKey}_title`)}
                   </h3>
                   <div className="mt-4">
                     <Link

@@ -45,9 +45,9 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p>&copy; {new Date().getFullYear()} {t("rights")}</p>
             <div className="flex gap-4">
-              <a href="/politica-privacidad" className="hover:text-white transition-colors">{t("privacy")}</a>
-              <a href="/cookies" className="hover:text-white transition-colors">{t("cookies")}</a>
-              <a href="/aviso-legal" className="hover:text-white transition-colors">{t("legal")}</a>
+              <Link href="/politica-privacidad" className="hover:text-white transition-colors">{t("privacy")}</Link>
+              <Link href="/cookies" className="hover:text-white transition-colors">{t("cookies")}</Link>
+              <Link href="/aviso-legal" className="hover:text-white transition-colors">{t("legal")}</Link>
             </div>
           </div>
         </div>
