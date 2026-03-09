@@ -21,12 +21,14 @@ export default function Header() {
   const rawPathname = usePathname();
   const locale = useLocale();
 
-  // Strip locale prefix to get clean pathname
-  let pathname = rawPathname;
-  for (const loc of routing.locales) {
-    if (rawPathname === `/${loc}`) { pathname = "/"; break; }
-    if (rawPathname.startsWith(`/${loc}/`)) { pathname = rawPathname.slice(loc.length + 1); break; }
-  }
+  // Strip locale prefix
+  const pathname = (() => {
+    for (const loc of routing.locales) {
+      if (rawPathname === `/${loc}`) return "/";
+      if (rawPathname.startsWith(`/${loc}/`)) return rawPathname.slice(loc.length + 1);
+    }
+    return rawPathname;
+  })();
 
   const isHome = pathname === "/";
   const [mobileOpen, setMobileOpen] = useState(false);
