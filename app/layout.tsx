@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { getLocale } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
+import Script from "next/script";
 import "./globals.css";
 
 const inter = Inter({
@@ -41,6 +42,14 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className={inter.variable}>
+      <head>
+        <Script
+          defer
+          data-domain="xanael.es"
+          src="https://analytics.xanael.es/js/script.js"
+          strategy="afterInteractive"
+        />
+      </head>
       <body className="font-sans">
         <NextIntlClientProvider>
           {children}
