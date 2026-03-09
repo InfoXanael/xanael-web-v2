@@ -3,7 +3,7 @@
 import { Link } from "@/i18n/navigation";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { User, MessageCircle, Handshake, Wrench, Mail, MapPin, Linkedin } from "lucide-react";
 
 /* ───────── contact type ids ───────── */
@@ -186,6 +186,7 @@ const TIPO_MAP: Record<ContactType, string> = {
 export default function ContactPage() {
   const t = useTranslations("Contact");
   const c = useTranslations("Common");
+  const locale = useLocale();
   const [active, setActive] = useState<ContactType>("comercial");
   const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
@@ -320,6 +321,7 @@ export default function ContactPage() {
                           empresa: fd.get("empresa") || "",
                           sector: fd.get("sector") || "",
                           mensaje: fd.get("mensaje") || "",
+                          locale,
                         }),
                       });
                       if (!res.ok) throw new Error();
