@@ -67,11 +67,8 @@ export default function Header() {
 
   function switchLocale(newLocale: string) {
     setLangOpen(false);
-    const newPath = newLocale === routing.defaultLocale
-      ? pathname
-      : `/${newLocale}${pathname}`;
     startTransition(() => {
-      router.replace(newPath);
+      router.push(`/${newLocale === 'es' ? '' : newLocale + '/'}${pathname.replace(/^\//, '')}`);
     });
   }
 
