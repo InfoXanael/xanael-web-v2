@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { sendConfirmationEmail } from "@/lib/mailer";
 
 export async function GET(request: NextRequest) {
   try {
@@ -29,8 +30,9 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { tipo, nombre, email, telefono, empresa, sector, mensaje } = body;
+    const { tipo, nombre, email, telefono, empresa, sector, mensaje, locale } = body;
 
+    // Save to DB
     const formulario = await prisma.formSubmission.create({
       data: {
         tipo,
@@ -42,6 +44,16 @@ export async function POST(request: NextRequest) {
         mensaje,
       },
     });
+
+    // Send confirmation email — non-blocking, don't fail the request if email fails
+    if (email && nombre) {
+      sendConfirmationEmail({
+        nombre,
+        email,
+        tipo,
+        locale: locale ?? "es",
+      }).catch((err) => console.error("[mailer] Failed to send confirmation:", err));
+    }
 
     return NextResponse.json(formulario, { status: 201 });
   } catch (error) {
