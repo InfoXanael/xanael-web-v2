@@ -20,6 +20,16 @@ export const metadata: Metadata = {
     ],
     apple: "/images/favicon/apple-touch-icon.png",
   },
+  openGraph: {
+    title: "Xanael - Infraestructura Urbana Sanitaria Preventiva",
+    description:
+      "Infraestructura urbana sanitaria preventiva que prepara la ciudad frente a plagas en superficie. Prevén, monitoriza y actúa de forma segura y sostenible.",
+    url: "https://xanael.es",
+    siteName: "Xanael",
+    locale: "es_ES",
+    type: "website",
+    images: [],
+  },
 };
 
 export default async function RootLayout({
