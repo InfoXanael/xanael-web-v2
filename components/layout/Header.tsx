@@ -66,7 +66,6 @@ export default function Header() {
   }, []);
 
   function getLocalePath(newLocale: string) {
-    if (newLocale === "es") return pathname || "/";
     return `/${newLocale}${pathname === "/" ? "" : pathname}`;
   }
 

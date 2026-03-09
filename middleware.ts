@@ -16,15 +16,14 @@ export function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
-  // Skip i18n for login, api, legal pages
-  if (
-    pathname.startsWith("/login") ||
-    pathname.startsWith("/api") ||
-    pathname.startsWith("/politica-privacidad") ||
-    pathname.startsWith("/cookies") ||
-    pathname.startsWith("/aviso-legal")
-  ) {
+  // Skip i18n for login and api
+  if (pathname.startsWith("/login") || pathname.startsWith("/api")) {
     return NextResponse.next();
+  }
+
+  // Redirect bare / to /es
+  if (pathname === "/") {
+    return NextResponse.redirect(new URL("/es", req.url));
   }
 
   // Handle i18n for all other public routes
