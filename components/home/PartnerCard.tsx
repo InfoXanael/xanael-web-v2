@@ -22,6 +22,9 @@ export default function PartnerCard() {
             <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
               {t("title")}
             </h2>
+            <p className="mt-3 text-white/80 text-base">
+              {t("text")}
+            </p>
           </div>
           <Button asChild size="lg" className="shrink-0 bg-xanael-accent text-white hover:bg-xanael-green">
             <Link href="/colaboradores">{t("cta")}</Link>

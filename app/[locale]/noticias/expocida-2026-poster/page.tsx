@@ -1,40 +1,45 @@
-import Link from "next/link";
 import Image from "next/image";
+import { Link } from "@/i18n/navigation";
 import NewsSection from "@/components/home/NewsSection";
+import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "XANAEL presenta su póster técnico en EXPOCIDA 2026 | Xanael",
 };
 
-export default function ExpocidaPosterPage() {
+export default async function ExpocidaPosterPage() {
+  const t = await getTranslations("NewsExpocidaPoster");
+  const c = await getTranslations("Common");
+  const cta = await getTranslations("NewsArticleCTA");
+
   return (
     <main className="pt-24">
       {/* Breadcrumb */}
       <div className="max-w-[900px] mx-auto px-6 py-6">
         <nav className="flex items-center gap-2 text-sm text-gray-400">
           <Link href="/" className="hover:text-[#2D6A4F] transition-colors">
-            Inicio
+            {c("home")}
           </Link>
           <span>/</span>
           <Link href="/noticias" className="hover:text-[#2D6A4F] transition-colors">
-            Noticias
+            {c("news")}
           </Link>
           <span>/</span>
-          <span className="text-[#1A4A3A]">EXPOCIDA 2026 — Póster técnico</span>
+          <span className="text-[#1A4A3A]">{t("breadcrumb")}</span>
         </nav>
       </div>
 
       {/* Article header */}
       <header className="max-w-[900px] mx-auto px-6 pb-10">
         <span className="text-sm font-medium text-gray-400 uppercase tracking-wider">
-          Innovación
+          {t("category")}
         </span>
         <h1 className="mt-3 text-3xl md:text-4xl font-bold text-[#1A4A3A] leading-tight">
-          XANAEL presenta su póster técnico en EXPOCIDA 2026
+          {t("title")}
         </h1>
         <time className="mt-4 block text-sm text-gray-400">
-          31 de enero de 2026
+          {t("date")}
         </time>
         <div className="mt-6 h-[1px] bg-gray-200" />
       </header>
@@ -53,36 +58,19 @@ export default function ExpocidaPosterPage() {
           </div>
           <div className="md:w-[55%]">
             <p className="text-gray-600 leading-relaxed">
-              XANAEL participó en la convocatoria oficial de pósters técnicos y
-              científicos de EXPOCIDA 2026, el evento de referencia del sector
-              del control de plagas en España, celebrado en IFEMA Madrid los
-              días 30 y 31 de enero de 2026.
+              {t("p1")}
             </p>
             <p className="mt-6 text-gray-600 leading-relaxed">
-              El póster, expuesto como Póster Nº 8 en el Pabellón 5, presentó
-              de forma detallada el sistema de infraestructura urbana sanitaria
-              preventiva desarrollado por XANAEL: un bordillo de hormigón
-              prefabricado que integra una cámara técnica interior diseñada para
-              albergar sistemas de control de plagas.
+              {t("p2")}
             </p>
             <p className="mt-6 text-gray-600 leading-relaxed">
-              La propuesta técnica recoge los fundamentos del sistema patentado:
-              la interceptación de rutas de roedores en superficie, la
-              eliminación de productos químicos expuestos y la integración
-              permanente en el mobiliario urbano sin alterar la estética del
-              espacio público.
+              {t("p3")}
             </p>
             <p className="mt-6 text-gray-600 leading-relaxed">
-              La presencia en EXPOCIDA supone un paso importante en la
-              validación técnica del proyecto ante profesionales del sector,
-              empresas de control de plagas, técnicos municipales y responsables
-              de higiene ambiental de toda España y Europa.
+              {t("p4")}
             </p>
             <p className="mt-6 text-gray-600 leading-relaxed">
-              XANAEL continúa consolidando su posición como la primera solución
-              de infraestructura urbana sanitaria preventiva patentada en
-              España, con un enfoque que combina innovación, sostenibilidad y
-              eficacia demostrada.
+              {t("p5")}
             </p>
           </div>
         </div>
@@ -97,17 +85,13 @@ export default function ExpocidaPosterPage() {
             className="max-w-[30%] h-auto rounded-md mx-auto"
           />
           <figcaption className="mt-3 text-sm text-gray-400 text-center">
-            EXPOCIDA 2026 — Póster Nº 8, Pabellón 5, IFEMA Madrid
+            {t("imgCaption")}
           </figcaption>
         </figure>
 
         {/* Closing paragraph */}
         <p className="mt-12 text-gray-600 leading-relaxed pb-16">
-          La participación en EXPOCIDA 2026 refuerza el compromiso de XANAEL
-          con la divulgación técnica y la colaboración con el sector
-          profesional del control de plagas, abriendo nuevas vías de diálogo
-          con empresas e instituciones interesadas en soluciones preventivas y
-          permanentes.
+          {t("closing")}
         </p>
       </article>
 
@@ -117,17 +101,16 @@ export default function ExpocidaPosterPage() {
       <section className="bg-[#1A1A1A]">
         <div className="max-w-3xl mx-auto px-6 py-20 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-white">
-            ¿Interesado en nuestra solución?
+            {cta("title")}
           </h2>
           <p className="mt-4 text-white/60 leading-relaxed">
-            Contacta con nuestro equipo y descubre cómo XANAEL puede proteger
-            tu municipio o instalación.
+            {cta("text")}
           </p>
           <Link
             href="/contacto"
             className="mt-8 inline-block text-sm font-semibold bg-white text-[#1A1A1A] px-7 py-3 rounded-md hover:bg-gray-100 transition-colors duration-300"
           >
-            Solicita información
+            {cta("cta")}
           </Link>
         </div>
       </section>

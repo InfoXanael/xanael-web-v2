@@ -55,6 +55,7 @@
   },
   "Partner": {
     "title": "¿Quieres colaborar?",
+    "text": "Forma parte de la red XANAEL. Instala, distribuye o representa la solución en tu territorio.",
     "cta": "Ver opciones de colaboración"
   },
   "Manifesto": {
@@ -135,15 +136,17 @@
     "title": "Nosotros",
     "intro": "Integramos la prevención de plagas en la infraestructura urbana. Directamente en el bordillo.",
     "originTitle": "Origen",
-    "originText1": "XANAEL nace dentro de Grupo Rubio Servicios Higiénicos Integrales — empresa con más de 25 años de experiencia en control de plagas, gestión ambiental y tratamientos higiénicos.",
-    "originText2": "Los fundadores — Carlos, Iñaki y José Javier Rubio Carrera — detectaron un vacío estructural: las ciudades carecen de infraestructura física en superficie para prevenir y controlar plagas antes de que accedan a los edificios.",
-    "originText3": "Desde esa premisa se diseña y patenta XANAEL: un bordillo técnico de hormigón prefabricado que integra una cámara interior accesible, preparada para la detección temprana, monitorización y control de plagas urbanas.",
+    "originText1": "XANAEL nace dentro de Grupo Rubio Servicios Higiénicos Integrales, empresa con más de 25 años de experiencia en control de plagas, gestión ambiental y tratamientos higiénicos.",
+    "originText2": "Sus fundadores — Carlos, Iñaki y José Javier Rubio Carrera — identificaron un vacío estructural: las ciudades carecen de infraestructura física en superficie para prevenir y controlar plagas antes de que accedan a los edificios.",
+    "originText3": "A partir de esta premisa se diseña y patenta XANAEL: un bordillo técnico de hormigón prefabricado que integra una cámara interior accesible, preparada para la detección temprana, monitorización y control de plagas urbanas.",
     "innovationTitle": "Innovación",
-    "innovationText1": "XANAEL introduce un concepto nuevo en sanidad ambiental urbana: la infraestructura preventiva integrada en superficie.",
-    "innovationText2": "El sistema está patentado en España y se instala como un bordillo convencional. No requiere obras adicionales. Su cámara interior permite integrar sistemas de detección, monitorización y control de plagas sin alterar el entorno urbano.",
-    "innovationText3": "Es compatible con la gestión integrada de plagas (GIP) exigida por la normativa europea, y puede operar junto a cualquier empresa del sector.",
+    "innovationText1": "XANAEL introduce un nuevo concepto en sanidad ambiental urbana: la infraestructura preventiva integrada en superficie.",
+    "innovationText2": "El sistema está patentado en España y se instala como un bordillo convencional del viario urbano. No requiere obras adicionales una vez instalado.",
+    "innovationText3": "Su cámara interior permite integrar sistemas de detección temprana, monitorización y control de plagas, manteniendo la estética del espacio público.",
+    "innovationText4": "El sistema es compatible con la gestión integrada de plagas (GIP / IPM) exigida por la normativa europea y puede operar junto a cualquier empresa del sector.",
     "teamTitle": "Equipo",
-    "teamText": "El equipo de XANAEL presentó el sistema en EXPOCIDA 2026, el principal congreso de sanidad ambiental en España. Allí se validó el concepto ante fabricantes, empresas de control de plagas y responsables municipales."
+    "teamText1": "El equipo de XANAEL está formado por profesionales del sector de la sanidad ambiental con amplia experiencia en gestión de plagas urbanas y soluciones técnicas aplicadas al entorno urbano.",
+    "teamText2": "El sistema fue presentado al sector profesional en EXPOCIDA 2026, el principal congreso de sanidad ambiental en España, donde el concepto fue expuesto ante fabricantes, empresas de control de plagas y responsables municipales."
   },
   "Contact": {
     "breadcrumb": "Contacto",
@@ -189,7 +192,10 @@
     "generalQueries": "Consultas generales",
     "partnerNetwork": "Red de partners",
     "headquarters": "Sede",
-    "teamTitle": "Equipo"
+    "teamTitle": "Equipo",
+    "roleCEO": "CEO y Cofundador",
+    "roleCofounder": "Cofundador",
+    "roleDigitalManager": "Digital Manager"
   },
   "Collaborators": {
     "breadcrumb": "Colaboradores",
@@ -255,6 +261,74 @@
     "cta": "Volver al inicio"
   },
   "Common": {
-    "home": "Inicio"
+    "home": "Inicio",
+    "news": "Noticias"
+  },
+  "NewsArticleCTA": {
+    "title": "¿Interesado en nuestra solución?",
+    "text": "Contacta con nuestro equipo y descubre cómo XANAEL puede proteger tu municipio o instalación.",
+    "cta": "Solicita información"
+  },
+  "NewsAyuntalia": {
+    "breadcrumb": "Ayuntalia 2025",
+    "category": "Eventos",
+    "title": "XANAEL en Ayuntalia 2025: primera presentación institucional del sistema",
+    "date": "20 de septiembre de 2025",
+    "p1": "En septiembre de 2025, XANAEL dio su primer gran paso en el ámbito institucional. La feria Ayuntalia, celebrada del 18 al 20 de septiembre en Ribaforada (Navarra), fue el escenario elegido para la presentación pública del sistema XANAEL: una infraestructura urbana sanitaria preventiva diseñada para la gestión de plagas en superficie.",
+    "p2": "La jornada alcanzó uno de sus momentos más destacados con la visita de Elma Saiz, ministra de Inclusión, Seguridad Social y Migraciones, y de Tirso Calvo, alcalde de Ribaforada. Ambos conocieron de primera mano la solución desarrollada por Carlos, Iñaki y José Javier Rubio Carrera, inventores de la patente.",
+    "p3": "Durante la visita institucional se presentó el concepto del sistema: un bordillo de hormigón prefabricado que integra una cámara técnica interior preparada para albergar sistemas de detección, monitorización y control de plagas, permitiendo actuar en superficie antes de que el problema llegue al interior de los edificios.",
+    "p4": "La participación en Ayuntalia supuso el primer contacto directo del proyecto con responsables municipales y técnicos de gestión urbana, que pudieron conocer el sistema y su integración en el viario urbano como elemento permanente de prevención.",
+    "p5": "El stand de XANAEL, presentado bajo el paraguas de Grupo Rubio, recibió la visita de alcaldes, técnicos municipales y responsables de servicios urbanos interesados en nuevas soluciones estructurales para la gestión de plagas en entornos urbanos.",
+    "pillarsTitle": "Principios del sistema XANAEL",
+    "pillar1Title": "Seguridad",
+    "pillar1Text": "Diseñado para reducir los riesgos asociados a los sistemas tradicionales de cebo expuesto, protegiendo a personas, niños y animales de compañía.",
+    "pillar2Title": "Sostenibilidad",
+    "pillar2Text": "Contribuye a minimizar la dispersión de rodenticidas y a reducir el impacto ambiental en suelos y redes de saneamiento.",
+    "pillar3Title": "Discreción",
+    "pillar3Text": "Integrado estéticamente en el viario urbano, forma parte del mobiliario urbano sin alterar el espacio público.",
+    "pillar4Title": "Prevención",
+    "pillar4Text": "Permite establecer puntos permanentes de vigilancia y control en superficie, actuando antes de que el problema alcance los edificios.",
+    "imgCaption": "El equipo de XANAEL atendiendo visitantes en Ayuntalia 2025",
+    "closing": "Ayuntalia 2025 marcó así el inicio de una nueva etapa para el proyecto XANAEL: su presentación ante el ámbito municipal y la apertura de nuevas vías de diálogo con administraciones públicas interesadas en soluciones preventivas para la gestión de plagas urbanas."
+  },
+  "NewsMunicipalia": {
+    "breadcrumb": "Municipalia 2025",
+    "category": "Eventos",
+    "title": "XANAEL en Municipalia: Gran acogida del sistema de prevención de plagas urbanas",
+    "date": "23 de octubre de 2025",
+    "p1": "XANAEL cerró su participación en Municipalia con un balance muy positivo. Durante los días 21, 22 y 23 de octubre, el stand 6036 se convirtió en uno de los puntos de mayor actividad de la feria, recibiendo la visita de técnicos de medio ambiente, responsables municipales, alcaldes, concejales y empresas del sector.",
+    "p2": "La acogida superó ampliamente las expectativas. Los asistentes mostraron especial interés por el enfoque preventivo de XANAEL: abordar la gestión de plagas urbanas desde la superficie, antes de que el problema llegue al interior de los edificios. El concepto de infraestructura urbana sanitaria preventiva resonó con fuerza entre los responsables de servicios municipales.",
+    "p3": "El equipo regresó con numerosos contactos y la confirmación de que XANAEL tiene un espacio real en las ciudades del futuro. «Hemos comprobado que la prevención de plagas urbanas desde la superficie es una prioridad compartida por muchos municipios», destacaron desde XANAEL tras el evento.",
+    "closing": "Municipalia se consolida como un punto de inflexión importante para el proyecto, abriendo nuevas oportunidades de colaboración con el sector público y demostrando el interés creciente por soluciones estructurales y permanentes en la gestión de plagas urbanas."
+  },
+  "NewsExpocidaPoster": {
+    "breadcrumb": "EXPOCIDA 2026 — Póster técnico",
+    "category": "Innovación",
+    "title": "XANAEL presenta su póster técnico en EXPOCIDA 2026",
+    "date": "31 de enero de 2026",
+    "p1": "XANAEL participó en la convocatoria oficial de pósters técnicos y científicos de EXPOCIDA 2026, el evento de referencia del sector del control de plagas en España, celebrado en IFEMA Madrid los días 30 y 31 de enero de 2026.",
+    "p2": "El póster, expuesto como Póster Nº 8 en el Pabellón 5, presentó de forma detallada el sistema de infraestructura urbana sanitaria preventiva desarrollado por XANAEL: un bordillo de hormigón prefabricado que integra una cámara técnica interior preparada para albergar sistemas de detección, monitorización y control de plagas.",
+    "p3": "La propuesta técnica recoge los fundamentos del sistema patentado: la interceptación de rutas de roedores en superficie, la reducción de productos químicos expuestos y la integración permanente del sistema en el viario urbano sin alterar la estética del espacio público.",
+    "p4": "La presencia en EXPOCIDA supone un paso importante en la presentación técnica del proyecto ante profesionales del sector, empresas de control de plagas, técnicos municipales y responsables de sanidad ambiental de toda España y Europa.",
+    "p5": "XANAEL continúa consolidando su posición como la primera solución de infraestructura urbana sanitaria preventiva patentada en España, con un enfoque que combina innovación, sostenibilidad y prevención estructural.",
+    "imgCaption": "EXPOCIDA 2026 — Póster Nº 8, Pabellón 5, IFEMA Madrid",
+    "closing": "La participación en EXPOCIDA refuerza el compromiso de XANAEL con la divulgación técnica y la colaboración con el sector profesional, abriendo nuevas vías de diálogo con empresas e instituciones interesadas en soluciones preventivas integradas en la infraestructura urbana."
+  },
+  "NewsExpocida": {
+    "breadcrumb": "EXPOCIDA 2026",
+    "category": "Eventos",
+    "title": "XANAEL en EXPOCIDA 2026: dos días que marcan un antes y un después",
+    "date": "28 de febrero de 2026",
+    "excerpt": "Dos días de conversaciones reales, preguntas técnicas y debates sobre el futuro de la sanidad ambiental. El sector coincide: la gestión de plagas ya no puede ser solo reactiva.",
+    "caption1": "El equipo XANAEL al completo en EXPOCIDA 2026 — Pabellón 5, Stand 44, IFEMA Madrid",
+    "p1": "Hay ferias a las que vas a mostrar tu producto. Y otras en las que entiendes que el sector está dando un paso adelante. EXPOCIDA 2026 ha sido eso para XANAEL.",
+    "caption2": "Visitantes del sector descubriendo XANAEL en EXPOCIDA 2026",
+    "p2": "Dos días de conversaciones reales. Preguntas técnicas. Debates sobre hacia dónde evoluciona la sanidad ambiental. Cada vez más profesionales coinciden en algo: la gestión de plagas ya no puede ser solo reactiva. La ciudad también puede prevenir.",
+    "p3": "Porque la sanidad ambiental no es únicamente un servicio. Es infraestructura. Es prevención. Es salud pública. XANAEL lo integra en el propio viario urbano — un bordillo de hormigón prefabricado con cámara interior lista para albergar cualquier sistema de control de plagas.",
+    "caption3": "Stand 44 — XANAEL, Pabellón 5, IFEMA Madrid",
+    "caption4": "Prototipo XANAEL expuesto en EXPOCIDA 2026",
+    "p4": "Al frente del proyecto, Carlos Rubio Carrera, fundador de XANAEL y referente en sanidad ambiental con más de 20 años de trayectoria en el sector. Su visión es clara: la prevención estructural es el siguiente paso natural en la gestión integrada de plagas.",
+    "caption5": "Carlos Rubio Carrera — Fundador y CEO de XANAEL",
+    "closing": "Gracias a todos los que os acercasteis al stand, compartisteis vuestra visión y dedicasteis tiempo a conocer XANAEL. Y gracias a ANECPLA por crear el espacio donde el sector se encuentra, reflexiona y crece unido. Las pruebas piloto comienzan. Los próximos pasos llegan pronto. Seguimos."
   }
 }

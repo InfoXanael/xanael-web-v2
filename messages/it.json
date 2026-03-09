@@ -55,6 +55,7 @@
   },
   "Partner": {
     "title": "Vuoi collaborare?",
+    "text": "Entra a far parte della rete XANAEL. Installa, distribuisci o rappresenta la soluzione nel tuo territorio.",
     "cta": "Scopri le opzioni di collaborazione"
   },
   "Manifesto": {
@@ -135,15 +136,17 @@
     "title": "Chi siamo",
     "intro": "Integriamo la prevenzione delle infestazioni nell'infrastruttura urbana. Direttamente nel cordolo.",
     "originTitle": "Origini",
-    "originText1": "XANAEL nasce all'interno di Grupo Rubio Servicios Higiénicos Integrales — azienda con oltre 25 anni di esperienza nella disinfestazione, gestione ambientale e trattamenti igienici.",
-    "originText2": "I fondatori — Carlos, Iñaki e José Javier Rubio Carrera — hanno individuato un vuoto strutturale: le città mancano di infrastruttura fisica in superficie per prevenire e controllare le infestazioni prima che raggiungano gli edifici.",
-    "originText3": "Da questa premessa è stato progettato e brevettato XANAEL: un cordolo tecnico in calcestruzzo prefabbricato che integra una camera interna accessibile, predisposta per il rilevamento precoce, il monitoraggio e il controllo delle infestazioni urbane.",
+    "originText1": "XANAEL nasce all'interno di Grupo Rubio Servicios Higiénicos Integrales, azienda con oltre 25 anni di esperienza nella disinfestazione, gestione ambientale e trattamenti igienici.",
+    "originText2": "I suoi fondatori — Carlos, Iñaki e José Javier Rubio Carrera — hanno individuato un vuoto strutturale: le città mancano di infrastruttura fisica in superficie per prevenire e controllare le infestazioni prima che raggiungano gli edifici.",
+    "originText3": "A partire da questa premessa è stato progettato e brevettato XANAEL: un cordolo tecnico in calcestruzzo prefabbricato che integra una camera interna accessibile, predisposta per il rilevamento precoce, il monitoraggio e il controllo delle infestazioni urbane.",
     "innovationTitle": "Innovazione",
-    "innovationText1": "XANAEL introduce un concetto nuovo nella sanità ambientale urbana: l'infrastruttura preventiva integrata in superficie.",
-    "innovationText2": "Il sistema è brevettato in Spagna e si installa come un cordolo convenzionale. Non richiede ulteriori lavori. La sua camera interna consente di integrare sistemi di rilevamento, monitoraggio e controllo delle infestazioni senza alterare l'ambiente urbano.",
-    "innovationText3": "È compatibile con la gestione integrata delle infestazioni (GIP) richiesta dalla normativa europea e può operare insieme a qualsiasi azienda del settore.",
+    "innovationText1": "XANAEL introduce un nuovo concetto nella sanità ambientale urbana: l'infrastruttura preventiva integrata in superficie.",
+    "innovationText2": "Il sistema è brevettato in Spagna e si installa come un cordolo convenzionale della viabilità urbana. Non richiede ulteriori lavori una volta installato.",
+    "innovationText3": "La sua camera interna consente di integrare sistemi di rilevamento precoce, monitoraggio e controllo delle infestazioni, mantenendo l'estetica dello spazio pubblico.",
+    "innovationText4": "Il sistema è compatibile con la gestione integrata delle infestazioni (GIP / IPM) richiesta dalla normativa europea e può operare insieme a qualsiasi azienda del settore.",
     "teamTitle": "Team",
-    "teamText": "Il team di XANAEL ha presentato il sistema a EXPOCIDA 2026, il principale congresso di sanità ambientale in Spagna. In quell'occasione il concetto è stato validato davanti a produttori, aziende di disinfestazione e responsabili comunali."
+    "teamText1": "Il team di XANAEL è composto da professionisti del settore della sanità ambientale con ampia esperienza nella gestione delle infestazioni urbane e soluzioni tecniche applicate all'ambiente urbano.",
+    "teamText2": "Il sistema è stato presentato al settore professionale a EXPOCIDA 2026, il principale congresso di sanità ambientale in Spagna, dove il concetto è stato esposto davanti a produttori, aziende di disinfestazione e responsabili comunali."
   },
   "Contact": {
     "breadcrumb": "Contatti",
@@ -189,7 +192,10 @@
     "generalQueries": "Richieste generali",
     "partnerNetwork": "Rete di partner",
     "headquarters": "Sede",
-    "teamTitle": "Team"
+    "teamTitle": "Team",
+    "roleCEO": "CEO e Cofondatore",
+    "roleCofounder": "Cofondatore",
+    "roleDigitalManager": "Digital Manager"
   },
   "Collaborators": {
     "breadcrumb": "Collaboratori",
@@ -255,6 +261,74 @@
     "cta": "Torna alla home"
   },
   "Common": {
-    "home": "Home"
+    "home": "Home",
+    "news": "Notizie"
+  },
+  "NewsArticleCTA": {
+    "title": "Interessato alla nostra soluzione?",
+    "text": "Contatta il nostro team e scopri come XANAEL può proteggere il tuo comune o la tua struttura.",
+    "cta": "Richiedi informazioni"
+  },
+  "NewsAyuntalia": {
+    "breadcrumb": "Ayuntalia 2025",
+    "category": "Eventi",
+    "title": "XANAEL ad Ayuntalia 2025: prima presentazione istituzionale del sistema",
+    "date": "20 settembre 2025",
+    "p1": "Nel settembre 2025, XANAEL ha compiuto il suo primo grande passo in ambito istituzionale. La fiera Ayuntalia, tenutasi dal 18 al 20 settembre a Ribaforada (Navarra), è stata il palcoscenico scelto per la presentazione pubblica del sistema XANAEL: un'infrastruttura urbana sanitaria preventiva progettata per la gestione delle infestazioni in superficie.",
+    "p2": "La giornata ha raggiunto uno dei suoi momenti più significativi con la visita di Elma Saiz, ministra dell'Inclusione, della Sicurezza sociale e delle Migrazioni, e di Tirso Calvo, sindaco di Ribaforada. Entrambi hanno conosciuto di persona la soluzione sviluppata da Carlos, Iñaki e José Javier Rubio Carrera, inventori del brevetto.",
+    "p3": "Durante la visita istituzionale è stato presentato il concetto del sistema: un cordolo in calcestruzzo prefabbricato che integra una camera tecnica interna predisposta per ospitare sistemi di rilevamento, monitoraggio e controllo delle infestazioni, consentendo di agire in superficie prima che il problema raggiunga l'interno degli edifici.",
+    "p4": "La partecipazione ad Ayuntalia ha segnato il primo contatto diretto del progetto con responsabili comunali e tecnici della gestione urbana, che hanno potuto conoscere il sistema e la sua integrazione nella viabilità urbana come elemento permanente di prevenzione.",
+    "p5": "Lo stand XANAEL, presentato sotto l'egida di Grupo Rubio, ha ricevuto la visita di sindaci, tecnici comunali e responsabili dei servizi urbani interessati a nuove soluzioni strutturali per la gestione delle infestazioni in ambienti urbani.",
+    "pillarsTitle": "Principi del sistema XANAEL",
+    "pillar1Title": "Sicurezza",
+    "pillar1Text": "Progettato per ridurre i rischi associati ai sistemi tradizionali di esca esposta, proteggendo persone, bambini e animali domestici.",
+    "pillar2Title": "Sostenibilità",
+    "pillar2Text": "Contribuisce a minimizzare la dispersione di rodenticidi e a ridurre l'impatto ambientale su suoli e reti fognarie.",
+    "pillar3Title": "Discrezione",
+    "pillar3Text": "Integrato esteticamente nella viabilità urbana, fa parte dell'arredo urbano senza alterare lo spazio pubblico.",
+    "pillar4Title": "Prevenzione",
+    "pillar4Text": "Consente di stabilire punti permanenti di sorveglianza e controllo in superficie, agendo prima che il problema raggiunga gli edifici.",
+    "imgCaption": "Il team XANAEL accoglie i visitatori ad Ayuntalia 2025",
+    "closing": "Ayuntalia 2025 ha così segnato l'inizio di una nuova tappa per il progetto XANAEL: la sua presentazione in ambito municipale e l'apertura di nuovi canali di dialogo con le amministrazioni pubbliche interessate a soluzioni preventive per la gestione delle infestazioni urbane."
+  },
+  "NewsMunicipalia": {
+    "breadcrumb": "Municipalia 2025",
+    "category": "Eventi",
+    "title": "XANAEL a Municipalia: grande accoglienza per il sistema di prevenzione delle infestazioni urbane",
+    "date": "23 ottobre 2025",
+    "p1": "XANAEL ha concluso la sua partecipazione a Municipalia con un bilancio molto positivo. Nei giorni 21, 22 e 23 ottobre, lo stand 6036 è diventato uno dei punti più attivi della fiera, ricevendo la visita di tecnici ambientali, responsabili comunali, sindaci, assessori e aziende del settore.",
+    "p2": "L'accoglienza ha superato ampiamente le aspettative. I partecipanti hanno mostrato particolare interesse per l'approccio preventivo di XANAEL: affrontare la gestione delle infestazioni urbane dalla superficie, prima che il problema raggiunga l'interno degli edifici. Il concetto di infrastruttura urbana sanitaria preventiva ha avuto forte risonanza tra i responsabili dei servizi comunali.",
+    "p3": "Il team è tornato con numerosi contatti e la conferma che XANAEL ha uno spazio reale nelle città del futuro. «Abbiamo verificato che la prevenzione delle infestazioni urbane in superficie è una priorità condivisa da molti comuni», ha sottolineato XANAEL dopo l'evento.",
+    "closing": "Municipalia si consolida come un importante punto di svolta per il progetto, aprendo nuove opportunità di collaborazione con il settore pubblico e dimostrando il crescente interesse per soluzioni strutturali e permanenti nella gestione delle infestazioni urbane."
+  },
+  "NewsExpocidaPoster": {
+    "breadcrumb": "EXPOCIDA 2026 — Poster tecnico",
+    "category": "Innovazione",
+    "title": "XANAEL presenta il suo poster tecnico a EXPOCIDA 2026",
+    "date": "31 gennaio 2026",
+    "p1": "XANAEL ha partecipato al bando ufficiale dei poster tecnici e scientifici di EXPOCIDA 2026, l'evento di riferimento del settore della disinfestazione in Spagna, tenutosi a IFEMA Madrid il 30 e 31 gennaio 2026.",
+    "p2": "Il poster, esposto come Poster Nº 8 nel Padiglione 5, ha presentato in dettaglio il sistema di infrastruttura urbana sanitaria preventiva sviluppato da XANAEL: un cordolo in calcestruzzo prefabbricato che integra una camera tecnica interna predisposta per ospitare sistemi di rilevamento, monitoraggio e controllo delle infestazioni.",
+    "p3": "La proposta tecnica raccoglie i fondamenti del sistema brevettato: l'intercettazione dei percorsi dei roditori in superficie, la riduzione dei prodotti chimici esposti e l'integrazione permanente del sistema nella viabilità urbana senza alterare l'estetica dello spazio pubblico.",
+    "p4": "La presenza a EXPOCIDA rappresenta un passo importante nella presentazione tecnica del progetto ai professionisti del settore, alle aziende di disinfestazione, ai tecnici comunali e ai responsabili della sanità ambientale di tutta la Spagna e dell'Europa.",
+    "p5": "XANAEL continua a consolidare la propria posizione come prima soluzione di infrastruttura urbana sanitaria preventiva brevettata in Spagna, con un approccio che combina innovazione, sostenibilità e prevenzione strutturale.",
+    "imgCaption": "EXPOCIDA 2026 — Poster Nº 8, Padiglione 5, IFEMA Madrid",
+    "closing": "La partecipazione a EXPOCIDA rafforza l'impegno di XANAEL nella divulgazione tecnica e nella collaborazione con il settore professionale, aprendo nuovi canali di dialogo con aziende e istituzioni interessate a soluzioni preventive integrate nell'infrastruttura urbana."
+  },
+  "NewsExpocida": {
+    "breadcrumb": "EXPOCIDA 2026",
+    "category": "Eventi",
+    "title": "XANAEL a EXPOCIDA 2026: due giorni che segnano un prima e un dopo",
+    "date": "28 febbraio 2026",
+    "excerpt": "Due giorni di conversazioni reali, domande tecniche e dibattiti sul futuro della sanità ambientale. Il settore è unanime: la gestione delle infestazioni non può più essere solo reattiva.",
+    "caption1": "Il team XANAEL al completo a EXPOCIDA 2026 — Padiglione 5, Stand 44, IFEMA Madrid",
+    "p1": "Ci sono fiere in cui vai a mostrare il tuo prodotto. E altre in cui capisci che il settore sta facendo un passo avanti. EXPOCIDA 2026 è stato questo per XANAEL.",
+    "caption2": "Visitatori del settore alla scoperta di XANAEL a EXPOCIDA 2026",
+    "p2": "Due giorni di conversazioni reali. Domande tecniche. Dibattiti su dove sta evolvendo la sanità ambientale. Sempre più professionisti concordano su un punto: la gestione delle infestazioni non può più essere solo reattiva. La città può anche prevenire.",
+    "p3": "Perché la sanità ambientale non è solo un servizio. È infrastruttura. È prevenzione. È salute pubblica. XANAEL la integra nella viabilità urbana stessa — un cordolo in calcestruzzo prefabbricato con una camera interna pronta ad ospitare qualsiasi sistema di controllo delle infestazioni.",
+    "caption3": "Stand 44 — XANAEL, Padiglione 5, IFEMA Madrid",
+    "caption4": "Prototipo XANAEL esposto a EXPOCIDA 2026",
+    "p4": "Alla guida del progetto, Carlos Rubio Carrera, fondatore di XANAEL e riferimento nella sanità ambientale con oltre 20 anni di esperienza nel settore. La sua visione è chiara: la prevenzione strutturale è il prossimo passo naturale nella gestione integrata delle infestazioni.",
+    "caption5": "Carlos Rubio Carrera — Fondatore e CEO di XANAEL",
+    "closing": "Grazie a tutti coloro che sono venuti allo stand, hanno condiviso la propria visione e hanno dedicato tempo a conoscere XANAEL. E grazie ad ANECPLA per aver creato lo spazio in cui il settore si incontra, riflette e cresce unito. I test pilota iniziano. I prossimi passi arrivano presto. Continuiamo."
   }
 }

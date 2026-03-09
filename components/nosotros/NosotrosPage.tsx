@@ -103,6 +103,9 @@ export default function NosotrosPage() {
               <p className="mt-4 text-white/60 leading-relaxed">
                 {t("innovationText3")}
               </p>
+              <p className="mt-4 text-white/60 leading-relaxed">
+                {t("innovationText4")}
+              </p>
             </div>
           </div>
         </div>
@@ -128,7 +131,10 @@ export default function NosotrosPage() {
               {t("teamTitle")}
             </h2>
             <p className="mt-6 text-gray-500 leading-relaxed">
-              {t("teamText")}
+              {t("teamText1")}
+            </p>
+            <p className="mt-4 text-gray-500 leading-relaxed">
+              {t("teamText2")}
             </p>
           </div>
         </div>

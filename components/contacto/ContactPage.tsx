@@ -23,28 +23,28 @@ const team = [
   {
     initials: "CR",
     name: "Carlos Rubio Carrera",
-    role: "CEO y Cofundador",
+    roleKey: "roleCEO" as const,
     email: "hola@xanael.es",
     linkedin: "https://www.linkedin.com/in/carlos-rubio-carrera-45140159/",
   },
   {
     initials: "IR",
     name: "Iñaki Rubio Carrera",
-    role: "Cofundador",
+    roleKey: "roleCofounder" as const,
     email: "",
     linkedin: "",
   },
   {
     initials: "JR",
     name: "Javier Rubio Carrera",
-    role: "Cofundador",
+    roleKey: "roleCofounder" as const,
     email: "",
     linkedin: "https://www.linkedin.com/in/javi-rubio-gr-687085131/",
   },
   {
     initials: "AM",
     name: "Ayoub Mejnoun Chegri",
-    role: "Digital Manager",
+    roleKey: "roleDigitalManager" as const,
     email: "info@xanael.es",
     linkedin: "https://www.linkedin.com/in/ayoub-mejnoun-chegri-5786132b4",
   },
@@ -390,7 +390,7 @@ export default function ContactPage() {
               </div>
 
               <h3 className="mt-4 text-sm font-bold text-[#1A1A1A]">{person.name}</h3>
-              <p className="mt-1 text-xs text-[#555555]">{person.role}</p>
+              <p className="mt-1 text-xs text-[#555555]">{t(person.roleKey)}</p>
 
               <a
                 href={`mailto:${person.email}`}

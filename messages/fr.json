@@ -55,6 +55,7 @@
   },
   "Partner": {
     "title": "Vous souhaitez collaborer ?",
+    "text": "Rejoignez le réseau XANAEL. Installez, distribuez ou représentez la solution sur votre territoire.",
     "cta": "Voir les options de collaboration"
   },
   "Manifesto": {
@@ -135,15 +136,17 @@
     "title": "À propos",
     "intro": "Nous intégrons la prévention des nuisibles dans l'infrastructure urbaine. Directement dans la bordure.",
     "originTitle": "Origine",
-    "originText1": "XANAEL est né au sein de Grupo Rubio Servicios Higiénicos Integrales — une entreprise avec plus de 25 ans d'expérience dans la lutte antiparasitaire, la gestion environnementale et les traitements hygiéniques.",
-    "originText2": "Les fondateurs — Carlos, Iñaki et José Javier Rubio Carrera — ont identifié un vide structurel : les villes ne disposent pas d'infrastructure physique en surface pour prévenir et contrôler les nuisibles avant qu'ils n'accèdent aux bâtiments.",
-    "originText3": "C'est à partir de ce constat qu'a été conçu et breveté XANAEL : une bordure technique en béton préfabriqué intégrant une chambre intérieure accessible, conçue pour la détection précoce, la surveillance et le contrôle des nuisibles urbains.",
+    "originText1": "XANAEL est né au sein de Grupo Rubio Servicios Higiénicos Integrales, une entreprise avec plus de 25 ans d'expérience dans la lutte antiparasitaire, la gestion environnementale et les traitements hygiéniques.",
+    "originText2": "Ses fondateurs — Carlos, Iñaki et José Javier Rubio Carrera — ont identifié un vide structurel : les villes ne disposent pas d'infrastructure physique en surface pour prévenir et contrôler les nuisibles avant qu'ils n'accèdent aux bâtiments.",
+    "originText3": "C'est à partir de cette prémisse qu'a été conçu et breveté XANAEL : une bordure technique en béton préfabriqué intégrant une chambre intérieure accessible, conçue pour la détection précoce, la surveillance et le contrôle des nuisibles urbains.",
     "innovationTitle": "Innovation",
-    "innovationText1": "XANAEL introduit un concept nouveau en santé environnementale urbaine : l'infrastructure préventive intégrée en surface.",
-    "innovationText2": "Le système est breveté en Espagne et s'installe comme une bordure conventionnelle. Aucun travaux supplémentaire n'est nécessaire. Sa chambre intérieure permet d'intégrer des systèmes de détection, de surveillance et de contrôle des nuisibles sans altérer l'environnement urbain.",
-    "innovationText3": "Il est compatible avec la gestion intégrée des nuisibles (GIP/IPM) exigée par la réglementation européenne, et peut fonctionner avec n'importe quelle entreprise du secteur.",
+    "innovationText1": "XANAEL introduit un nouveau concept en santé environnementale urbaine : l'infrastructure préventive intégrée en surface.",
+    "innovationText2": "Le système est breveté en Espagne et s'installe comme une bordure conventionnelle de la voirie urbaine. Aucun travaux supplémentaire n'est nécessaire une fois installé.",
+    "innovationText3": "Sa chambre intérieure permet d'intégrer des systèmes de détection précoce, de surveillance et de contrôle des nuisibles, tout en préservant l'esthétique de l'espace public.",
+    "innovationText4": "Le système est compatible avec la gestion intégrée des nuisibles (GIP / IPM) exigée par la réglementation européenne et peut fonctionner avec n'importe quelle entreprise du secteur.",
     "teamTitle": "Équipe",
-    "teamText": "L'équipe XANAEL a présenté le système à EXPOCIDA 2026, le principal congrès de santé environnementale en Espagne. Le concept y a été validé auprès de fabricants, d'entreprises de lutte antiparasitaire et de responsables municipaux."
+    "teamText1": "L'équipe XANAEL est composée de professionnels du secteur de la santé environnementale avec une vaste expérience dans la gestion des nuisibles urbains et les solutions techniques appliquées à l'environnement urbain.",
+    "teamText2": "Le système a été présenté au secteur professionnel lors d'EXPOCIDA 2026, le principal congrès de santé environnementale en Espagne, où le concept a été exposé devant des fabricants, des entreprises de lutte antiparasitaire et des responsables municipaux."
   },
   "Contact": {
     "breadcrumb": "Contact",
@@ -189,7 +192,10 @@
     "generalQueries": "Demandes générales",
     "partnerNetwork": "Réseau de partenaires",
     "headquarters": "Siège",
-    "teamTitle": "Équipe"
+    "teamTitle": "Équipe",
+    "roleCEO": "PDG et Cofondateur",
+    "roleCofounder": "Cofondateur",
+    "roleDigitalManager": "Digital Manager"
   },
   "Collaborators": {
     "breadcrumb": "Collaborateurs",
@@ -255,6 +261,74 @@
     "cta": "Retour à l'accueil"
   },
   "Common": {
-    "home": "Accueil"
+    "home": "Accueil",
+    "news": "Actualités"
+  },
+  "NewsArticleCTA": {
+    "title": "Intéressé par notre solution ?",
+    "text": "Contactez notre équipe et découvrez comment XANAEL peut protéger votre municipalité ou installation.",
+    "cta": "Demander des informations"
+  },
+  "NewsAyuntalia": {
+    "breadcrumb": "Ayuntalia 2025",
+    "category": "Événements",
+    "title": "XANAEL à Ayuntalia 2025 : première présentation institutionnelle du système",
+    "date": "20 septembre 2025",
+    "p1": "En septembre 2025, XANAEL a franchi son premier grand pas dans le domaine institutionnel. Le salon Ayuntalia, qui s'est tenu du 18 au 20 septembre à Ribaforada (Navarre), a été le cadre choisi pour la présentation publique du système XANAEL : une infrastructure urbaine sanitaire préventive conçue pour la gestion des nuisibles en surface.",
+    "p2": "La journée a atteint l'un de ses moments les plus marquants avec la visite d'Elma Saiz, ministre de l'Inclusion, de la Sécurité sociale et des Migrations, et de Tirso Calvo, maire de Ribaforada. Tous deux ont découvert de première main la solution développée par Carlos, Iñaki et José Javier Rubio Carrera, inventeurs du brevet.",
+    "p3": "Lors de la visite institutionnelle, le concept du système a été présenté : une bordure en béton préfabriqué intégrant une chambre technique intérieure conçue pour abriter des systèmes de détection, de surveillance et de contrôle des nuisibles, permettant d'agir en surface avant que le problème n'atteigne l'intérieur des bâtiments.",
+    "p4": "La participation à Ayuntalia a marqué le premier contact direct du projet avec les responsables municipaux et les techniciens de gestion urbaine, qui ont pu découvrir le système et son intégration dans la voirie urbaine comme élément permanent de prévention.",
+    "p5": "Le stand XANAEL, présenté sous l'égide de Grupo Rubio, a reçu la visite de maires, de techniciens municipaux et de responsables de services urbains intéressés par de nouvelles solutions structurelles pour la gestion des nuisibles en milieu urbain.",
+    "pillarsTitle": "Principes du système XANAEL",
+    "pillar1Title": "Sécurité",
+    "pillar1Text": "Conçu pour réduire les risques associés aux systèmes traditionnels d'appâts exposés, protégeant les personnes, les enfants et les animaux de compagnie.",
+    "pillar2Title": "Durabilité",
+    "pillar2Text": "Contribue à minimiser la dispersion des rodenticides et à réduire l'impact environnemental sur les sols et les réseaux d'assainissement.",
+    "pillar3Title": "Discrétion",
+    "pillar3Text": "Intégré esthétiquement dans la voirie urbaine, il fait partie du mobilier urbain sans altérer l'espace public.",
+    "pillar4Title": "Prévention",
+    "pillar4Text": "Permet d'établir des points permanents de surveillance et de contrôle en surface, agissant avant que le problème n'atteigne les bâtiments.",
+    "imgCaption": "L'équipe XANAEL accueillant les visiteurs à Ayuntalia 2025",
+    "closing": "Ayuntalia 2025 a ainsi marqué le début d'une nouvelle étape pour le projet XANAEL : sa présentation au secteur municipal et l'ouverture de nouvelles voies de dialogue avec les administrations publiques intéressées par des solutions préventives pour la gestion des nuisibles urbains."
+  },
+  "NewsMunicipalia": {
+    "breadcrumb": "Municipalia 2025",
+    "category": "Événements",
+    "title": "XANAEL à Municipalia : accueil chaleureux du système de prévention des nuisibles urbains",
+    "date": "23 octobre 2025",
+    "p1": "XANAEL a clôturé sa participation à Municipalia avec un bilan très positif. Pendant les journées des 21, 22 et 23 octobre, le stand 6036 est devenu l'un des points les plus actifs du salon, recevant la visite de techniciens environnementaux, de responsables municipaux, de maires, de conseillers et d'entreprises du secteur.",
+    "p2": "L'accueil a largement dépassé les attentes. Les participants ont montré un intérêt particulier pour l'approche préventive de XANAEL : aborder la gestion des nuisibles urbains depuis la surface, avant que le problème n'atteigne l'intérieur des bâtiments. Le concept d'infrastructure urbaine sanitaire préventive a fortement résonné parmi les responsables de services municipaux.",
+    "p3": "L'équipe est revenue avec de nombreux contacts et la confirmation que XANAEL a une place réelle dans les villes du futur. « Nous avons constaté que la prévention des nuisibles urbains en surface est une priorité partagée par de nombreuses municipalités », a souligné XANAEL après l'événement.",
+    "closing": "Municipalia se consolide comme un point d'inflexion important pour le projet, ouvrant de nouvelles opportunités de collaboration avec le secteur public et démontrant l'intérêt croissant pour des solutions structurelles et permanentes dans la gestion des nuisibles urbains."
+  },
+  "NewsExpocidaPoster": {
+    "breadcrumb": "EXPOCIDA 2026 — Poster technique",
+    "category": "Innovation",
+    "title": "XANAEL présente son poster technique à EXPOCIDA 2026",
+    "date": "31 janvier 2026",
+    "p1": "XANAEL a participé à l'appel officiel de posters techniques et scientifiques d'EXPOCIDA 2026, l'événement de référence du secteur de la lutte antiparasitaire en Espagne, tenu à l'IFEMA de Madrid les 30 et 31 janvier 2026.",
+    "p2": "Le poster, exposé comme Poster Nº 8 au Pavillon 5, a présenté en détail le système d'infrastructure urbaine sanitaire préventive développé par XANAEL : une bordure en béton préfabriqué intégrant une chambre technique intérieure conçue pour abriter des systèmes de détection, de surveillance et de contrôle des nuisibles.",
+    "p3": "La proposition technique reprend les fondements du système breveté : l'interception des itinéraires de rongeurs en surface, la réduction des produits chimiques exposés et l'intégration permanente du système dans la voirie urbaine sans altérer l'esthétique de l'espace public.",
+    "p4": "La présence à EXPOCIDA représente une étape importante dans la présentation technique du projet aux professionnels du secteur, aux entreprises de lutte antiparasitaire, aux techniciens municipaux et aux responsables de santé environnementale de toute l'Espagne et de l'Europe.",
+    "p5": "XANAEL continue de consolider sa position de première solution d'infrastructure urbaine sanitaire préventive brevetée en Espagne, avec une approche qui combine innovation, durabilité et prévention structurelle.",
+    "imgCaption": "EXPOCIDA 2026 — Poster Nº 8, Pavillon 5, IFEMA Madrid",
+    "closing": "La participation à EXPOCIDA renforce l'engagement de XANAEL envers la diffusion technique et la collaboration avec le secteur professionnel, ouvrant de nouvelles voies de dialogue avec les entreprises et institutions intéressées par des solutions préventives intégrées dans l'infrastructure urbaine."
+  },
+  "NewsExpocida": {
+    "breadcrumb": "EXPOCIDA 2026",
+    "category": "Événements",
+    "title": "XANAEL à EXPOCIDA 2026 : deux jours qui marquent un avant et un après",
+    "date": "28 février 2026",
+    "excerpt": "Deux jours de conversations réelles, de questions techniques et de débats sur l'avenir de la santé environnementale. Le secteur est unanime : la gestion des nuisibles ne peut plus être uniquement réactive.",
+    "caption1": "L'équipe XANAEL au complet à EXPOCIDA 2026 — Pavillon 5, Stand 44, IFEMA Madrid",
+    "p1": "Il y a des salons où l'on va présenter son produit. Et d'autres où l'on comprend que le secteur fait un pas en avant. EXPOCIDA 2026 a été cela pour XANAEL.",
+    "caption2": "Visiteurs du secteur découvrant XANAEL à EXPOCIDA 2026",
+    "p2": "Deux jours de conversations réelles. Questions techniques. Débats sur l'évolution de la santé environnementale. De plus en plus de professionnels s'accordent sur un point : la gestion des nuisibles ne peut plus être uniquement réactive. La ville peut aussi prévenir.",
+    "p3": "Parce que la santé environnementale n'est pas qu'un service. C'est de l'infrastructure. C'est de la prévention. C'est de la santé publique. XANAEL l'intègre dans la voirie urbaine elle-même — une bordure en béton préfabriqué avec une chambre intérieure prête à accueillir tout système de contrôle des nuisibles.",
+    "caption3": "Stand 44 — XANAEL, Pavillon 5, IFEMA Madrid",
+    "caption4": "Prototype XANAEL exposé à EXPOCIDA 2026",
+    "p4": "À la tête du projet, Carlos Rubio Carrera, fondateur de XANAEL et référence en santé environnementale avec plus de 20 ans d'expérience dans le secteur. Sa vision est claire : la prévention structurelle est la prochaine étape naturelle dans la gestion intégrée des nuisibles.",
+    "caption5": "Carlos Rubio Carrera — Fondateur et PDG de XANAEL",
+    "closing": "Merci à tous ceux qui sont venus au stand, ont partagé leur vision et ont pris le temps de découvrir XANAEL. Et merci à ANECPLA d'avoir créé l'espace où le secteur se rencontre, réfléchit et grandit ensemble. Les essais pilotes commencent. Les prochaines étapes arrivent bientôt. On continue."
   }
 }

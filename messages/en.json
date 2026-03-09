@@ -55,6 +55,7 @@
   },
   "Partner": {
     "title": "Want to collaborate?",
+    "text": "Join the XANAEL network. Install, distribute or represent the solution in your territory.",
     "cta": "See collaboration options"
   },
   "Manifesto": {
@@ -135,15 +136,17 @@
     "title": "About us",
     "intro": "We integrate pest prevention into urban infrastructure. Directly into the curb.",
     "originTitle": "Origin",
-    "originText1": "XANAEL was born within Grupo Rubio Servicios Higiénicos Integrales — a company with over 25 years of experience in pest control, environmental management and hygienic treatments.",
-    "originText2": "The founders — Carlos, Iñaki and José Javier Rubio Carrera — identified a structural gap: cities lack physical surface-level infrastructure to prevent and control pests before they access buildings.",
-    "originText3": "From that premise, XANAEL was designed and patented: a precast concrete technical curb that integrates an accessible interior chamber, ready for early detection, monitoring and control of urban pests.",
+    "originText1": "XANAEL was born within Grupo Rubio Servicios Higiénicos Integrales, a company with over 25 years of experience in pest control, environmental management and hygienic treatments.",
+    "originText2": "Its founders — Carlos, Iñaki and José Javier Rubio Carrera — identified a structural gap: cities lack physical surface-level infrastructure to prevent and control pests before they access buildings.",
+    "originText3": "From this premise, XANAEL was designed and patented: a precast concrete technical curb that integrates an accessible interior chamber, ready for early detection, monitoring and control of urban pests.",
     "innovationTitle": "Innovation",
     "innovationText1": "XANAEL introduces a new concept in urban environmental health: preventive infrastructure integrated at the surface level.",
-    "innovationText2": "The system is patented in Spain and is installed like a conventional curb. No additional construction work is required. Its interior chamber allows the integration of pest detection, monitoring and control systems without altering the urban environment.",
-    "innovationText3": "It is compatible with the integrated pest management (GIP/IPM) required by European regulations and can operate alongside any company in the sector.",
+    "innovationText2": "The system is patented in Spain and is installed like a conventional curb in the urban road network. No additional construction work is required once installed.",
+    "innovationText3": "Its interior chamber allows the integration of early detection, monitoring and pest control systems, while maintaining the aesthetics of public spaces.",
+    "innovationText4": "The system is compatible with integrated pest management (GIP / IPM) as required by European regulations and can operate alongside any company in the sector.",
     "teamTitle": "Team",
-    "teamText": "The XANAEL team presented the system at EXPOCIDA 2026, the leading environmental health congress in Spain. The concept was validated there before manufacturers, pest control companies and municipal authorities."
+    "teamText1": "The XANAEL team is made up of professionals in the environmental health sector with extensive experience in urban pest management and technical solutions applied to urban environments.",
+    "teamText2": "The system was presented to the professional sector at EXPOCIDA 2026, the leading environmental health congress in Spain, where the concept was showcased to manufacturers, pest control companies and municipal authorities."
   },
   "Contact": {
     "breadcrumb": "Contact",
@@ -189,7 +192,10 @@
     "generalQueries": "General enquiries",
     "partnerNetwork": "Partner network",
     "headquarters": "Headquarters",
-    "teamTitle": "Team"
+    "teamTitle": "Team",
+    "roleCEO": "CEO & Co-Founder",
+    "roleCofounder": "Co-Founder",
+    "roleDigitalManager": "Digital Manager"
   },
   "Collaborators": {
     "breadcrumb": "Collaborators",
@@ -255,6 +261,74 @@
     "cta": "Back to home"
   },
   "Common": {
-    "home": "Home"
+    "home": "Home",
+    "news": "News"
+  },
+  "NewsArticleCTA": {
+    "title": "Interested in our solution?",
+    "text": "Contact our team and discover how XANAEL can protect your municipality or facility.",
+    "cta": "Request information"
+  },
+  "NewsAyuntalia": {
+    "breadcrumb": "Ayuntalia 2025",
+    "category": "Events",
+    "title": "XANAEL at Ayuntalia 2025: first institutional presentation of the system",
+    "date": "20 September 2025",
+    "p1": "In September 2025, XANAEL took its first major step in the institutional sphere. The Ayuntalia fair, held from 18 to 20 September in Ribaforada (Navarra), was the chosen setting for the public presentation of the XANAEL system: a preventive urban sanitary infrastructure designed for surface-level pest management.",
+    "p2": "The event reached one of its highlights with the visit of Elma Saiz, Minister of Inclusion, Social Security and Migration, and Tirso Calvo, Mayor of Ribaforada. Both learned first-hand about the solution developed by Carlos, Iñaki and José Javier Rubio Carrera, inventors of the patent.",
+    "p3": "During the institutional visit, the system concept was presented: a precast concrete curb that integrates an interior technical chamber designed to house pest detection, monitoring and control systems, enabling surface-level action before the problem reaches the interior of buildings.",
+    "p4": "Participation in Ayuntalia marked the project's first direct contact with municipal officials and urban management technicians, who were able to learn about the system and its integration into the urban road network as a permanent prevention element.",
+    "p5": "The XANAEL stand, presented under the umbrella of Grupo Rubio, received visits from mayors, municipal technicians and heads of urban services interested in new structural solutions for pest management in urban environments.",
+    "pillarsTitle": "XANAEL system principles",
+    "pillar1Title": "Safety",
+    "pillar1Text": "Designed to reduce the risks associated with traditional exposed bait systems, protecting people, children and pets.",
+    "pillar2Title": "Sustainability",
+    "pillar2Text": "Helps minimise rodenticide dispersal and reduce environmental impact on soils and drainage networks.",
+    "pillar3Title": "Discretion",
+    "pillar3Text": "Aesthetically integrated into the urban road network, forming part of the street furniture without altering public spaces.",
+    "pillar4Title": "Prevention",
+    "pillar4Text": "Enables the establishment of permanent surface-level surveillance and control points, acting before the problem reaches buildings.",
+    "imgCaption": "The XANAEL team attending visitors at Ayuntalia 2025",
+    "closing": "Ayuntalia 2025 thus marked the beginning of a new chapter for the XANAEL project: its presentation to the municipal sphere and the opening of new avenues of dialogue with public administrations interested in preventive solutions for urban pest management."
+  },
+  "NewsMunicipalia": {
+    "breadcrumb": "Municipalia 2025",
+    "category": "Events",
+    "title": "XANAEL at Municipalia: warm reception for the urban pest prevention system",
+    "date": "23 October 2025",
+    "p1": "XANAEL concluded its participation in Municipalia with a very positive outcome. Over 21, 22 and 23 October, stand 6036 became one of the busiest points at the fair, receiving visits from environmental technicians, municipal officials, mayors, councillors and sector companies.",
+    "p2": "The reception far exceeded expectations. Attendees showed particular interest in XANAEL's preventive approach: tackling urban pest management from the surface, before the problem reaches the interior of buildings. The concept of preventive urban sanitary infrastructure resonated strongly among municipal service managers.",
+    "p3": "The team returned with numerous contacts and the confirmation that XANAEL has a real place in the cities of the future. 'We have verified that surface-level urban pest prevention is a priority shared by many municipalities,' XANAEL stated after the event.",
+    "closing": "Municipalia consolidates itself as an important turning point for the project, opening new collaboration opportunities with the public sector and demonstrating the growing interest in structural and permanent solutions for urban pest management."
+  },
+  "NewsExpocidaPoster": {
+    "breadcrumb": "EXPOCIDA 2026 — Technical poster",
+    "category": "Innovation",
+    "title": "XANAEL presents its technical poster at EXPOCIDA 2026",
+    "date": "31 January 2026",
+    "p1": "XANAEL participated in the official call for technical and scientific posters at EXPOCIDA 2026, the benchmark event for the pest control sector in Spain, held at IFEMA Madrid on 30 and 31 January 2026.",
+    "p2": "The poster, displayed as Poster No. 8 in Hall 5, presented in detail the preventive urban sanitary infrastructure system developed by XANAEL: a precast concrete curb that integrates an interior technical chamber designed to house pest detection, monitoring and control systems.",
+    "p3": "The technical proposal outlines the foundations of the patented system: the interception of rodent surface routes, the reduction of exposed chemicals and the permanent integration of the system into the urban road network without altering the aesthetics of public spaces.",
+    "p4": "The presence at EXPOCIDA represents an important step in the technical presentation of the project to sector professionals, pest control companies, municipal technicians and environmental health officials from across Spain and Europe.",
+    "p5": "XANAEL continues to consolidate its position as the first patented preventive urban sanitary infrastructure solution in Spain, with an approach that combines innovation, sustainability and structural prevention.",
+    "imgCaption": "EXPOCIDA 2026 — Poster No. 8, Hall 5, IFEMA Madrid",
+    "closing": "Participation in EXPOCIDA reinforces XANAEL's commitment to technical dissemination and collaboration with the professional sector, opening new avenues of dialogue with companies and institutions interested in preventive solutions integrated into urban infrastructure."
+  },
+  "NewsExpocida": {
+    "breadcrumb": "EXPOCIDA 2026",
+    "category": "Events",
+    "title": "XANAEL at EXPOCIDA 2026: two days that mark a before and after",
+    "date": "28 February 2026",
+    "excerpt": "Two days of real conversations, technical questions and debates about the future of environmental health. The sector agrees: pest management can no longer be solely reactive.",
+    "caption1": "The full XANAEL team at EXPOCIDA 2026 — Hall 5, Stand 44, IFEMA Madrid",
+    "p1": "There are fairs where you go to showcase your product. And others where you realise the sector is taking a step forward. EXPOCIDA 2026 has been that for XANAEL.",
+    "caption2": "Sector visitors discovering XANAEL at EXPOCIDA 2026",
+    "p2": "Two days of real conversations. Technical questions. Debates about where environmental health is heading. More and more professionals agree on something: pest management can no longer be solely reactive. The city can also prevent.",
+    "p3": "Because environmental health is not just a service. It is infrastructure. It is prevention. It is public health. XANAEL integrates it into the urban road network itself — a precast concrete curb with an interior chamber ready to house any pest control system.",
+    "caption3": "Stand 44 — XANAEL, Hall 5, IFEMA Madrid",
+    "caption4": "XANAEL prototype displayed at EXPOCIDA 2026",
+    "p4": "Leading the project, Carlos Rubio Carrera, founder of XANAEL and a reference in environmental health with over 20 years of experience in the sector. His vision is clear: structural prevention is the next natural step in integrated pest management.",
+    "caption5": "Carlos Rubio Carrera — Founder and CEO of XANAEL",
+    "closing": "Thank you to everyone who visited the stand, shared your vision and took the time to learn about XANAEL. And thank you to ANECPLA for creating the space where the sector meets, reflects and grows together. Pilot tests are beginning. Next steps are coming soon. We keep going."
   }
 }

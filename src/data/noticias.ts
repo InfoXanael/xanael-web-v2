@@ -11,11 +11,11 @@ export interface Noticia {
 export const noticias: Noticia[] = [
   {
     slug: "ayuntalia-2025",
-    titulo: "XANAEL en Ayuntalia 2025: primera presentación institucional",
+    titulo: "XANAEL en Ayuntalia 2025: primera presentación institucional del sistema",
     categoria: "Eventos",
     fecha: "20 de septiembre de 2025",
     extracto:
-      "La feria Ayuntalia en Ribaforada fue el escenario de la presentación oficial del primer bordillo inteligente patentado en España para el control sostenible de plagas urbanas.",
+      "La feria Ayuntalia en Ribaforada fue el escenario elegido para la presentación pública del sistema XANAEL: una infraestructura urbana sanitaria preventiva diseñada para la gestión de plagas en superficie.",
     imagen: "/images/news/new-1/portada.webp",
     href: "/noticias/ayuntalia-2025",
   },
@@ -35,7 +35,7 @@ export const noticias: Noticia[] = [
     categoria: "Innovación",
     fecha: "31 de enero de 2026",
     extracto:
-      "XANAEL participa en la convocatoria oficial de pósters técnicos y científicos de EXPOCIDA 2026 presentando su sistema de infraestructura urbana sanitaria preventiva.",
+      "XANAEL participó en la convocatoria oficial de pósters técnicos y científicos de EXPOCIDA 2026, presentando su sistema de infraestructura urbana sanitaria preventiva en IFEMA Madrid.",
     imagen: "/images/news/new-3/portada.webp",
     href: "/noticias/expocida-2026-poster",
   },
