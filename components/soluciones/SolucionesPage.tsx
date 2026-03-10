@@ -53,15 +53,14 @@ const standardGallery = [
   "/images/infrastructure/standard_model/bordillo_2.webp",
   "/images/infrastructure/standard_model/bordillo_3.webp",
   "/images/infrastructure/standard_model/bordillo_4.webp",
+  "/images/infrastructure/standard_model/tapa.webp",
 ];
 
 const compactTapaImages = [
   "/images/infrastructure/compact_model/tapa_1.webp",
 ];
 
-const standardTapaImages = [
-  "/images/infrastructure/standard_model/tapa.webp",
-];
+const standardTapaImages: string[] = [];
 
 const compactSpecs = [
   ["Peso", "24 kg"],
@@ -540,7 +539,7 @@ export default function SolucionesPage() {
                         </div>
                         {currentTapa.length > 0 && (
                           <div className="relative mt-4">
-                            <div className="relative w-3/4 aspect-[4/4] bg-[#F5F5F5] rounded-md overflow-hidden">
+                            <div className="relative w-full aspect-[21/9] bg-[#F5F5F5] rounded-md overflow-hidden">
                               <Image
                                 src={currentTapa[tapaIdx]}
                                 alt={`Tapa de fundición - vista ${tapaIdx + 1}`}
