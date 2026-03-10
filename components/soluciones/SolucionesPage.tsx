@@ -59,7 +59,9 @@ const compactTapaImages = [
   "/images/infrastructure/compact_model/tapa_1.webp",
 ];
 
-const standardTapaImages: string[] = [];
+const standardTapaImages = [
+  "/images/infrastructure/standard_model/tapa.webp",
+];
 
 const compactSpecs = [
   ["Peso", "24 kg"],
@@ -85,9 +87,18 @@ const compactSpecs = [
 
 const standardSpecs = [
   ["Peso", "42 kg"],
+  ["Alto total", "25 cm"],
+  ["Alto hasta línea de corte", "12 cm"],
+  ["Largo", "40,5 cm"],
+  ["Ancho superior", "36,5 cm"],
+  ["Ancho total", "41 cm"],
+  ["Cámara interior (alto × largo × ancho)", "19 × 23,6 × 23,9 cm"],
+  ["Separación entre agujeros", "21,6 cm"],
+  ["Grosor de paredes", "8 / 8,5 / 6 cm"],
   ["Material cuerpo", "Hormigón prefabricado"],
-  ["Acceso interior", "Circular, para cebo de termitas"],
-  ["Ranuras laterales", "2, para varilla con cebo"],
+  ["Acceso interior", "Acceso directo al subsuelo para instalación de cebo de termitas"],
+  ["Ranuras laterales", "2 guías laterales para varilla de tratamiento"],
+  ["Tapa — largo × ancho", "28,5 × 28,5 cm"],
   ["Tapa — material", "Fundición"],
   ["Tapa — normativa", "EN124 clase B125"],
   ["Tapa — escudo central", "Personalizable"],
@@ -529,10 +540,10 @@ export default function SolucionesPage() {
                         </div>
                         {currentTapa.length > 0 && (
                           <div className="relative mt-4">
-                            <div className="relative w-full aspect-[21/9] bg-[#F5F5F5] rounded-md overflow-hidden">
+                            <div className="relative w-3/4 aspect-[4/4] bg-[#F5F5F5] rounded-md overflow-hidden">
                               <Image
                                 src={currentTapa[tapaIdx]}
-                                alt={`Tapa personalizable - vista ${tapaIdx + 1}`}
+                                alt={`Tapa de fundición - vista ${tapaIdx + 1}`}
                                 fill
                                 className="object-cover"
                               />
