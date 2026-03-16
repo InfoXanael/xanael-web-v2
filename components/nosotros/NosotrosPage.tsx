@@ -28,9 +28,6 @@ export default function NosotrosPage() {
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1A1A1A] tracking-tight leading-tight max-w-4xl">
           {t("title")}
         </h1>
-        <p className="mt-6 text-gray-500 text-lg leading-relaxed max-w-2xl">
-          {t("intro")}
-        </p>
       </header>
 
       {/* Bloque texto grande */}
