@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { Link } from "@/i18n/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Building2, MapPin, Bug, CheckCircle, Camera, X, Plus, Trash2 } from "lucide-react";
+import { Building2, MapPin, Bug, CheckCircle, Camera, X, Plus, Trash2, ClipboardList } from "lucide-react";
 
 // ─── Styles ───────────────────────────────────────────────────────────────────
 
@@ -300,13 +300,13 @@ export default function PilotoPage() {
           Solicitud de Zona Piloto
         </h1>
         <p className="mt-4 text-gray-500 text-lg max-w-2xl">
-          Propón tu municipio para el programa piloto XANAEL. Instalamos el bordillo técnico
-          en zonas con incidencia de plagas registrada para evaluar su eficacia en condiciones reales.
+          Propón tu municipio para el programa piloto XANAEL. Rellena el formulario con las
+          zonas de mayor incidencia y nos pondremos en contacto contigo.
         </p>
 
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
           {[
-            { icon: MapPin, title: "Instalación incluida", desc: "Nos encargamos de la instalación completa del bordillo técnico en las zonas seleccionadas" },
+            { icon: ClipboardList, title: "Evaluación técnica", desc: "Analizamos y valoramos las zonas propuestas para determinar el mejor enfoque de actuación" },
             { icon: Bug, title: "Monitoreo continuo", desc: "Seguimiento y monitoreo de actividad de plagas durante todo el periodo piloto" },
             { icon: CheckCircle, title: "Informe técnico", desc: "Informe detallado al finalizar el piloto con resultados, métricas y recomendaciones" },
           ].map((item) => {
