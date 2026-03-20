@@ -100,26 +100,26 @@ export default function DashboardPage() {
   const [leads, setLeads] = useState<PipelineLead[]>([]);
 
   useEffect(() => {
-    fetch("/api/formularios")
-      .then((r) => r.json())
-      .then((data) => {
-        if (Array.isArray(data)) setForms(data);
-      })
-      .catch(() => {});
+    async function load() {
+      const [formsRes, newFormsRes, leadsRes] = await Promise.all([
+        fetch("/api/formularios"),
+        fetch("/api/formularios?estado=nuevo"),
+        fetch("/api/pipeline"),
+      ]).catch(() => [null, null, null]);
 
-    fetch("/api/formularios?estado=nuevo")
-      .then((r) => r.json())
-      .then((data) => {
-        if (Array.isArray(data)) setNewForms(data);
-      })
-      .catch(() => {});
+      if (!formsRes && !newFormsRes && !leadsRes) return;
 
-    fetch("/api/pipeline")
-      .then((r) => r.json())
-      .then((data) => {
-        if (Array.isArray(data)) setLeads(data);
-      })
-      .catch(() => {});
+      const [formsData, newFormsData, leadsData] = await Promise.all([
+        formsRes?.json().catch(() => []),
+        newFormsRes?.json().catch(() => []),
+        leadsRes?.json().catch(() => []),
+      ]);
+
+      if (Array.isArray(formsData)) setForms(formsData);
+      if (Array.isArray(newFormsData)) setNewForms(newFormsData);
+      if (Array.isArray(leadsData)) setLeads(leadsData);
+    }
+    load();
   }, []);
 
   const chartData = getLast7DaysChartData(forms);
