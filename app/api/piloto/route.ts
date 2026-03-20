@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { writeFile } from "fs/promises";
-import path from "path";
+import { put } from "@vercel/blob";
 import { prisma } from "@/lib/prisma";
 import { sendPilotoNotification } from "@/lib/mailer";
 
@@ -19,8 +18,8 @@ interface ZonaFull extends ZonaMeta {
   fotos: string[];
 }
 
-async function saveFiles(files: File[]): Promise<string[]> {
-  const paths: string[] = [];
+async function uploadFiles(files: File[]): Promise<string[]> {
+  const urls: string[] = [];
   for (const file of files) {
     if (!ALLOWED_TYPES.includes(file.type)) {
       throw new Error(`Tipo no permitido: ${file.name}`);
@@ -29,12 +28,11 @@ async function saveFiles(files: File[]): Promise<string[]> {
       throw new Error(`Archivo demasiado grande: ${file.name}`);
     }
     const ext = file.name.split(".").pop() ?? "jpg";
-    const uniqueName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-    const filePath = path.join(process.cwd(), "public", "uploads", "piloto", uniqueName);
-    await writeFile(filePath, Buffer.from(await file.arrayBuffer()));
-    paths.push(`/uploads/piloto/${uniqueName}`);
+    const uniqueName = `piloto/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+    const blob = await put(uniqueName, file, { access: "public" });
+    urls.push(blob.url);
   }
-  return paths;
+  return urls;
 }
 
 export async function GET() {
@@ -73,7 +71,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Se requiere al menos una zona" }, { status: 400 });
     }
 
-    // Validate each zone and process files
+    // Validate each zone and upload files
     const zonas: ZonaFull[] = [];
     for (let i = 0; i < zonas_meta.length; i++) {
       const meta = zonas_meta[i];
@@ -88,9 +86,9 @@ export async function POST(request: NextRequest) {
         .filter((f) => f && f.size > 0)
         .slice(0, MAX_FILES_PER_ZONE);
 
-      let fotoPaths: string[] = [];
+      let fotoUrls: string[] = [];
       try {
-        fotoPaths = await saveFiles(rawFiles);
+        fotoUrls = await uploadFiles(rawFiles);
       } catch (err) {
         return NextResponse.json(
           { error: err instanceof Error ? err.message : "Error subiendo archivo" },
@@ -103,7 +101,7 @@ export async function POST(request: NextRequest) {
         tipo_plaga: meta.tipo_plaga,
         frecuencia: meta.frecuencia,
         descripcion: meta.descripcion || undefined,
-        fotos: fotoPaths,
+        fotos: fotoUrls,
       });
     }
 
