@@ -57,6 +57,7 @@ export async function POST(request: NextRequest) {
     const zonas_meta_str = (formData.get("zonas_meta") as string | null) ?? "";
 
     if (!nombre || !cargo || !municipio || !zonas_meta_str) {
+      console.error("[piloto] Campos faltantes:", { nombre: !!nombre, cargo: !!cargo, municipio: !!municipio, zonas_meta: !!zonas_meta_str });
       return NextResponse.json({ error: "Faltan campos obligatorios" }, { status: 400 });
     }
 
@@ -90,6 +91,7 @@ export async function POST(request: NextRequest) {
       try {
         fotoUrls = await uploadFiles(rawFiles);
       } catch (err) {
+        console.error(`[piloto] uploadFiles zona_${i} error:`, err);
         return NextResponse.json(
           { error: err instanceof Error ? err.message : "Error subiendo archivo" },
           { status: 400 }
