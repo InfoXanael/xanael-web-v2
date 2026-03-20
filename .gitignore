@@ -34,6 +34,10 @@ yarn-error.log*
 
 # database
 dev.db
+
+# uploaded files
+/public/uploads/piloto/*
+!/public/uploads/piloto/.gitkeep
 dev.db-journal
 
 # drafts
