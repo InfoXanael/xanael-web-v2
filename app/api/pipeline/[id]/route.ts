@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { cacheInvalidate } from "@/lib/redis";
 
 export async function PATCH(
   request: NextRequest,
@@ -25,6 +26,7 @@ export async function PATCH(
       data,
     });
 
+    await cacheInvalidate("pipeline:all");
     return NextResponse.json(lead);
   } catch (error) {
     console.error("Error updating pipeline lead:", error);

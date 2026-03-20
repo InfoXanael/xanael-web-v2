@@ -1,12 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { cacheGet, cacheSet, cacheInvalidate } from "@/lib/redis";
+
+const PIPELINE_KEY = "pipeline:all";
 
 export async function GET() {
   try {
+    const cached = await cacheGet(PIPELINE_KEY);
+    if (cached) return NextResponse.json(cached);
+
     const leads = await prisma.pipelineLead.findMany({
       orderBy: { updatedAt: "desc" },
     });
 
+    await cacheSet(PIPELINE_KEY, leads);
     return NextResponse.json(leads);
   } catch (error) {
     console.error("Error fetching pipeline leads:", error);
@@ -34,6 +41,7 @@ export async function POST(request: NextRequest) {
       },
     });
 
+    await cacheInvalidate(PIPELINE_KEY);
     return NextResponse.json(lead, { status: 201 });
   } catch (error) {
     console.error("Error creating pipeline lead:", error);

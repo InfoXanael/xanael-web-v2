@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { cacheInvalidate } from "@/lib/redis";
 
 export async function PATCH(
   request: NextRequest,
@@ -17,6 +18,7 @@ export async function PATCH(
       data: { estado },
     });
 
+    await cacheInvalidate("piloto:all");
     return NextResponse.json(updated);
   } catch (error) {
     console.error("[piloto] PATCH error:", error);

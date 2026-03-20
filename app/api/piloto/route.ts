@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { put } from "@vercel/blob";
 import { prisma } from "@/lib/prisma";
 import { sendPilotoNotification } from "@/lib/mailer";
+import { cacheGet, cacheSet, cacheInvalidate } from "@/lib/redis";
+
+const PILOTO_KEY = "piloto:all";
 
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/heic", "image/heif"];
 const MAX_FILES_PER_ZONE = 5;
@@ -37,9 +40,14 @@ async function uploadFiles(files: File[]): Promise<string[]> {
 
 export async function GET() {
   try {
+    const cached = await cacheGet(PILOTO_KEY);
+    if (cached) return NextResponse.json(cached);
+
     const submissions = await prisma.pilotoSubmission.findMany({
       orderBy: { createdAt: "desc" },
     });
+
+    await cacheSet(PILOTO_KEY, submissions);
     return NextResponse.json(submissions);
   } catch (error) {
     console.error("[piloto] GET error:", error);
@@ -123,6 +131,7 @@ export async function POST(request: NextRequest) {
       console.error("[piloto] Email error:", emailErr);
     }
 
+    await cacheInvalidate(PILOTO_KEY);
     return NextResponse.json({ id: submission.id }, { status: 201 });
   } catch (error) {
     console.error("[piloto] Error:", error);
