@@ -301,14 +301,14 @@ export default function PilotoPage() {
         </h1>
         <p className="mt-4 text-gray-500 text-lg max-w-2xl">
           Propón tu municipio para el programa piloto XANAEL. Instalamos el bordillo técnico
-          en zonas con incidencia de plagas registrada, sin coste para el ayuntamiento.
+          en zonas con incidencia de plagas registrada para evaluar su eficacia en condiciones reales.
         </p>
 
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
           {[
-            { icon: MapPin, title: "Sin coste inicial", desc: "Instalación gratuita en la zona piloto seleccionada" },
-            { icon: Bug, title: "Monitoreo continuo", desc: "Datos de actividad de plagas en tiempo real durante el piloto" },
-            { icon: CheckCircle, title: "Informe técnico", desc: "Resultado del piloto con métricas y recomendaciones" },
+            { icon: MapPin, title: "Instalación incluida", desc: "Nos encargamos de la instalación completa del bordillo técnico en las zonas seleccionadas" },
+            { icon: Bug, title: "Monitoreo continuo", desc: "Seguimiento y monitoreo de actividad de plagas durante todo el periodo piloto" },
+            { icon: CheckCircle, title: "Informe técnico", desc: "Informe detallado al finalizar el piloto con resultados, métricas y recomendaciones" },
           ].map((item) => {
             const Icon = item.icon;
             return (
