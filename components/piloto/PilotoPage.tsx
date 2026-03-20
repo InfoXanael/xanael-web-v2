@@ -264,7 +264,11 @@ export default function PilotoPage() {
 
     try {
       const res = await fetch("/api/piloto", { method: "POST", body: fd });
-      if (!res.ok) throw new Error();
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        console.error("[piloto] error", res.status, body);
+        throw new Error(body?.error ?? "Error desconocido");
+      }
       setStatus("success");
       setPersonal({ nombre: "", cargo: "", municipio: "" });
       setZones([emptyZone()]);

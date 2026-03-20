@@ -111,13 +111,17 @@ export async function POST(request: NextRequest) {
       data: { nombre, cargo, municipio, zonas: zonas as object[] },
     });
 
-    sendPilotoNotification({
-      nombre,
-      cargo,
-      municipio,
-      zonas,
-      submissionId: submission.id,
-    }).catch((err) => console.error("[piloto] Email error:", err));
+    try {
+      await sendPilotoNotification({
+        nombre,
+        cargo,
+        municipio,
+        zonas,
+        submissionId: submission.id,
+      });
+    } catch (emailErr) {
+      console.error("[piloto] Email error:", emailErr);
+    }
 
     return NextResponse.json({ id: submission.id }, { status: 201 });
   } catch (error) {
