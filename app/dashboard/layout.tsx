@@ -14,28 +14,53 @@ import {
   PanelLeftClose,
   PanelLeftOpen,
   LogOut,
+  ClipboardList,
+  ChevronDown,
 } from "lucide-react";
 
-const navLinks = [
+// ─── Nav structure ────────────────────────────────────────────────────────────
+
+interface NavChild {
+  href: string;
+  label: string;
+}
+
+interface NavItem {
+  href?: string;
+  label: string;
+  icon: React.ElementType;
+  children?: NavChild[];
+}
+
+const navItems: NavItem[] = [
   { href: "/dashboard", label: "Inicio", icon: Home },
+  {
+    label: "Forms",
+    icon: ClipboardList,
+    children: [
+      { href: "/dashboard/forms/piloto", label: "Piloto" },
+    ],
+  },
   { href: "/dashboard/formularios", label: "Formularios", icon: FileText },
   { href: "/dashboard/pipeline", label: "Pipeline", icon: LayoutGrid },
   { href: "/dashboard/mautic", label: "Mautic", icon: Send },
   { href: "/dashboard/analytics", label: "Analytics", icon: BarChart3 },
-  { href: "/dashboard/configuracion", label: "Configuracion", icon: Settings },
+  { href: "/dashboard/configuracion", label: "Configuración", icon: Settings },
 ];
 
 const PAGE_TITLES: Record<string, string> = {
   "/dashboard": "Inicio",
+  "/dashboard/forms/piloto": "Forms · Piloto",
   "/dashboard/formularios": "Formularios",
   "/dashboard/pipeline": "Pipeline",
   "/dashboard/mautic": "Mautic",
   "/dashboard/analytics": "Analytics",
-  "/dashboard/configuracion": "Configuracion",
+  "/dashboard/configuracion": "Configuración",
 };
 
 const SIDEBAR_KEY = "xanael_sidebar_collapsed";
 const LOGIN_TS_KEY = "xanael_login_ts";
+const FORMS_OPEN_KEY = "xanael_forms_open";
 
 function getInitials(name: string): string {
   return name
@@ -68,14 +93,19 @@ export default function DashboardLayout({
   const router = useRouter();
   const [user, setUser] = useState<SessionUser | null>(null);
   const [collapsed, setCollapsed] = useState(false);
+  const [formsOpen, setFormsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Load sidebar state from localStorage
   useEffect(() => {
-    const saved = localStorage.getItem(SIDEBAR_KEY);
-    if (saved === "true") setCollapsed(true);
-  }, []);
+    const savedCollapsed = localStorage.getItem(SIDEBAR_KEY);
+    if (savedCollapsed === "true") setCollapsed(true);
+    // Auto-open Forms group if on a forms route
+    const savedFormsOpen = localStorage.getItem(FORMS_OPEN_KEY);
+    if (savedFormsOpen === "true" || pathname.startsWith("/dashboard/forms")) {
+      setFormsOpen(true);
+    }
+  }, [pathname]);
 
   useEffect(() => {
     fetch("/api/auth/me")
@@ -86,7 +116,6 @@ export default function DashboardLayout({
       });
   }, [router]);
 
-  // Close dropdown on outside click
   useEffect(() => {
     function handleClick(e: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -104,6 +133,14 @@ export default function DashboardLayout({
       return next;
     });
   }, []);
+
+  function toggleForms() {
+    setFormsOpen((prev) => {
+      const next = !prev;
+      localStorage.setItem(FORMS_OPEN_KEY, String(next));
+      return next;
+    });
+  }
 
   async function handleLogout() {
     sessionStorage.removeItem(LOGIN_TS_KEY);
@@ -148,7 +185,6 @@ export default function DashboardLayout({
           )}
         </div>
 
-        {/* Expand button when collapsed */}
         {collapsed && (
           <button
             onClick={toggleSidebar}
@@ -160,25 +196,79 @@ export default function DashboardLayout({
         )}
 
         {/* Navigation */}
-        <nav className="flex-1 px-2 space-y-1 mt-1">
-          {navLinks.map((link) => {
+        <nav className="flex-1 px-2 space-y-0.5 mt-1">
+          {navItems.map((item) => {
+            // Group item with children
+            if (item.children) {
+              const Icon = item.icon;
+              const isGroupActive = pathname.startsWith("/dashboard/forms");
+
+              return (
+                <div key={item.label}>
+                  {/* Group header */}
+                  <button
+                    onClick={collapsed ? undefined : toggleForms}
+                    title={collapsed ? item.label : undefined}
+                    className={`w-full flex items-center gap-3 py-2.5 text-sm rounded-md transition-colors hover:bg-white/10 ${
+                      isGroupActive ? "bg-white/10" : ""
+                    } ${collapsed ? "justify-center px-0" : "px-4"}`}
+                  >
+                    <Icon size={18} className="shrink-0" />
+                    {!collapsed && (
+                      <>
+                        <span className="flex-1 text-left">{item.label}</span>
+                        <ChevronDown
+                          size={14}
+                          className={`text-white/40 transition-transform duration-200 ${
+                            formsOpen ? "rotate-180" : ""
+                          }`}
+                        />
+                      </>
+                    )}
+                  </button>
+
+                  {/* Children */}
+                  {!collapsed && formsOpen && (
+                    <div className="ml-4 mt-0.5 space-y-0.5">
+                      {item.children.map((child) => {
+                        const isActive = pathname.startsWith(child.href);
+                        return (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            className={`flex items-center gap-2 py-2 px-4 text-sm rounded-md transition-colors hover:bg-white/10 ${
+                              isActive ? "bg-white/10 text-white" : "text-white/70"
+                            }`}
+                          >
+                            <span className="w-1 h-1 rounded-full bg-current shrink-0" />
+                            {child.label}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
+            // Regular link
             const isActive =
-              link.href === "/dashboard"
+              item.href === "/dashboard"
                 ? pathname === "/dashboard"
-                : pathname.startsWith(link.href);
-            const Icon = link.icon;
+                : pathname.startsWith(item.href!);
+            const Icon = item.icon;
 
             return (
               <Link
-                key={link.href}
-                href={link.href}
-                title={collapsed ? link.label : undefined}
+                key={item.href}
+                href={item.href!}
+                title={collapsed ? item.label : undefined}
                 className={`flex items-center gap-3 py-2.5 text-sm rounded-md transition-colors hover:bg-white/10 ${
                   isActive ? "bg-white/10" : ""
                 } ${collapsed ? "justify-center px-0" : "px-4"}`}
               >
                 <Icon size={18} />
-                {!collapsed && <span>{link.label}</span>}
+                {!collapsed && <span>{item.label}</span>}
               </Link>
             );
           })}
@@ -186,9 +276,7 @@ export default function DashboardLayout({
 
         {/* Version */}
         <div className={`py-4 ${collapsed ? "text-center" : "px-5"}`}>
-          <span className="text-xs text-white/30">
-            {collapsed ? "v1" : "v1.0.0"}
-          </span>
+          <span className="text-xs text-white/30">{collapsed ? "v1" : "v1.0.0"}</span>
         </div>
       </aside>
 
@@ -196,12 +284,10 @@ export default function DashboardLayout({
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
         <header className="h-16 bg-white border-b border-gray-200 px-6 flex items-center justify-between">
-          {/* Page title */}
           <h1 className="text-sm font-semibold text-[#1A1A1A]">
             {getPageTitle(pathname)}
           </h1>
 
-          {/* Avatar dropdown */}
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setDropdownOpen((prev) => !prev)}

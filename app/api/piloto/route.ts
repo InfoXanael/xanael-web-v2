@@ -37,6 +37,18 @@ async function saveFiles(files: File[]): Promise<string[]> {
   return paths;
 }
 
+export async function GET() {
+  try {
+    const submissions = await prisma.pilotoSubmission.findMany({
+      orderBy: { createdAt: "desc" },
+    });
+    return NextResponse.json(submissions);
+  } catch (error) {
+    console.error("[piloto] GET error:", error);
+    return NextResponse.json({ error: "Error al obtener solicitudes" }, { status: 500 });
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
