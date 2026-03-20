@@ -14,6 +14,8 @@ interface ZonaMeta {
   zona: string;
   tipo_plaga: string;
   frecuencia: string;
+  tipo_ubicacion: string;
+  prioridad: string;
   descripcion?: string;
 }
 
@@ -63,6 +65,7 @@ export async function POST(request: NextRequest) {
     const cargo = ((formData.get("cargo") as string | null) ?? "").trim();
     const municipio = ((formData.get("municipio") as string | null) ?? "").trim();
     const zonas_meta_str = (formData.get("zonas_meta") as string | null) ?? "";
+    const intereses_str = (formData.get("intereses_control") as string | null) ?? "[]";
 
     if (!nombre || !cargo || !municipio || !zonas_meta_str) {
       console.error("[piloto] Campos faltantes:", { nombre: !!nombre, cargo: !!cargo, municipio: !!municipio, zonas_meta: !!zonas_meta_str });
@@ -84,7 +87,7 @@ export async function POST(request: NextRequest) {
     const zonas: ZonaFull[] = [];
     for (let i = 0; i < zonas_meta.length; i++) {
       const meta = zonas_meta[i];
-      if (!meta.zona || !meta.tipo_plaga || !meta.frecuencia) {
+      if (!meta.zona || !meta.tipo_plaga || !meta.frecuencia || !meta.tipo_ubicacion || !meta.prioridad) {
         return NextResponse.json(
           { error: `Zona ${i + 1}: faltan campos obligatorios` },
           { status: 400 }
@@ -110,13 +113,22 @@ export async function POST(request: NextRequest) {
         zona: meta.zona,
         tipo_plaga: meta.tipo_plaga,
         frecuencia: meta.frecuencia,
+        tipo_ubicacion: meta.tipo_ubicacion,
+        prioridad: meta.prioridad,
         descripcion: meta.descripcion || undefined,
         fotos: fotoUrls,
       });
     }
 
+    let interesesControl: string[] = [];
+    try {
+      interesesControl = JSON.parse(intereses_str);
+    } catch {
+      interesesControl = [];
+    }
+
     const submission = await prisma.pilotoSubmission.create({
-      data: { nombre, cargo, municipio, zonas: zonas as object[] },
+      data: { nombre, cargo, municipio, zonas: zonas as object[], interesesControl },
     });
 
     try {

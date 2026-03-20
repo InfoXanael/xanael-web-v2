@@ -24,6 +24,8 @@ interface Zone {
   calle: string;
   tipo_plaga: string;
   frecuencia: string;
+  tipo_ubicacion: string;
+  prioridad: string;
   descripcion: string;
   fotos: File[];
   previews: string[];
@@ -35,6 +37,8 @@ function emptyZone(): Zone {
     calle: "",
     tipo_plaga: "",
     frecuencia: "",
+    tipo_ubicacion: "",
+    prioridad: "",
     descripcion: "",
     fotos: [],
     previews: [],
@@ -157,6 +161,54 @@ function ZoneCard({ zone, index, canRemove, onChange, onRemove }: ZoneCardProps)
         </div>
       </div>
 
+      {/* Tipo ubicación + Prioridad */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+        <div>
+          <label className={labelClass}>
+            Tipo de ubicación <span className="text-red-400">*</span>
+          </label>
+          <div className="relative">
+            <select
+              required
+              value={zone.tipo_ubicacion}
+              onChange={(e) => onChange({ tipo_ubicacion: e.target.value })}
+              className={selectClass}
+            >
+              <option value="" disabled className="text-gray-900">Selecciona</option>
+              <option value="Contenedores" className="text-gray-900">Contenedores</option>
+              <option value="Parque / zona verde" className="text-gray-900">Parque / zona verde</option>
+              <option value="Colegio" className="text-gray-900">Colegio</option>
+              <option value="Otro" className="text-gray-900">Otro</option>
+            </select>
+            <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/50 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </div>
+
+        <div>
+          <label className={labelClass}>
+            Nivel de prioridad <span className="text-red-400">*</span>
+          </label>
+          <div className="relative">
+            <select
+              required
+              value={zone.prioridad}
+              onChange={(e) => onChange({ prioridad: e.target.value })}
+              className={selectClass}
+            >
+              <option value="" disabled className="text-gray-900">Selecciona</option>
+              <option value="Alta" className="text-gray-900">Alta</option>
+              <option value="Media" className="text-gray-900">Media</option>
+              <option value="Baja" className="text-gray-900">Baja</option>
+            </select>
+            <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/50 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
       {/* Descripción */}
       <div className="mt-4">
         <label className={labelClass}>Descripción adicional</label>
@@ -221,6 +273,7 @@ function ZoneCard({ zone, index, canRemove, onChange, onRemove }: ZoneCardProps)
 export default function PilotoPage() {
   const [personal, setPersonal] = useState({ nombre: "", cargo: "", municipio: "" });
   const [zones, setZones] = useState<Zone[]>([emptyZone()]);
+  const [interesesControl, setInteresesControl] = useState<string[]>([]);
   const [status, setStatus] = useState<FormStatus>("idle");
 
   function updatePersonal(patch: Partial<typeof personal>) {
@@ -250,14 +303,17 @@ export default function PilotoPage() {
     fd.set(
       "zonas_meta",
       JSON.stringify(
-        zones.map(({ calle, tipo_plaga, frecuencia, descripcion }) => ({
+        zones.map(({ calle, tipo_plaga, frecuencia, tipo_ubicacion, prioridad, descripcion }) => ({
           zona: calle,
           tipo_plaga,
           frecuencia,
+          tipo_ubicacion,
+          prioridad,
           descripcion: descripcion || undefined,
         }))
       )
     );
+    fd.set("intereses_control", JSON.stringify(interesesControl));
     zones.forEach((zone, i) => {
       zone.fotos.forEach((f) => fd.append(`zona_${i}_fotos`, f));
     });
@@ -272,6 +328,7 @@ export default function PilotoPage() {
       setStatus("success");
       setPersonal({ nombre: "", cargo: "", municipio: "" });
       setZones([emptyZone()]);
+      setInteresesControl([]);
     } catch {
       setStatus("error");
     }
@@ -301,11 +358,11 @@ export default function PilotoPage() {
           </span>
         </div>
         <h1 className="text-4xl md:text-5xl font-bold text-[#1A4A3A] tracking-tight">
-          Solicitud de Zona Piloto
+          Identificación de zonas para piloto XANAEL
         </h1>
         <p className="mt-4 text-gray-500 text-lg max-w-2xl">
-          Propón tu municipio para el programa piloto XANAEL. Rellena el formulario con las
-          zonas de mayor incidencia y nos pondremos en contacto contigo.
+          Para poder definir un piloto ajustado a vuestro municipio, necesitamos identificar
+          conjuntamente las zonas de mayor incidencia.
         </p>
 
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -456,6 +513,35 @@ export default function PilotoPage() {
                     <Plus className="w-4 h-4" />
                     Añadir zona
                   </button>
+
+                  {/* ── Interés en otros tipos de control ── */}
+                  <div className="mt-8">
+                    <p className="text-white/80 text-sm font-semibold mb-3">
+                      ¿Interés en otros tipos de control?{" "}
+                      <span className="text-white/40 font-normal">(opcional)</span>
+                    </p>
+                    <div className="grid grid-cols-2 gap-2">
+                      {["Roedores", "Insectos", "Termitas", "Otros"].map((opcion) => (
+                        <label key={opcion} className="flex items-center gap-2.5 cursor-pointer group">
+                          <input
+                            type="checkbox"
+                            checked={interesesControl.includes(opcion)}
+                            onChange={(e) =>
+                              setInteresesControl((prev) =>
+                                e.target.checked
+                                  ? [...prev, opcion]
+                                  : prev.filter((x) => x !== opcion)
+                              )
+                            }
+                            className="w-4 h-4 rounded border-white/30 bg-transparent accent-white shrink-0"
+                          />
+                          <span className="text-sm text-white/70 group-hover:text-white/90 transition-colors">
+                            {opcion}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
 
                   {/* ── RGPD ── */}
                   <label className="flex items-start gap-3 mt-8 cursor-pointer">

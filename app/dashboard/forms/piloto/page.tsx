@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { X, MapPin, Bug, Clock, FileText, Image as ImageIcon } from "lucide-react";
+import { X, MapPin, Bug, Clock, FileText, Image as ImageIcon, Tag } from "lucide-react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -9,6 +9,8 @@ interface Zona {
   zona: string;
   tipo_plaga: string;
   frecuencia: string;
+  tipo_ubicacion?: string;
+  prioridad?: string;
   descripcion?: string;
   fotos: string[];
 }
@@ -19,6 +21,7 @@ interface PilotoSubmission {
   cargo: string;
   municipio: string;
   zonas: Zona[];
+  interesesControl: string[];
   estado: string;
   createdAt: string;
 }
@@ -261,6 +264,21 @@ export default function PilotoFormsPage() {
                         <Clock size={12} className="text-gray-400" />
                         {zona.frecuencia}
                       </div>
+                      {zona.tipo_ubicacion && (
+                        <div className="flex items-center gap-1.5 text-gray-600">
+                          <MapPin size={12} className="text-gray-400" />
+                          {zona.tipo_ubicacion}
+                        </div>
+                      )}
+                      {zona.prioridad && (
+                        <div className="flex items-center gap-1.5 text-gray-600">
+                          <span className={`inline-block w-2 h-2 rounded-full ${
+                            zona.prioridad === "Alta" ? "bg-red-400" :
+                            zona.prioridad === "Media" ? "bg-yellow-400" : "bg-green-400"
+                          }`} />
+                          Prioridad {zona.prioridad}
+                        </div>
+                      )}
                     </div>
 
                     {zona.descripcion && (
@@ -300,6 +318,28 @@ export default function PilotoFormsPage() {
                 ))}
               </div>
             </section>
+
+            {selected.interesesControl?.length > 0 && (
+              <>
+                <div className="border-t border-gray-100" />
+                <section>
+                  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
+                    Otros tipos de control
+                  </h3>
+                  <div className="flex flex-wrap gap-1.5">
+                    {selected.interesesControl.map((interes) => (
+                      <span
+                        key={interes}
+                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#F0F4F2] text-[#2D6A4F] text-xs font-medium"
+                      >
+                        <Tag size={10} />
+                        {interes}
+                      </span>
+                    ))}
+                  </div>
+                </section>
+              </>
+            )}
 
             <div className="border-t border-gray-100" />
 

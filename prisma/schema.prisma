@@ -48,12 +48,13 @@ model PipelineLead {
 }
 
 model PilotoSubmission {
-  id        String   @id @default(cuid())
-  nombre    String
-  cargo     String
-  municipio String
-  zonas     Json     @default("[]")
-  estado    String   @default("nuevo")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id               String   @id @default(cuid())
+  nombre           String
+  cargo            String
+  municipio        String
+  zonas            Json     @default("[]")
+  interesesControl Json     @default("[]")
+  estado           String   @default("nuevo")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }
