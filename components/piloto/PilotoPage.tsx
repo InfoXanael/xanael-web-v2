@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { Link } from "@/i18n/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Building2, MapPin, Bug, CheckCircle, Camera, X, Plus, Trash2, ClipboardList } from "lucide-react";
+import { Building2, Bug, CheckCircle, Camera, X, Plus, Trash2, ClipboardList } from "lucide-react";
 
 // ─── Styles ───────────────────────────────────────────────────────────────────
 
