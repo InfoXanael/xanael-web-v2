@@ -201,7 +201,8 @@ export default function SolucionesPage() {
                 src="/images/infrastructure/bordillo_1.webp"
                 alt="Bordillo técnico Xanael"
                 fill
-                className="object-contain"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-contain"
                 style={{ filter: "drop-shadow(0px 20px 40px rgba(0,0,0,0.15))" }}
                 priority
               />
@@ -248,7 +249,8 @@ export default function SolucionesPage() {
               src="/images/infrastructure/basuras.webp"
               alt="Problema de plagas urbanas"
               fill
-              className="object-cover"
+              sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover"
             />
           </div>
         </div>
@@ -285,6 +287,7 @@ export default function SolucionesPage() {
                   src="/images/infrastructure/bordillo_1.webp"
                   alt={t("compact")}
                   fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
                   className="object-contain p-1"
                 />
               </div>
@@ -307,6 +310,7 @@ export default function SolucionesPage() {
                   src="/images/infrastructure/standard_model/bordillo_1.webp"
                   alt={t("standard")}
                   fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
                   className="object-contain p-1"
                 />
               </div>
@@ -390,7 +394,8 @@ export default function SolucionesPage() {
                     src={currentGallery[galleryIdx]}
                     alt={`${selectedModel === "compact" ? t("compact") : t("standard")} - imagen ${galleryIdx + 1}`}
                     fill
-                    className="object-contain p-6 transition-transform duration-300"
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-contain p-6 transition-transform duration-300"
                     style={{
                       transformOrigin: `${magnify.x}% ${magnify.y}%`,
                       transform: magnify.active ? "scale(2)" : "scale(1)",
@@ -539,7 +544,8 @@ export default function SolucionesPage() {
                                 src={currentTapa[tapaIdx]}
                                 alt={`Tapa de fundición - vista ${tapaIdx + 1}`}
                                 fill
-                                className="object-cover"
+                                sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover"
                               />
                             </div>
                           </div>
@@ -577,7 +583,8 @@ export default function SolucionesPage() {
               src="/images/infrastructure/ventaja_bordillo.webp"
               alt="Ventaja competitiva del bordillo Xanael"
               fill
-              className="object-cover"
+              sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover"
             />
           </div>
         </div>

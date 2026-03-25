@@ -6,6 +6,10 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 const nextConfig = {
   images: {
     formats: ["image/webp"],
+    deviceSizes: [640, 828, 1080, 1280, 1920],
+  },
+  experimental: {
+    optimizePackageImports: ["lucide-react", "framer-motion"],
   },
   async headers() {
     return [

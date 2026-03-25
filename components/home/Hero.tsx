@@ -15,6 +15,7 @@ export default function Hero() {
         src="/images/hero-banner.webp"
         fill
         priority
+        sizes="100vw"
         alt="Infraestructura urbana inteligente Xanael"
         className="object-cover object-center"
       />

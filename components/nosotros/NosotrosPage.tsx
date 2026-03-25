@@ -65,7 +65,8 @@ export default function NosotrosPage() {
                 src="/images/AboutUs/expocida-fundadores.webp"
                 alt="Carlos, Iñaki y José Javier Rubio Carrera, fundadores de XANAEL"
                 fill
-                className="object-cover"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
               />
             </div>
           </div>
@@ -81,7 +82,8 @@ export default function NosotrosPage() {
                 src="/images/AboutUs/bordillo-prototipo.webp"
                 alt="Prototipo del bordillo XANAEL en stand"
                 fill
-                className="object-cover"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
               />
             </div>
             <div>
@@ -116,6 +118,7 @@ export default function NosotrosPage() {
               src="/images/AboutUs/expocida-equipo.webp"
               alt="El equipo de XANAEL en EXPOCIDA 2026"
               fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover"
               style={{ objectPosition: "center 60%" }}
             />

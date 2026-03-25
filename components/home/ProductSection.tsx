@@ -112,6 +112,7 @@ export default function ProductSection() {
               src={defaultImage}
               alt="Producto Xanael"
               fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
               className={`object-cover transition-opacity duration-300 ${
                 activeView === -1 ? "opacity-100" : "opacity-0"
               }`}
@@ -120,6 +121,7 @@ export default function ProductSection() {
               src="/images/ProductSection/img_2.webp"
               alt="Cómo funciona Xanael"
               fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
               className={`object-cover transition-opacity duration-300 ${
                 activeView === 0 ? "opacity-100" : "opacity-0"
               }`}
@@ -134,7 +136,8 @@ export default function ProductSection() {
                   src="/images/ProductSection/img_3.webp"
                   alt="Para quién es Xanael"
                   fill
-                  className="object-cover"
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
                 />
               </div>
               <div className="h-[2px] bg-[#2D6A4F] shrink-0" />
@@ -143,7 +146,8 @@ export default function ProductSection() {
                   src="/images/ProductSection/img_4.webp"
                   alt="Sectores Xanael"
                   fill
-                  className="object-cover"
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
                 />
               </div>
             </div>
