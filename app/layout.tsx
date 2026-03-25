@@ -43,6 +43,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} className={inter.variable}>
       <head>
+        <link rel="preconnect" href="https://analytics.xanael.es" />
         <Script
           defer
           data-domain="xanael.es"

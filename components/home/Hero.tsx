@@ -24,14 +24,9 @@ export default function Hero() {
 
       <div className="relative z-10 w-full px-6 sm:px-10 lg:px-20">
         <div className="max-w-2xl">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight"
-          >
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight">
             {t("title")}
-          </motion.h1>
+          </h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
