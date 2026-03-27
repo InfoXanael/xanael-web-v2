@@ -14,6 +14,7 @@ export default function NoticiasPage() {
   const c = useTranslations("Common");
   const cards = useTranslations("NewsCards");
   const [active, setActive] = useState("all");
+  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
 
   const categoryKeys = [
     { key: "all", filterValue: "all" },
@@ -76,12 +77,17 @@ export default function NoticiasPage() {
                 key={item.slug}
                 className="bg-white rounded-md overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200"
               >
-                <div className="relative aspect-[3/2] bg-[#E0E0E0]">
+                <div className="relative aspect-[3/2] bg-gray-200 overflow-hidden">
+                  {!loadedImages[item.slug] && (
+                    <div className="absolute inset-0 animate-pulse bg-gray-200" />
+                  )}
                   <Image
                     src={item.imagen}
                     alt={cards(`${item.cardKey}_title`)}
                     fill
-                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className={`object-cover transition-opacity duration-500 ${loadedImages[item.slug] ? "opacity-100" : "opacity-0"}`}
+                    onLoad={() => setLoadedImages((prev) => ({ ...prev, [item.slug]: true }))}
                   />
                 </div>
                 <div className="p-5">

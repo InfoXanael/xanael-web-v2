@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Shield, Leaf } from "lucide-react";
+import { Crosshair, Building2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 const defaultImage = "/images/ProductSection/img_1.webp";
@@ -10,10 +10,11 @@ const defaultImage = "/images/ProductSection/img_1.webp";
 export default function ProductSection() {
   const t = useTranslations("Product");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [mainLoaded, setMainLoaded] = useState(false);
 
   const benefits = [
-    { icon: Shield, title: t("benefit1Title"), description: t("benefit1Desc") },
-    { icon: Leaf, title: t("benefit2Title"), description: t("benefit2Desc") },
+    { icon: Crosshair, title: t("benefit1Title"), description: t("benefit1Desc") },
+    { icon: Building2, title: t("benefit2Title"), description: t("benefit2Desc") },
   ];
 
   const accordions = [
@@ -107,7 +108,10 @@ export default function ProductSection() {
           </div>
 
           {/* Right column — dynamic image */}
-          <div className="relative w-full bg-[#2A2A2A] rounded-md overflow-hidden">
+          <div className="relative w-full bg-gray-200 rounded-md overflow-hidden">
+            {!mainLoaded && (
+              <div className="absolute inset-0 animate-pulse bg-gray-200 z-10 pointer-events-none" />
+            )}
             <Image
               src={defaultImage}
               alt="Producto Xanael"
@@ -116,6 +120,7 @@ export default function ProductSection() {
               className={`object-cover transition-opacity duration-300 ${
                 activeView === -1 ? "opacity-100" : "opacity-0"
               }`}
+              onLoad={() => setMainLoaded(true)}
             />
             <Image
               src="/images/ProductSection/img_2.webp"

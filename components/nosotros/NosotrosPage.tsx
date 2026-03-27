@@ -1,12 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import ManifestoSection from "@/components/home/ManifestoSection";
 import Newsletter from "@/components/home/Newsletter";
 
 export default function NosotrosPage() {
+  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
+  const markLoaded = (key: string) => setLoadedImages((prev) => ({ ...prev, [key]: true }));
   const t = useTranslations("About");
   const c = useTranslations("Common");
 
@@ -60,13 +63,17 @@ export default function NosotrosPage() {
                 {t("originText3")}
               </p>
             </div>
-            <div className="relative aspect-[4/3] w-full bg-[#E0E0E0] rounded-md overflow-hidden">
+            <div className="relative aspect-[4/3] w-full bg-gray-200 rounded-md overflow-hidden">
+              {!loadedImages["fundadores"] && (
+                <div className="absolute inset-0 animate-pulse bg-gray-200" />
+              )}
               <Image
                 src="/images/AboutUs/expocida-fundadores.webp"
                 alt="Carlos, Iñaki y José Javier Rubio Carrera, fundadores de XANAEL"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover"
+                className={`object-cover transition-opacity duration-500 ${loadedImages["fundadores"] ? "opacity-100" : "opacity-0"}`}
+                onLoad={() => markLoaded("fundadores")}
               />
             </div>
           </div>
@@ -77,13 +84,17 @@ export default function NosotrosPage() {
       <section className="bg-[#1A1A1A]">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="relative aspect-[4/3] w-full bg-[#2A2A2A] rounded-md overflow-hidden">
+            <div className="relative aspect-[4/3] w-full bg-gray-600 rounded-md overflow-hidden">
+              {!loadedImages["prototipo"] && (
+                <div className="absolute inset-0 animate-pulse bg-gray-600" />
+              )}
               <Image
                 src="/images/AboutUs/bordillo-prototipo.webp"
                 alt="Prototipo del bordillo XANAEL en stand"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover"
+                className={`object-cover transition-opacity duration-500 ${loadedImages["prototipo"] ? "opacity-100" : "opacity-0"}`}
+                onLoad={() => markLoaded("prototipo")}
               />
             </div>
             <div>
@@ -113,14 +124,18 @@ export default function NosotrosPage() {
       {/* Bloque equipo */}
       <section className="bg-[#F5F5F5]">
         <div className="max-w-7xl mx-auto px-6 py-24">
-          <div className="relative w-full h-[500px] bg-[#E0E0E0] rounded-md overflow-hidden">
+          <div className="relative w-full h-[500px] bg-gray-200 rounded-md overflow-hidden">
+            {!loadedImages["equipo"] && (
+              <div className="absolute inset-0 animate-pulse bg-gray-200" />
+            )}
             <Image
               src="/images/AboutUs/expocida-equipo.webp"
               alt="El equipo de XANAEL en EXPOCIDA 2026"
               fill
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover"
+              sizes="(min-width: 1024px) 100vw, 100vw"
+              className={`object-cover transition-opacity duration-500 ${loadedImages["equipo"] ? "opacity-100" : "opacity-0"}`}
               style={{ objectPosition: "center 60%" }}
+              onLoad={() => markLoaded("equipo")}
             />
           </div>
           <div className="mt-12 max-w-2xl">

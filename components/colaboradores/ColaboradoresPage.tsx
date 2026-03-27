@@ -356,7 +356,7 @@ export default function ColaboradoresPage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
                   <div className="relative">
-                    <select value={fields.sector} onChange={setField("sector")} className={selectClass} defaultValue="">
+                    <select value={fields.sector} onChange={setField("sector")} className={selectClass}>
                       <option value="" disabled className="text-gray-900">{t("activitySector")}</option>
                       <option value="plagas" className="text-gray-900">{t("pestControl")}</option>
                       <option value="construccion" className="text-gray-900">{t("construction")}</option>
@@ -368,7 +368,7 @@ export default function ColaboradoresPage() {
                     </svg>
                   </div>
                   <div className="relative">
-                    <select value={fields.experiencia} onChange={setField("experiencia")} className={selectClass} defaultValue="">
+                    <select value={fields.experiencia} onChange={setField("experiencia")} className={selectClass}>
                       <option value="" disabled className="text-gray-900">{t("yearsExperience")}</option>
                       <option value="0" className="text-gray-900">{t("lessThan1")}</option>
                       <option value="1-3" className="text-gray-900">{t("years1to3")}</option>

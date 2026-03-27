@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { noticias } from "@/src/data/noticias";
 import { useTranslations } from "next-intl";
@@ -11,12 +12,13 @@ interface NewsSectionProps {
 }
 
 export default function NewsSection({ excludeSlug, bgColor = "bg-[#F0F4F2]" }: NewsSectionProps) {
+  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
   const t = useTranslations("News");
   const cards = useTranslations("NewsCards");
-  const news = (excludeSlug
+  const news = [...(excludeSlug
     ? noticias.filter((n) => n.slug !== excludeSlug)
     : noticias
-  )
+  )]
     .sort((a, b) => b.sortDate.localeCompare(a.sortDate))
     .slice(0, 3);
 
@@ -33,12 +35,17 @@ export default function NewsSection({ excludeSlug, bgColor = "bg-[#F0F4F2]" }: N
               key={item.slug}
               className="w-full max-w-[340px] bg-white rounded-md shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-200"
             >
-              <div className="relative aspect-[3/2] bg-[#2A2A2A]">
+              <div className="relative aspect-[3/2] overflow-hidden bg-gray-200">
+                {!loadedImages[item.slug] && (
+                  <div className="absolute inset-0 animate-pulse bg-gray-200" />
+                )}
                 <Image
                   src={item.imagen}
                   alt={cards(`${item.cardKey}_title`)}
                   fill
-                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 340px"
+                  className={`object-cover transition-opacity duration-500 ${loadedImages[item.slug] ? "opacity-100" : "opacity-0"}`}
+                  onLoad={() => setLoadedImages((prev) => ({ ...prev, [item.slug]: true }))}
                 />
               </div>
               <div className="p-6">

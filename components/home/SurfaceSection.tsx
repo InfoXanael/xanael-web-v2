@@ -14,7 +14,7 @@ export default function SurfaceSection() {
               {t("title")}
             </h2>
             <p className="mt-4 text-gray-600 leading-relaxed" dangerouslySetInnerHTML={{
-              __html: t("text")
+              __html: t.raw("text")
                 .replace("<bold>", '<strong class="text-[#1A4A3A]">')
                 .replace("</bold>", "</strong>")
             }} />

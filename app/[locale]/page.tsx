@@ -1,4 +1,5 @@
 import Hero from "@/components/home/Hero";
+import FeaturesStrip from "@/components/home/FeaturesStrip";
 import SurfaceSection from "@/components/home/SurfaceSection";
 import ProductSection from "@/components/home/ProductSection";
 import NewsSection from "@/components/home/NewsSection";
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <FeaturesStrip />
       <SurfaceSection />
       <ProductSection />
       <NewsSection />

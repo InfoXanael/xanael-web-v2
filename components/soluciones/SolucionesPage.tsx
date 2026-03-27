@@ -114,6 +114,9 @@ export default function SolucionesPage() {
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
   const [tapaIdx, setTapaIdx] = useState(0);
 
+  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
+  const markLoaded = (key: string) => setLoadedImages((prev) => ({ ...prev, [key]: true }));
+
   const [formSending, setFormSending] = useState(false);
   const [formSent, setFormSent] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
@@ -198,7 +201,7 @@ export default function SolucionesPage() {
             </div>
             <div className="relative w-full aspect-[4/3] lg:scale-[1.3] origin-center overflow-hidden">
               <Image
-                src="/images/infrastructure/bordillo_1.webp"
+                src="/images/infrastructure/compact_model/bordillo_1.webp"
                 alt="Bordillo técnico Xanael"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
@@ -244,13 +247,17 @@ export default function SolucionesPage() {
               </ul>
             </div>
           </div>
-          <div className="relative min-h-[400px] lg:min-h-0">
+          <div className="relative min-h-[400px] lg:min-h-0 bg-gray-200 overflow-hidden">
+            {!loadedImages["basuras"] && (
+              <div className="absolute inset-0 animate-pulse bg-gray-200" />
+            )}
             <Image
               src="/images/infrastructure/basuras.webp"
               alt="Problema de plagas urbanas"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover"
+              className={`object-cover transition-opacity duration-500 ${loadedImages["basuras"] ? "opacity-100" : "opacity-0"}`}
+              onLoad={() => markLoaded("basuras")}
             />
           </div>
         </div>
@@ -284,7 +291,7 @@ export default function SolucionesPage() {
             >
               <div className="relative w-full h-[190px]">
                 <Image
-                  src="/images/infrastructure/bordillo_1.webp"
+                  src="/images/infrastructure/compact_model/bordillo_1.webp"
                   alt={t("compact")}
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
@@ -364,7 +371,7 @@ export default function SolucionesPage() {
               <div className="relative">
                 <div
                   id="compact-gallery"
-                  className={`relative w-full aspect-square bg-white rounded-lg overflow-hidden ${
+                  className={`relative w-full aspect-square bg-gray-100 rounded-lg overflow-hidden ${
                     isDesktop ? (magnify.active ? "cursor-zoom-out" : "cursor-zoom-in") : ""
                   }`}
                   onClick={(e) => {
@@ -390,16 +397,20 @@ export default function SolucionesPage() {
                     });
                   }}
                 >
+                  {!loadedImages[currentGallery[galleryIdx]] && (
+                    <div className="absolute inset-0 animate-pulse bg-gray-100 z-10 pointer-events-none" />
+                  )}
                   <Image
                     src={currentGallery[galleryIdx]}
                     alt={`${selectedModel === "compact" ? t("compact") : t("standard")} - imagen ${galleryIdx + 1}`}
                     fill
                     sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-contain p-6 transition-transform duration-300"
+                    className={`object-contain p-6 transition-all duration-300 ${loadedImages[currentGallery[galleryIdx]] ? "opacity-100" : "opacity-0"}`}
                     style={{
                       transformOrigin: `${magnify.x}% ${magnify.y}%`,
                       transform: magnify.active ? "scale(2)" : "scale(1)",
                     }}
+                    onLoad={() => markLoaded(currentGallery[galleryIdx])}
                   />
                 </div>
 
@@ -578,13 +589,17 @@ export default function SolucionesPage() {
               </ul>
             </div>
           </div>
-          <div className="relative min-h-[300px] lg:min-h-0">
+          <div className="relative min-h-[300px] lg:min-h-0 bg-gray-200 overflow-hidden">
+            {!loadedImages["ventaja"] && (
+              <div className="absolute inset-0 animate-pulse bg-gray-200" />
+            )}
             <Image
               src="/images/infrastructure/ventaja_bordillo.webp"
               alt="Ventaja competitiva del bordillo Xanael"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover"
+              className={`object-cover transition-opacity duration-500 ${loadedImages["ventaja"] ? "opacity-100" : "opacity-0"}`}
+              onLoad={() => markLoaded("ventaja")}
             />
           </div>
         </div>
