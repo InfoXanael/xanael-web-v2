@@ -1,109 +1,59 @@
 # XANAEL Web v2 — Contexto para Claude Code
 
-## Regla principal
-NUNCA explores el proyecto al inicio de una tarea. Lee este archivo y ve directo a los archivos indicados en cada prompt.
+## Proyecto
+xanael-web-v2 — Web pública y dashboard interno de XANAEL (Grupo Rubio)
+Repo: InfoXanael/xanael-web-v2, branch: master
+Deploy: Vercel automático al hacer push a master
 
 ## Stack
-- Next.js 14 + TypeScript + Tailwind CSS
-- Prisma ORM + SQLite (dev.db en raíz)
-- Autenticación: cookies httpOnly propias (sin NextAuth)
+- Next.js 14 App Router + TypeScript
+- Tailwind CSS + Framer Motion + Lucide React
+- next-intl (i18n es/en, localePrefix: always)
+- Prisma + PostgreSQL (VPS 116.203.230.143:5432, db xanael_dashboard)
+- Vercel Blob Storage
+- GA4: G-XE9J0TJ7CW (cargar solo tras consentimiento cookies)
 
-## Estructura de carpetas clave
-src/
-  app/
-    dashboard/        → Panel interno (protegido)
-    login/            → Página de login
-    api/
-      auth/           → login/route.ts, logout/route.ts
-      formularios/    → API formularios
-      pipeline/       → API pipeline
-  components/
-    Header.tsx
-    Footer.tsx
-    Hero.tsx
-    SurfaceSection.tsx
-    ProductSection.tsx
-  lib/
-    auth.ts           → usuarios hardcodeados
-prisma/
-  schema.prisma
-public/
-  images/
+## Estructura clave
+- app/[locale]/ — páginas públicas con i18n
+- app/dashboard/ — panel interno (sin prefijo locale)
+- app/api/ — endpoints (auth, formularios, pipeline, mautic, piloto)
+- components/home/ — componentes página principal
+- public/images/ — imágenes WebP optimizadas
+- messages/ — traducciones i18n JSON
+- prisma/schema.prisma — modelos: User, FormSubmission, PipelineLead, PilotoSubmission
 
-## Modelos Prisma
-- User (id, email, name, image, createdAt)
-- FormSubmission (id, tipo, nombre, email, telefono, empresa, sector, mensaje, estado, notas, syncMautic, createdAt, updatedAt)
-- PipelineLead (id, nombre, empresa, email, telefono, origen, etapa, notas, ultimoContacto, createdAt, updatedAt)
-
-## Autenticación
-Cookie httpOnly: dashboard_session
-Usuarios:
-- ayoub@xanael.es / 0xTCZQXlojMBehU2
-- carlos@xanael.es / GsE45YADWCMocEJV
-Middleware protege: /dashboard/*
-Redirige a: /login
-
-## Colores y diseño
+## Diseño
 - Verde principal: #2D6A4F
-- Verde oscuro (sidebar): #1A4A3A
-- Fondo contenido: #F0F4F2
-- Fondo gris secciones: #F5F5F5
+- Verde oscuro: #1A4A3A (sidebar dashboard)
+- Fondo: #F0F4F2
 - Texto: #1A1A1A
-- Bordes redondeados: rounded-md máximo, nunca rounded-xl ni rounded-full
-- Tipografía: igual que la web pública
+- Bordes: máximo rounded-md, nunca rounded-xl ni rounded-full
+- Iconos: Lucide React siempre, nunca emojis
+- Imágenes: siempre WebP, con sizes prop, alt descriptivo y skeleton loading
 
-## Páginas del dashboard
-- /dashboard → Vista general con KPIs y feed actividad
-- /dashboard/formularios → Bandeja por tipo (comercial, instalador, general, incidencia)
-- /dashboard/pipeline → Kanban con drag & drop
-- /dashboard/mautic → Placeholder (pendiente)
-- /dashboard/analytics → Placeholder (pendiente)
-- /dashboard/configuracion → Placeholder (pendiente)
+## VPS / Mautic
+- IP: 116.203.230.143
+- SSH: ssh claudeuser@116.203.230.143 (sudo NOPASSWD)
+- Mautic URL: https://mautic.xanael.es
+- Contenedor: mautic-mautic-1
+- CONTEXT.md en VPS: /opt/xanael/CONTEXT.md
 
-## Integración Mautic
-- Pendiente configurar URL del VPS
-- Solo formularios tipo "comercial" e "instalador" se sincronizan
-- API REST con Basic Auth
+## Reglas obligatorias
+1. Leer este CLAUDE.md SIEMPRE al inicio de cada sesión
+2. npm run build debe pasar sin errores antes de declarar éxito
+3. Nunca tocar el builder visual de Mautic — solo editar HTML local y subir via API
+4. Todas las páginas públicas bajo app/[locale]/ con metadata en cada page.tsx
+5. Nunca usar emojis como iconos — usar Lucide React
+6. Skeleton loading con animate-pulse en todas las imágenes
+7. Hacer testing visual antes de declarar cualquier cambio completo
 
-## Páginas públicas
-- / → Home
-- /infraestructuras → Página de producto (antes /soluciones)
-- /nosotros
-- /noticias
-- /contacto
-- /colaboradores
-- /distribuidores
+## Subagentes disponibles
+- xanael-web-dev → web pública, componentes, estilos, i18n
+- xanael-dashboard → dashboard interno, Prisma, Mautic proxy
+- xanael-mautic → VPS, Mautic, segmentos, campañas, SSH
+- xanael-copy → emails, textos web, copy B2G en español
+- xanael-legal → RGPD, LSSI, cookies, privacidad
+- xanael-seo → meta tags, structured data, sitemap
+- xanael-performance → PageSpeed, LCP, imágenes, bundle
 
-## Reglas de trabajo
-1. Lee CLAUDE.md primero, no explores el proyecto
-2. Toca solo los archivos indicados en el prompt
-3. No reescribas archivos completos si solo hay que cambiar una cosa
-4. Usa str_replace para cambios puntuales
-5. Confirma qué vas a hacer antes de empezar si hay dudas
-
-## Web pública — Componentes clave
-- Header.tsx → navegación sticky, transparente en home, oscuro en interiores, logo SVG
-- Footer.tsx → logo footer en logo.webp (pendiente fix), enlaces navegación + legales
-- Hero.tsx → banner principal con imagen hero-banner.webp
-- SurfaceSection.tsx → sección vídeo YouTube (url: ztZ8FHfuzbQ), pendiente rediseño
-- ProductSection.tsx → acordeones con imágenes de producto
-- NewsSection.tsx → 3 noticias desde src/data/noticias.ts
-- ScrollRevealText.tsx → texto animado al scroll
-- NewsletterSection.tsx → banda verde newsletter
-
-## Imágenes públicas relevantes
-public/images/
-  hero-banner.webp
-  textura-hormigon.jpg
-  logo/logo.svg (header)
-  logo/logo.webp (footer, pendiente fix)
-  nosotros/expocida-fundadores.jpeg
-  nosotros/expocida-equipo.jpeg
-  nosotros/bordillo-prototipo.jpeg
-  infraestructuras/bordillo_1/2/3.webp (Modelo Compact)
-  infraestructuras/standard_model/bordillo_1/2/3.webp (Modelo Standard)
-  infraestructuras/basuras.webp
-
-## Producto — datos técnicos bordillo
-- Modelo Compact: 40x50x14cm, agujeros frontales 5cm diámetro, cámara interna 35x45x12cm
-- Modelo Standard: peso 42kg, acceso circular termitas, 2 ranuras laterales para varilla con cebo, sin bandeja técnica
+No usar Claude Code principal para tareas que un subagente puede manejar.
