@@ -25,13 +25,9 @@ const features = [
 
 export default function FeaturesStrip() {
   return (
-    <section className="relative z-10 -mt-[88px] px-0 pb-12">
-      <div
-        className="relative max-w-[1500px] mx-auto rounded-md overflow-hidden shadow-xl bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/textura-hormigon.webp')" }}
-      >
-        <div className="absolute inset-0 bg-[#3d7a5f]/90" />
-        <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+    <section className="relative z-10 -mt-[88px] pb-12">
+      <div className="bg-[#2D6A4F] shadow-xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
           {features.map((f) => (
             <div key={f.title} className="flex flex-col gap-3 px-7 py-8">
               <f.Icon className="w-6 h-6 text-white/80" strokeWidth={1.5} />
