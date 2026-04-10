@@ -64,17 +64,27 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Email inválido" }, { status: 400 });
     }
 
-    const res = await fetch(`${MAUTIC_URL}/api/contacts/new`, {
+    const contactRes = await fetch(`${MAUTIC_URL}/api/contacts/new`, {
       method: "POST",
       headers: {
         Authorization: AUTH_HEADER,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email, tags: ["suscriptor-web"] }),
     });
 
-    if (!res.ok) {
-      throw new Error(`Mautic ${res.status}: ${res.statusText}`);
+    if (!contactRes.ok) {
+      throw new Error(`Mautic ${contactRes.status}: ${contactRes.statusText}`);
+    }
+
+    const contactData = await contactRes.json();
+    const contactId = contactData?.contact?.id;
+
+    if (contactId) {
+      await fetch(`${MAUTIC_URL}/api/segments/9/contact/${contactId}/add`, {
+        method: "POST",
+        headers: { Authorization: AUTH_HEADER },
+      });
     }
 
     return NextResponse.json({ ok: true });
