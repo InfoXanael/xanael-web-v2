@@ -294,7 +294,8 @@ export default function SolucionesPage() {
                   src="/images/infrastructure/compact_model/bordillo_1.webp"
                   alt={t("compact")}
                   fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  priority
+                  sizes="240px"
                   className="object-contain p-1"
                 />
               </div>
@@ -317,7 +318,8 @@ export default function SolucionesPage() {
                   src="/images/infrastructure/standard_model/bordillo_1.webp"
                   alt={t("standard")}
                   fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  priority
+                  sizes="240px"
                   className="object-contain p-1"
                 />
               </div>

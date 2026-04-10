@@ -5,8 +5,9 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    formats: ["image/webp"],
+    formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 828, 1080, 1280, 1920],
+    minimumCacheTTL: 2592000,
   },
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],

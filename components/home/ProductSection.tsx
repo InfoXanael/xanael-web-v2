@@ -10,6 +10,7 @@ const defaultImage = "/images/ProductSection/img_1.webp";
 export default function ProductSection() {
   const t = useTranslations("Product");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [unlockedViews, setUnlockedViews] = useState<Set<number>>(new Set());
   const [mainLoaded, setMainLoaded] = useState(false);
 
   const benefits = [
@@ -22,7 +23,11 @@ export default function ProductSection() {
     { question: t("q2"), answer: t("a2") },
   ];
 
-  const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
+  const toggle = (i: number) => {
+    const next = openIndex === i ? null : i;
+    setOpenIndex(next);
+    if (next !== null) setUnlockedViews((prev) => new Set(prev).add(next));
+  };
 
   const activeView = openIndex !== null ? openIndex : -1;
 
@@ -122,40 +127,44 @@ export default function ProductSection() {
               }`}
               onLoad={() => setMainLoaded(true)}
             />
-            <Image
-              src="/images/ProductSection/img_2.webp"
-              alt="Cómo funciona Xanael"
-              fill
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              className={`object-cover transition-opacity duration-300 ${
-                activeView === 0 ? "opacity-100" : "opacity-0"
-              }`}
-            />
-            <div
-              className={`absolute inset-0 flex flex-col transition-opacity duration-300 ${
-                activeView === 1 ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <div className="relative w-full h-1/2">
-                <Image
-                  src="/images/ProductSection/img_3.webp"
-                  alt="Para quién es Xanael"
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover"
-                />
+            {unlockedViews.has(0) && (
+              <Image
+                src="/images/ProductSection/img_2.webp"
+                alt="Cómo funciona Xanael"
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className={`object-cover transition-opacity duration-300 ${
+                  activeView === 0 ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            )}
+            {unlockedViews.has(1) && (
+              <div
+                className={`absolute inset-0 flex flex-col transition-opacity duration-300 ${
+                  activeView === 1 ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                <div className="relative w-full h-1/2">
+                  <Image
+                    src="/images/ProductSection/img_3.webp"
+                    alt="Para quién es Xanael"
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="h-[2px] bg-[#2D6A4F] shrink-0" />
+                <div className="relative w-full h-1/2">
+                  <Image
+                    src="/images/ProductSection/img_4.webp"
+                    alt="Sectores Xanael"
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
               </div>
-              <div className="h-[2px] bg-[#2D6A4F] shrink-0" />
-              <div className="relative w-full h-1/2">
-                <Image
-                  src="/images/ProductSection/img_4.webp"
-                  alt="Sectores Xanael"
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover"
-                />
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
