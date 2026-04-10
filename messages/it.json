@@ -65,7 +65,10 @@
     "title": "Resta aggiornato",
     "subtitle": "Ricevi le ultime novità",
     "placeholder": "tuo@email.com",
-    "subscribe": "Iscriviti"
+    "subscribe": "Iscriviti",
+    "subscribing": "Invio...",
+    "successMessage": "Iscrizione confermata! Ti terremo aggiornato.",
+    "errorMessage": "Si è verificato un errore. Riprova."
   },
   "Infrastructure": {
     "breadcrumb": "Infrastrutture",

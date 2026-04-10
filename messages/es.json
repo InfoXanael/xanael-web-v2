@@ -65,7 +65,10 @@
     "title": "Mantente informado",
     "subtitle": "Recibe las últimas novedades",
     "placeholder": "tu@email.com",
-    "subscribe": "Suscribirse"
+    "subscribe": "Suscribirse",
+    "subscribing": "Enviando...",
+    "successMessage": "¡Suscripción confirmada! Te mantendremos informado.",
+    "errorMessage": "Ha ocurrido un error. Por favor, inténtalo de nuevo."
   },
   "Infrastructure": {
     "breadcrumb": "Infraestructuras",

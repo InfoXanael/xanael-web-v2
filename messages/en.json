@@ -65,7 +65,10 @@
     "title": "Stay informed",
     "subtitle": "Get the latest updates",
     "placeholder": "you@email.com",
-    "subscribe": "Subscribe"
+    "subscribe": "Subscribe",
+    "subscribing": "Sending...",
+    "successMessage": "Subscription confirmed! We'll keep you informed.",
+    "errorMessage": "Something went wrong. Please try again."
   },
   "Infrastructure": {
     "breadcrumb": "Infrastructure",

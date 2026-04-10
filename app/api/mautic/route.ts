@@ -53,6 +53,38 @@ async function mauticFetch(endpoint: string) {
   return res.json();
 }
 
+export async function POST(request: NextRequest) {
+  if (!MAUTIC_URL) {
+    return NextResponse.json({ error: "MAUTIC_URL no configurada" }, { status: 500 });
+  }
+
+  try {
+    const { email } = await request.json();
+    if (!email || typeof email !== "string" || !email.includes("@")) {
+      return NextResponse.json({ error: "Email inválido" }, { status: 400 });
+    }
+
+    const res = await fetch(`${MAUTIC_URL}/api/contacts/new`, {
+      method: "POST",
+      headers: {
+        Authorization: AUTH_HEADER,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    });
+
+    if (!res.ok) {
+      throw new Error(`Mautic ${res.status}: ${res.statusText}`);
+    }
+
+    return NextResponse.json({ ok: true });
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Error desconocido";
+    console.error("Error Mautic POST:", message);
+    return NextResponse.json({ error: message }, { status: 502 });
+  }
+}
+
 export async function GET(request: NextRequest) {
   const tipo = request.nextUrl.searchParams.get("tipo");
 
