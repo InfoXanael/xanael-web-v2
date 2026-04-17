@@ -48,6 +48,11 @@
     "q2": "Who is it for?",
     "a2": "Municipalities, industries, pest control companies and all types of spaces with outdoor road networks.\n\nShopping centres, schools, theme parks, hotels, public parks, swimming pools or industrial complexes where there are streets, sidewalks or surface transit areas."
   },
+  "Dossier": {
+    "label": "Corporate dossier",
+    "desc": "Download all the information about XANAEL: product, applications, technical specifications and collaboration model.",
+    "cta": "Download dossier"
+  },
   "News": {
     "title": "Latest news",
     "readMore": "Read more →",

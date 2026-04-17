@@ -48,6 +48,11 @@
     "q2": "¿Para quién es?",
     "a2": "Municipios, industrias, empresas de control de plagas y todo tipo de espacios con viario exterior.\n\nCentros comerciales, colegios, parques temáticos, hoteles, parques públicos, piscinas o complejos industriales donde existan calles, aceras o zonas de tránsito en superficie."
   },
+  "Dossier": {
+    "label": "Dossier corporativo",
+    "desc": "Descarga toda la información sobre XANAEL: producto, aplicaciones, especificaciones técnicas y modelo de colaboración.",
+    "cta": "Descargar dossier"
+  },
   "News": {
     "title": "Últimas noticias",
     "readMore": "Leer más →",

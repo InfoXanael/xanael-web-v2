@@ -48,6 +48,11 @@
     "q2": "A chi è destinato?",
     "a2": "Comuni, industrie, aziende di disinfestazione e ogni tipo di spazio con viabilità esterna.\n\nCentri commerciali, scuole, parchi tematici, hotel, parchi pubblici, piscine o complessi industriali dove esistano strade, marciapiedi o zone di transito in superficie."
   },
+  "Dossier": {
+    "label": "Dossier aziendale",
+    "desc": "Scarica tutte le informazioni su XANAEL: prodotto, applicazioni, specifiche tecniche e modello di collaborazione.",
+    "cta": "Scarica il dossier"
+  },
   "News": {
     "title": "Ultime notizie",
     "readMore": "Leggi di più →",

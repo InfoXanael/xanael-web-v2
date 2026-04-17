@@ -48,6 +48,11 @@
     "q2": "À qui est-ce destiné ?",
     "a2": "Municipalités, industries, entreprises de lutte antiparasitaire et tout type d'espaces avec voirie extérieure.\n\nCentres commerciaux, écoles, parcs d'attractions, hôtels, parcs publics, piscines ou complexes industriels où il existe des rues, des trottoirs ou des zones de transit en surface."
   },
+  "Dossier": {
+    "label": "Dossier corporatif",
+    "desc": "Téléchargez toutes les informations sur XANAEL : produit, applications, spécifications techniques et modèle de collaboration.",
+    "cta": "Télécharger le dossier"
+  },
   "News": {
     "title": "Dernières actualités",
     "readMore": "Lire la suite →",
