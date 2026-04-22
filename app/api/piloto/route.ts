@@ -3,6 +3,7 @@ import { put } from "@vercel/blob";
 import { prisma } from "@/lib/prisma";
 import { sendPilotoNotification } from "@/lib/mailer";
 import { cacheGet, cacheSet, cacheInvalidate } from "@/lib/redis";
+import { getSessionUser } from "@/lib/auth";
 
 const PILOTO_KEY = "piloto:all";
 
@@ -41,6 +42,10 @@ async function uploadFiles(files: File[]): Promise<string[]> {
 }
 
 export async function GET() {
+  const user = await getSessionUser();
+  if (!user) {
+    return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+  }
   try {
     const cached = await cacheGet(PILOTO_KEY);
     if (cached) return NextResponse.json(cached);

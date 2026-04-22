@@ -137,7 +137,61 @@
     "formRgpd": "J'ai lu et j'accepte la politique de confidentialité. Vos données seront traitées conformément au RGPD.",
     "formSubmit": "Envoyer la demande",
     "formSending": "Envoi en cours...",
-    "formSent": "Formulaire envoyé avec succès. Nous vous contacterons prochainement."
+    "formSent": "Formulaire envoyé avec succès. Nous vous contacterons prochainement.",
+    "compactFeatures": [
+      "Intégration totale dans la voirie urbaine",
+      "Chambre intérieure avec plateau technique amovible",
+      "Couvercle en fonte certifié EN124 classe B125",
+      "Vis de sécurité avec clé unique propriétaire",
+      "Emblème central personnalisable",
+      "Orifices d'accès avec entrée diagonale anti-infiltration",
+      "Compatible avec les systèmes de détection, surveillance et contrôle des nuisibles"
+    ],
+    "standardFeatures": [
+      "Intégration totale dans la voirie urbaine",
+      "Accès intérieur circulaire pour la pose d'appâts contre les termites",
+      "Deux rainures latérales pour tige avec appât",
+      "Sans plateau technique — chambre ouverte à accès direct",
+      "Couvercle en fonte certifié EN124 classe B125",
+      "Vis de sécurité avec clé unique propriétaire",
+      "Emblème central personnalisable",
+      "Compatible avec différents systèmes de détection, surveillance et contrôle des nuisibles"
+    ],
+    "compactSpecs": [
+      ["Poids", "24 kg"],
+      ["Hauteur totale", "25 cm"],
+      ["Longueur", "50 cm"],
+      ["Largeur de base", "15 cm"],
+      ["Chambre intérieure (H × L × l)", "21 × 31,5 × 8 cm"],
+      ["Diamètre des orifices d'accès", "5 cm (entrée diagonale 6 cm)"],
+      ["Espacement entre les orifices", "18,5 cm"],
+      ["Matériau du corps", "Béton préfabriqué"],
+      ["Couvercle — L × l × profondeur", "38 × 9 × 2 cm"],
+      ["Couvercle — matériau", "Fonte"],
+      ["Couvercle — norme", "EN124 classe B125"],
+      ["Couvercle — emblème central", "Personnalisable"],
+      ["Couvercle — fixation", "Vis à clé unique propriétaire"],
+      ["Plateau technique — extérieur (H × L × l)", "19 × 30,5 × 7,5 cm"],
+      ["Plateau technique — profondeur", "18,5 cm"],
+      ["Plateau technique — matériau", "Plastique imprimé en 3D"],
+      ["Plateau technique — accès", "Amovible par le dessus"]
+    ],
+    "standardSpecs": [
+      ["Poids", "42 kg"],
+      ["Hauteur totale", "25 cm"],
+      ["Longueur", "40,5 cm"],
+      ["Largeur totale", "41 cm"],
+      ["Chambre intérieure (H × L × l)", "19 × 23,6 × 23,9 cm"],
+      ["Espacement entre les orifices", "21,6 cm"],
+      ["Matériau du corps", "Béton préfabriqué"],
+      ["Accès intérieur", "Accès direct au sous-sol pour installation d'appâts anti-termites"],
+      ["Rainures latérales", "2 guides latéraux pour tige de traitement"],
+      ["Couvercle — L × l", "28,5 × 28,5 cm"],
+      ["Couvercle — matériau", "Fonte"],
+      ["Couvercle — norme", "EN124 classe B125"],
+      ["Couvercle — emblème central", "Personnalisable"],
+      ["Couvercle — fixation", "Vis à clé unique propriétaire"]
+    ]
   },
   "About": {
     "breadcrumb": "À propos",
@@ -267,6 +321,16 @@
     "subtitle": "Page non trouvée",
     "text": "La page que vous recherchez n'existe pas ou a été déplacée.",
     "cta": "Retour à l'accueil"
+  },
+  "FeaturesStrip": {
+    "feature1Title": "Sécurité",
+    "feature1Desc": "Accès technique contrôlé. Pas d'exposition d'appâts sur la voie publique.",
+    "feature2Title": "Durabilité",
+    "feature2Desc": "Minimise l'utilisation de rodenticides et l'impact environnemental.",
+    "feature3Title": "Discrétion",
+    "feature3Desc": "Intégré dans la voirie urbaine sans modifier l'espace public.",
+    "feature4Title": "Prévention",
+    "feature4Desc": "Points permanents de surveillance et d'intervention précoce en surface."
   },
   "Common": {
     "home": "Accueil",

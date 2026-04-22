@@ -166,7 +166,7 @@ export default function DashboardPage() {
             Formularios recibidos
           </h2>
           <div className="flex-1 min-h-0">
-            <ResponsiveContainer width="100%" height={280}>
+            <ResponsiveContainer width="100%" height={220}>
               <BarChart data={chartData}>
                 <XAxis
                   dataKey="name"

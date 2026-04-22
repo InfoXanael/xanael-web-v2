@@ -1,29 +1,20 @@
-import { Shield, Leaf, Eye, Target } from "lucide-react";
+"use client";
 
-const features = [
-  {
-    Icon: Shield,
-    title: "Seguridad",
-    description: "Acceso técnico controlado. Sin exposición de cebos en la vía pública.",
-  },
-  {
-    Icon: Leaf,
-    title: "Sostenibilidad",
-    description: "Minimiza el uso de rodenticidas y el impacto ambiental.",
-  },
-  {
-    Icon: Eye,
-    title: "Discreción",
-    description: "Integrado en el viario urbano sin alterar el espacio público.",
-  },
-  {
-    Icon: Target,
-    title: "Prevención",
-    description: "Puntos permanentes de vigilancia e intervención temprana en superficie.",
-  },
-];
+import { Shield, Leaf, Eye, Target } from "lucide-react";
+import { useTranslations } from "next-intl";
+
+const icons = [Shield, Leaf, Eye, Target];
 
 export default function FeaturesStrip() {
+  const t = useTranslations("FeaturesStrip");
+
+  const features = [
+    { Icon: icons[0], title: t("feature1Title"), description: t("feature1Desc") },
+    { Icon: icons[1], title: t("feature2Title"), description: t("feature2Desc") },
+    { Icon: icons[2], title: t("feature3Title"), description: t("feature3Desc") },
+    { Icon: icons[3], title: t("feature4Title"), description: t("feature4Desc") },
+  ];
+
   return (
     <section className="relative z-10 -mt-[88px] pb-12">
       <div className="bg-[#2D6A4F] shadow-xl">

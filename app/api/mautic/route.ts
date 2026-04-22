@@ -34,6 +34,8 @@ interface MauticEmail {
   clickThroughCount?: number;
 }
 
+import { getSessionUser } from "@/lib/auth";
+
 const MAUTIC_URL = process.env.MAUTIC_URL || "";
 const MAUTIC_USER = process.env.MAUTIC_USER || "";
 const MAUTIC_PASSWORD = process.env.MAUTIC_PASSWORD || "";
@@ -96,6 +98,11 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET(request: NextRequest) {
+  const user = await getSessionUser();
+  if (!user) {
+    return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+  }
+
   const tipo = request.nextUrl.searchParams.get("tipo");
 
   if (!MAUTIC_URL) {

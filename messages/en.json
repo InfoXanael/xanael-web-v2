@@ -137,7 +137,61 @@
     "formRgpd": "I have read and accept the privacy policy. Your data will be processed in accordance with the GDPR.",
     "formSubmit": "Submit request",
     "formSending": "Sending...",
-    "formSent": "Form submitted successfully. We will get in touch with you."
+    "formSent": "Form submitted successfully. We will get in touch with you.",
+    "compactFeatures": [
+      "Full integration into the urban road network",
+      "Interior chamber with removable technical tray",
+      "Certified EN124 class B125 cast iron cover",
+      "Security screws with proprietary unique key",
+      "Customisable central emblem",
+      "Access holes with diagonal anti-infiltration entry",
+      "Compatible with pest detection, monitoring and control systems"
+    ],
+    "standardFeatures": [
+      "Full integration into the urban road network",
+      "Circular interior access for termite bait placement",
+      "Two lateral slots for bait rod",
+      "No technical tray — open chamber with direct access",
+      "Certified EN124 class B125 cast iron cover",
+      "Security screws with proprietary unique key",
+      "Customisable central emblem",
+      "Compatible with various pest detection, monitoring and control systems"
+    ],
+    "compactSpecs": [
+      ["Weight", "24 kg"],
+      ["Total height", "25 cm"],
+      ["Length", "50 cm"],
+      ["Base width", "15 cm"],
+      ["Interior chamber (H × L × W)", "21 × 31.5 × 8 cm"],
+      ["Access hole diameter", "5 cm (diagonal entry 6 cm)"],
+      ["Spacing between holes", "18.5 cm"],
+      ["Body material", "Precast concrete"],
+      ["Cover — L × W × depth", "38 × 9 × 2 cm"],
+      ["Cover — material", "Cast iron"],
+      ["Cover — standard", "EN124 class B125"],
+      ["Cover — central emblem", "Customisable"],
+      ["Cover — fastening", "Proprietary unique key screws"],
+      ["Technical tray — exterior (H × L × W)", "19 × 30.5 × 7.5 cm"],
+      ["Technical tray — depth", "18.5 cm"],
+      ["Technical tray — material", "3D-printed plastic"],
+      ["Technical tray — access", "Removable from the top"]
+    ],
+    "standardSpecs": [
+      ["Weight", "42 kg"],
+      ["Total height", "25 cm"],
+      ["Length", "40.5 cm"],
+      ["Total width", "41 cm"],
+      ["Interior chamber (H × L × W)", "19 × 23.6 × 23.9 cm"],
+      ["Spacing between holes", "21.6 cm"],
+      ["Body material", "Precast concrete"],
+      ["Interior access", "Direct underground access for termite bait installation"],
+      ["Lateral slots", "2 lateral guides for treatment rod"],
+      ["Cover — L × W", "28.5 × 28.5 cm"],
+      ["Cover — material", "Cast iron"],
+      ["Cover — standard", "EN124 class B125"],
+      ["Cover — central emblem", "Customisable"],
+      ["Cover — fastening", "Proprietary unique key screws"]
+    ]
   },
   "About": {
     "breadcrumb": "About",
@@ -267,6 +321,16 @@
     "subtitle": "Page not found",
     "text": "The page you are looking for does not exist or has been moved.",
     "cta": "Back to home"
+  },
+  "FeaturesStrip": {
+    "feature1Title": "Safety",
+    "feature1Desc": "Controlled technical access. No bait exposure on public roads.",
+    "feature2Title": "Sustainability",
+    "feature2Desc": "Minimises rodenticide use and environmental impact.",
+    "feature3Title": "Discretion",
+    "feature3Desc": "Integrated into the urban road network without altering public spaces.",
+    "feature4Title": "Prevention",
+    "feature4Desc": "Permanent surface-level surveillance and early intervention points."
   },
   "Common": {
     "home": "Home",

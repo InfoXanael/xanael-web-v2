@@ -137,7 +137,61 @@
     "formRgpd": "Ho letto e accetto l'informativa sulla privacy. I tuoi dati saranno trattati in conformità al RGPD.",
     "formSubmit": "Invia richiesta",
     "formSending": "Invio in corso...",
-    "formSent": "Modulo inviato correttamente. Ti contatteremo al più presto."
+    "formSent": "Modulo inviato correttamente. Ti contatteremo al più presto.",
+    "compactFeatures": [
+      "Integrazione totale nella viabilità urbana",
+      "Camera interna con vassoio tecnico estraibile",
+      "Coperchio in ghisa certificato EN124 classe B125",
+      "Viti di sicurezza con chiave unica proprietaria",
+      "Scudo centrale personalizzabile",
+      "Fori di accesso con entrata diagonale anti-infiltrazione",
+      "Compatibile con sistemi di rilevamento, monitoraggio e controllo delle infestazioni"
+    ],
+    "standardFeatures": [
+      "Integrazione totale nella viabilità urbana",
+      "Accesso interno circolare per il posizionamento di esche per termiti",
+      "Due scanalature laterali per asta con esca",
+      "Senza vassoio tecnico — camera aperta ad accesso diretto",
+      "Coperchio in ghisa certificato EN124 classe B125",
+      "Viti di sicurezza con chiave unica proprietaria",
+      "Scudo centrale personalizzabile",
+      "Compatibile con vari sistemi di rilevamento, monitoraggio e controllo delle infestazioni"
+    ],
+    "compactSpecs": [
+      ["Peso", "24 kg"],
+      ["Altezza totale", "25 cm"],
+      ["Lunghezza", "50 cm"],
+      ["Larghezza base", "15 cm"],
+      ["Camera interna (A × L × l)", "21 × 31,5 × 8 cm"],
+      ["Diametro fori di accesso", "5 cm (entrata diagonale 6 cm)"],
+      ["Distanza tra i fori", "18,5 cm"],
+      ["Materiale corpo", "Calcestruzzo prefabbricato"],
+      ["Coperchio — L × l × profondità", "38 × 9 × 2 cm"],
+      ["Coperchio — materiale", "Ghisa"],
+      ["Coperchio — normativa", "EN124 classe B125"],
+      ["Coperchio — scudo centrale", "Personalizzabile"],
+      ["Coperchio — fissaggio", "Viti con chiave unica proprietaria"],
+      ["Vassoio tecnico — esterno (A × L × l)", "19 × 30,5 × 7,5 cm"],
+      ["Vassoio tecnico — profondità", "18,5 cm"],
+      ["Vassoio tecnico — materiale", "Plastica stampata in 3D"],
+      ["Vassoio tecnico — accesso", "Estraibile dalla parte superiore"]
+    ],
+    "standardSpecs": [
+      ["Peso", "42 kg"],
+      ["Altezza totale", "25 cm"],
+      ["Lunghezza", "40,5 cm"],
+      ["Larghezza totale", "41 cm"],
+      ["Camera interna (A × L × l)", "19 × 23,6 × 23,9 cm"],
+      ["Distanza tra i fori", "21,6 cm"],
+      ["Materiale corpo", "Calcestruzzo prefabbricato"],
+      ["Accesso interno", "Accesso diretto al sottosuolo per installazione di esca per termiti"],
+      ["Scanalature laterali", "2 guide laterali per asta di trattamento"],
+      ["Coperchio — L × l", "28,5 × 28,5 cm"],
+      ["Coperchio — materiale", "Ghisa"],
+      ["Coperchio — normativa", "EN124 classe B125"],
+      ["Coperchio — scudo centrale", "Personalizzabile"],
+      ["Coperchio — fissaggio", "Viti con chiave unica proprietaria"]
+    ]
   },
   "About": {
     "breadcrumb": "Chi siamo",
@@ -267,6 +321,16 @@
     "subtitle": "Pagina non trovata",
     "text": "La pagina che cerchi non esiste o è stata spostata.",
     "cta": "Torna alla home"
+  },
+  "FeaturesStrip": {
+    "feature1Title": "Sicurezza",
+    "feature1Desc": "Accesso tecnico controllato. Nessuna esposizione di esche sulla via pubblica.",
+    "feature2Title": "Sostenibilità",
+    "feature2Desc": "Riduce al minimo l'uso di rodenticidi e l'impatto ambientale.",
+    "feature3Title": "Discrezione",
+    "feature3Desc": "Integrato nella viabilità urbana senza alterare lo spazio pubblico.",
+    "feature4Title": "Prevenzione",
+    "feature4Desc": "Punti permanenti di sorveglianza e intervento precoce in superficie."
   },
   "Common": {
     "home": "Home",

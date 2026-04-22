@@ -1,10 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { cacheGet, cacheSet, cacheInvalidate } from "@/lib/redis";
+import { getSessionUser } from "@/lib/auth";
 
 const PIPELINE_KEY = "pipeline:all";
 
 export async function GET() {
+  const user = await getSessionUser();
+  if (!user) {
+    return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+  }
   try {
     const cached = await cacheGet(PIPELINE_KEY);
     if (cached) return NextResponse.json(cached);
@@ -25,6 +30,10 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
+  const user = await getSessionUser();
+  if (!user) {
+    return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+  }
   try {
     const body = await request.json();
     const { nombre, empresa, email, telefono, origen, etapa, notas } = body;

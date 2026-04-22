@@ -137,7 +137,61 @@
     "formRgpd": "Li e aceito a política de privacidade. Os seus dados serão tratados em conformidade com o RGPD.",
     "formSubmit": "Enviar pedido",
     "formSending": "A enviar...",
-    "formSent": "Formulário enviado com sucesso. Entraremos em contacto consigo."
+    "formSent": "Formulário enviado com sucesso. Entraremos em contacto consigo.",
+    "compactFeatures": [
+      "Integração total na rede viária urbana",
+      "Câmara interior com bandeja técnica extraível",
+      "Tampa de fundição certificada EN124 classe B125",
+      "Parafusos de segurança com chave única proprietária",
+      "Escudo central personalizável",
+      "Furos de acesso com entrada diagonal anti-infiltração",
+      "Compatível com sistemas de deteção, monitorização e controlo de pragas"
+    ],
+    "standardFeatures": [
+      "Integração total na rede viária urbana",
+      "Acesso interior circular para colocação de isca para térmitas",
+      "Duas ranhuras laterais para varão com isca",
+      "Sem bandeja técnica — câmara aberta de acesso direto",
+      "Tampa de fundição certificada EN124 classe B125",
+      "Parafusos de segurança com chave única proprietária",
+      "Escudo central personalizável",
+      "Compatível com diversos sistemas de deteção, monitorização e controlo de pragas"
+    ],
+    "compactSpecs": [
+      ["Peso", "24 kg"],
+      ["Altura total", "25 cm"],
+      ["Comprimento", "50 cm"],
+      ["Largura da base", "15 cm"],
+      ["Câmara interior (A × C × L)", "21 × 31,5 × 8 cm"],
+      ["Diâmetro dos furos de acesso", "5 cm (entrada diagonal 6 cm)"],
+      ["Espaçamento entre furos", "18,5 cm"],
+      ["Material do corpo", "Betão pré-fabricado"],
+      ["Tampa — C × L × profundidade", "38 × 9 × 2 cm"],
+      ["Tampa — material", "Ferro fundido"],
+      ["Tampa — norma", "EN124 classe B125"],
+      ["Tampa — escudo central", "Personalizável"],
+      ["Tampa — fixação", "Parafusos com chave única proprietária"],
+      ["Bandeja técnica — exterior (A × C × L)", "19 × 30,5 × 7,5 cm"],
+      ["Bandeja técnica — profundidade", "18,5 cm"],
+      ["Bandeja técnica — material", "Plástico impresso em 3D"],
+      ["Bandeja técnica — acesso", "Extraível pela parte superior"]
+    ],
+    "standardSpecs": [
+      ["Peso", "42 kg"],
+      ["Altura total", "25 cm"],
+      ["Comprimento", "40,5 cm"],
+      ["Largura total", "41 cm"],
+      ["Câmara interior (A × C × L)", "19 × 23,6 × 23,9 cm"],
+      ["Espaçamento entre furos", "21,6 cm"],
+      ["Material do corpo", "Betão pré-fabricado"],
+      ["Acesso interior", "Acesso direto ao subsolo para instalação de isca para térmitas"],
+      ["Ranhuras laterais", "2 guias laterais para varão de tratamento"],
+      ["Tampa — C × L", "28,5 × 28,5 cm"],
+      ["Tampa — material", "Ferro fundido"],
+      ["Tampa — norma", "EN124 classe B125"],
+      ["Tampa — escudo central", "Personalizável"],
+      ["Tampa — fixação", "Parafusos com chave única proprietária"]
+    ]
   },
   "About": {
     "breadcrumb": "Sobre nós",
@@ -267,6 +321,16 @@
     "subtitle": "Página não encontrada",
     "text": "A página que procura não existe ou foi movida.",
     "cta": "Voltar ao início"
+  },
+  "FeaturesStrip": {
+    "feature1Title": "Segurança",
+    "feature1Desc": "Acesso técnico controlado. Sem exposição de iscas na via pública.",
+    "feature2Title": "Sustentabilidade",
+    "feature2Desc": "Minimiza o uso de rodenticidas e o impacto ambiental.",
+    "feature3Title": "Discrição",
+    "feature3Desc": "Integrado na rede viária urbana sem alterar o espaço público.",
+    "feature4Title": "Prevenção",
+    "feature4Desc": "Pontos permanentes de vigilância e intervenção precoce em superfície."
   },
   "Common": {
     "home": "Início",

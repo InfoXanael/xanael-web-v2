@@ -21,27 +21,6 @@ import Newsletter from "@/components/home/Newsletter";
 /* ── data ── */
 const featureIcons = [Layers, DoorOpen, Cuboid, ShieldCheck];
 
-const compactFeatures = [
-  "Integración total en el viario urbano",
-  "Cámara interior con bandeja técnica extraíble",
-  "Tapa de fundición certificada EN124 clase B125",
-  "Tornillos de seguridad con llave única propietaria",
-  "Escudo central personalizable",
-  "Agujeros de acceso con entrada diagonal anti-infiltración",
-  "Compatible con sistemas de detección, monitorización y control de plagas",
-];
-
-const standardFeatures = [
-  "Integración total en el viario urbano",
-  "Acceso interior circular para colocación de cebo para termitas",
-  "Dos ranuras laterales para varilla con cebo",
-  "Sin bandeja técnica — cámara diáfana de acceso directo",
-  "Tapa de fundición certificada EN124 clase B125",
-  "Tornillos de seguridad con llave única propietaria",
-  "Escudo central personalizable",
-  "Compatible con distintos sistemas de detección, monitorización y control de plagas",
-];
-
 const compactGallery = [
   "/images/infrastructure/compact_model/bordillo_1.webp",
   "/images/infrastructure/compact_model/bordillo_2.webp",
@@ -61,43 +40,6 @@ const compactTapaImages = [
 ];
 
 const standardTapaImages: string[] = [];
-
-const compactSpecs = [
-  ["Peso", "24 kg"],
-  ["Alto total", "25 cm"],
-  ["Largo", "50 cm"],
-  ["Ancho base", "15 cm"],
-  ["Cámara interior (alto × largo × ancho)", "21 × 31,5 × 8 cm"],
-  ["Diámetro agujeros de acceso", "5 cm (entrada diagonal 6 cm)"],
-  ["Separación entre agujeros", "18,5 cm"],
-  ["Material cuerpo", "Hormigón prefabricado"],
-  ["Tapa — largo × ancho × profundidad", "38 × 9 × 2 cm"],
-  ["Tapa — material", "Fundición"],
-  ["Tapa — normativa", "EN124 clase B125"],
-  ["Tapa — escudo central", "Personalizable"],
-  ["Tapa — fijación", "Tornillos de llave única propietaria"],
-  ["Bandeja técnica — exterior (alto × largo × ancho)", "19 × 30,5 × 7,5 cm"],
-  ["Bandeja técnica — profundidad", "18,5 cm"],
-  ["Bandeja técnica — material", "Plástico impreso en 3D"],
-  ["Bandeja técnica — acceso", "Extraíble por la parte superior"],
-];
-
-const standardSpecs = [
-  ["Peso", "42 kg"],
-  ["Alto total", "25 cm"],
-  ["Largo", "40,5 cm"],
-  ["Ancho total", "41 cm"],
-  ["Cámara interior (alto × largo × ancho)", "19 × 23,6 × 23,9 cm"],
-  ["Separación entre agujeros", "21,6 cm"],
-  ["Material cuerpo", "Hormigón prefabricado"],
-  ["Acceso interior", "Acceso directo al subsuelo para instalación de cebo de termitas"],
-  ["Ranuras laterales", "2 guías laterales para varilla de tratamiento"],
-  ["Tapa — largo × ancho", "28,5 × 28,5 cm"],
-  ["Tapa — material", "Fundición"],
-  ["Tapa — normativa", "EN124 clase B125"],
-  ["Tapa — escudo central", "Personalizable"],
-  ["Tapa — fijación", "Tornillos de llave única propietaria"],
-];
 
 
 const inputClass =
@@ -140,6 +82,11 @@ export default function SolucionesPage() {
     document.addEventListener("click", handler);
     return () => document.removeEventListener("click", handler);
   }, [magnify.active]);
+
+  const compactFeatures = t.raw("compactFeatures") as string[];
+  const standardFeatures = t.raw("standardFeatures") as string[];
+  const compactSpecs = t.raw("compactSpecs") as [string, string][];
+  const standardSpecs = t.raw("standardSpecs") as [string, string][];
 
   const currentGallery = selectedModel === "compact" ? compactGallery : standardGallery;
   const currentFeatures = selectedModel === "compact" ? compactFeatures : standardFeatures;

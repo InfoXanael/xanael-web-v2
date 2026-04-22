@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { cacheGet, cacheSet } from "@/lib/redis";
+import { getSessionUser } from "@/lib/auth";
 // import { sendConfirmationEmail } from "@/lib/mailer"; // TODO: re-enable when ready
 
 export async function GET(request: NextRequest) {
+  const user = await getSessionUser();
+  if (!user) {
+    return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+  }
   try {
     const { searchParams } = new URL(request.url);
     const tipo = searchParams.get("tipo");

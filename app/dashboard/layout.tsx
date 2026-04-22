@@ -16,6 +16,8 @@ import {
   LogOut,
   ClipboardList,
   ChevronDown,
+  Menu,
+  X,
 } from "lucide-react";
 
 // ─── Nav structure ────────────────────────────────────────────────────────────
@@ -95,16 +97,18 @@ export default function DashboardLayout({
   const [collapsed, setCollapsed] = useState(false);
   const [formsOpen, setFormsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const savedCollapsed = localStorage.getItem(SIDEBAR_KEY);
     if (savedCollapsed === "true") setCollapsed(true);
-    // Auto-open Forms group if on a forms route
     const savedFormsOpen = localStorage.getItem(FORMS_OPEN_KEY);
     if (savedFormsOpen === "true" || pathname.startsWith("/dashboard/forms")) {
       setFormsOpen(true);
     }
+    // Close mobile menu on route change
+    setMobileMenuOpen(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -148,147 +152,177 @@ export default function DashboardLayout({
     router.push("/login");
   }
 
-  return (
-    <div className="flex h-screen bg-[#F0F4F2]">
-      {/* Sidebar */}
-      <aside
-        className="flex-shrink-0 bg-[#1A4A3A] text-white flex flex-col transition-all duration-300 ease-in-out"
-        style={{ width: collapsed ? 64 : 240 }}
-      >
-        {/* Logo + Toggle */}
-        <div className="flex items-center justify-between px-4 py-5">
-          {collapsed ? (
-            <Image
-              src="/images/favicon/favicon-96x96.png"
-              alt="XANAEL"
-              width={32}
-              height={32}
-              className="mx-auto brightness-0 invert"
-            />
-          ) : (
-            <Image
-              src="/images/logo/logo.webp"
-              alt="XANAEL"
-              width={140}
-              height={40}
-              className="brightness-0 invert"
-            />
-          )}
-          {!collapsed && (
-            <button
-              onClick={toggleSidebar}
-              className="text-white/40 hover:text-white transition-colors ml-2"
-              title="Colapsar sidebar"
-            >
-              <PanelLeftClose size={18} />
-            </button>
-          )}
-        </div>
-
-        {collapsed && (
+  const sidebarContent = (
+    <>
+      {/* Logo + Toggle */}
+      <div className="flex items-center justify-between px-4 py-5">
+        {collapsed ? (
+          <Image
+            src="/images/favicon/favicon-96x96.png"
+            alt="XANAEL"
+            width={32}
+            height={32}
+            className="mx-auto brightness-0 invert"
+          />
+        ) : (
+          <Image
+            src="/images/logo/logo.webp"
+            alt="XANAEL"
+            width={140}
+            height={40}
+            className="brightness-0 invert"
+          />
+        )}
+        {!collapsed && (
           <button
             onClick={toggleSidebar}
-            className="flex items-center justify-center py-2 text-white/40 hover:text-white transition-colors"
-            title="Expandir sidebar"
+            className="text-white/40 hover:text-white transition-colors ml-2 hidden md:flex"
+            title="Colapsar sidebar"
           >
-            <PanelLeftOpen size={18} />
+            <PanelLeftClose size={18} />
           </button>
         )}
+        {/* Close button only on mobile */}
+        <button
+          onClick={() => setMobileMenuOpen(false)}
+          className="text-white/40 hover:text-white transition-colors ml-2 flex md:hidden"
+          title="Cerrar menú"
+        >
+          <X size={18} />
+        </button>
+      </div>
 
-        {/* Navigation */}
-        <nav className="flex-1 px-2 space-y-0.5 mt-1">
-          {navItems.map((item) => {
-            // Group item with children
-            if (item.children) {
-              const Icon = item.icon;
-              const isGroupActive = pathname.startsWith("/dashboard/forms");
+      {collapsed && (
+        <button
+          onClick={toggleSidebar}
+          className="hidden md:flex items-center justify-center py-2 text-white/40 hover:text-white transition-colors"
+          title="Expandir sidebar"
+        >
+          <PanelLeftOpen size={18} />
+        </button>
+      )}
 
-              return (
-                <div key={item.label}>
-                  {/* Group header */}
-                  <button
-                    onClick={collapsed ? undefined : toggleForms}
-                    title={collapsed ? item.label : undefined}
-                    className={`w-full flex items-center gap-3 py-2.5 text-sm rounded-md transition-colors hover:bg-white/10 ${
-                      isGroupActive ? "bg-white/10" : ""
-                    } ${collapsed ? "justify-center px-0" : "px-4"}`}
-                  >
-                    <Icon size={18} className="shrink-0" />
-                    {!collapsed && (
-                      <>
-                        <span className="flex-1 text-left">{item.label}</span>
-                        <ChevronDown
-                          size={14}
-                          className={`text-white/40 transition-transform duration-200 ${
-                            formsOpen ? "rotate-180" : ""
-                          }`}
-                        />
-                      </>
-                    )}
-                  </button>
-
-                  {/* Children */}
-                  {!collapsed && formsOpen && (
-                    <div className="ml-4 mt-0.5 space-y-0.5">
-                      {item.children.map((child) => {
-                        const isActive = pathname.startsWith(child.href);
-                        return (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            className={`flex items-center gap-2 py-2 px-4 text-sm rounded-md transition-colors hover:bg-white/10 ${
-                              isActive ? "bg-white/10 text-white" : "text-white/70"
-                            }`}
-                          >
-                            <span className="w-1 h-1 rounded-full bg-current shrink-0" />
-                            {child.label}
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-              );
-            }
-
-            // Regular link
-            const isActive =
-              item.href === "/dashboard"
-                ? pathname === "/dashboard"
-                : pathname.startsWith(item.href!);
+      {/* Navigation */}
+      <nav className="flex-1 px-2 space-y-0.5 mt-1">
+        {navItems.map((item) => {
+          if (item.children) {
             const Icon = item.icon;
-
+            const isGroupActive = pathname.startsWith("/dashboard/forms");
             return (
-              <Link
-                key={item.href}
-                href={item.href!}
-                title={collapsed ? item.label : undefined}
-                className={`flex items-center gap-3 py-2.5 text-sm rounded-md transition-colors hover:bg-white/10 ${
-                  isActive ? "bg-white/10" : ""
-                } ${collapsed ? "justify-center px-0" : "px-4"}`}
-              >
-                <Icon size={18} />
-                {!collapsed && <span>{item.label}</span>}
-              </Link>
+              <div key={item.label}>
+                <button
+                  onClick={collapsed ? undefined : toggleForms}
+                  title={collapsed ? item.label : undefined}
+                  className={`w-full flex items-center gap-3 py-2.5 text-sm rounded-md transition-colors hover:bg-white/10 ${
+                    isGroupActive ? "bg-white/10" : ""
+                  } ${collapsed ? "justify-center px-0" : "px-4"}`}
+                >
+                  <Icon size={18} className="shrink-0" />
+                  {!collapsed && (
+                    <>
+                      <span className="flex-1 text-left">{item.label}</span>
+                      <ChevronDown
+                        size={14}
+                        className={`text-white/40 transition-transform duration-200 ${
+                          formsOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </>
+                  )}
+                </button>
+                {!collapsed && formsOpen && (
+                  <div className="ml-4 mt-0.5 space-y-0.5">
+                    {item.children.map((child) => {
+                      const isActive = pathname.startsWith(child.href);
+                      return (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          className={`flex items-center gap-2 py-2 px-4 text-sm rounded-md transition-colors hover:bg-white/10 ${
+                            isActive ? "bg-white/10 text-white" : "text-white/70"
+                          }`}
+                        >
+                          <span className="w-1 h-1 rounded-full bg-current shrink-0" />
+                          {child.label}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
             );
-          })}
-        </nav>
+          }
 
-        {/* Version */}
-        <div className={`py-4 ${collapsed ? "text-center" : "px-5"}`}>
-          <span className="text-xs text-white/30">{collapsed ? "v1" : "v1.0.0"}</span>
-        </div>
+          const isActive =
+            item.href === "/dashboard"
+              ? pathname === "/dashboard"
+              : pathname.startsWith(item.href!);
+          const Icon = item.icon;
+
+          return (
+            <Link
+              key={item.href}
+              href={item.href!}
+              title={collapsed ? item.label : undefined}
+              className={`flex items-center gap-3 py-2.5 text-sm rounded-md transition-colors hover:bg-white/10 ${
+                isActive ? "bg-white/10" : ""
+              } ${collapsed ? "justify-center px-0" : "px-4"}`}
+            >
+              <Icon size={18} />
+              {!collapsed && <span>{item.label}</span>}
+            </Link>
+          );
+        })}
+      </nav>
+
+      {/* Version */}
+      <div className={`py-4 ${collapsed ? "text-center" : "px-5"}`}>
+        <span className="text-xs text-white/30">{collapsed ? "v1" : "v1.0.0"}</span>
+      </div>
+    </>
+  );
+
+  return (
+    <div className="flex h-screen bg-[#F0F4F2]">
+      {/* Mobile backdrop */}
+      {mobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
+
+      {/* Sidebar — desktop: static, mobile: drawer */}
+      <aside
+        className={`
+          fixed inset-y-0 left-0 z-50 bg-[#1A4A3A] text-white flex flex-col transition-transform duration-300 ease-in-out
+          md:static md:translate-x-0 md:z-auto md:flex-shrink-0
+          ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
+        `}
+        style={{ width: collapsed ? 64 : 240 }}
+      >
+        {sidebarContent}
       </aside>
 
       {/* Main area */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden min-w-0">
         {/* Header */}
-        <header className="h-16 bg-white border-b border-gray-200 px-6 flex items-center justify-between">
-          <h1 className="text-sm font-semibold text-[#1A1A1A]">
-            {getPageTitle(pathname)}
-          </h1>
+        <header className="h-14 md:h-16 bg-white border-b border-gray-200 px-4 md:px-6 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3 min-w-0">
+            {/* Hamburger — only on mobile */}
+            <button
+              onClick={() => setMobileMenuOpen(true)}
+              className="flex md:hidden items-center justify-center text-[#1A4A3A] flex-shrink-0"
+              title="Abrir menú"
+            >
+              <Menu size={22} />
+            </button>
+            <h1 className="text-sm font-semibold text-[#1A1A1A] truncate">
+              {getPageTitle(pathname)}
+            </h1>
+          </div>
 
-          <div className="relative" ref={dropdownRef}>
+          <div className="relative flex-shrink-0" ref={dropdownRef}>
             <button
               onClick={() => setDropdownOpen((prev) => !prev)}
               className="flex items-center justify-center rounded-md bg-[#1A4A3A] text-white text-xs font-medium cursor-pointer hover:bg-[#153D30] transition-colors"
@@ -318,7 +352,7 @@ export default function DashboardLayout({
         </header>
 
         {/* Content */}
-        <main className="flex-1 overflow-y-auto p-6">{children}</main>
+        <main className="flex-1 overflow-y-auto p-4 md:p-6">{children}</main>
       </div>
     </div>
   );
