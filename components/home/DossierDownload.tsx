@@ -5,9 +5,7 @@ export default function DossierDownload() {
   const t = useTranslations("Dossier");
   const locale = useLocale();
 
-  const pdfFile = locale === "es"
-    ? "/docs/dossier-xanael-es.pdf"
-    : "/docs/dossier-xanael-en.pdf";
+  const pdfFile = `/api/dossier/download?lang=${locale === "en" ? "en" : "es"}`;
 
   return (
     <section className="bg-[#F0F4F2] pb-16">
@@ -30,7 +28,6 @@ export default function DossierDownload() {
             href={pdfFile}
             target="_blank"
             rel="noopener noreferrer"
-            download
             className="shrink-0 inline-flex items-center gap-2 bg-[#2D6A4F] hover:bg-[#1A4A3A] text-white text-sm font-semibold px-5 py-3 rounded-md transition-colors"
           >
             <Download className="w-4 h-4" strokeWidth={2} />

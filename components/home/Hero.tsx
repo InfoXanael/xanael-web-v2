@@ -9,7 +9,7 @@ export default function Hero() {
   const t = useTranslations("Hero");
 
   return (
-    <section className="relative h-screen flex items-center overflow-hidden">
+    <section className="relative h-screen flex items-center">
       {/* Background image */}
       <Image
         src="/images/hero-banner.webp"

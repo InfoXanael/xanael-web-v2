@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 import { prisma } from "@/lib/prisma";
-import { cacheInvalidate } from "@/lib/redis";
 import { getSessionUser } from "@/lib/auth";
 
 export async function PATCH(
@@ -14,8 +14,7 @@ export async function PATCH(
   try {
     const { id } = params;
     const body = await request.json();
-    const { etapa, notas, nombre, empresa, email, telefono, ultimoContacto } =
-      body;
+    const { etapa, notas, nombre, empresa, email, telefono, ultimoContacto } = body;
 
     const data: Record<string, unknown> = {};
     if (etapa !== undefined) data.etapa = etapa;
@@ -31,7 +30,7 @@ export async function PATCH(
       data,
     });
 
-    await cacheInvalidate("pipeline:all");
+    revalidateTag("pipeline");
     return NextResponse.json(lead);
   } catch (error) {
     console.error("Error updating pipeline lead:", error);

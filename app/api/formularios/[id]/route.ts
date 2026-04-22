@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 import { prisma } from "@/lib/prisma";
-import { cacheInvalidate } from "@/lib/redis";
 import { getSessionUser } from "@/lib/auth";
 
 export async function PATCH(
@@ -27,7 +27,7 @@ export async function PATCH(
       data,
     });
 
-    await cacheInvalidate("formularios:*");
+    revalidateTag("formularios");
     return NextResponse.json(formulario);
   } catch (error) {
     console.error("Error updating formulario:", error);

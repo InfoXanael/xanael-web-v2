@@ -238,13 +238,13 @@ export default function PipelinePage() {
 
       {/* Kanban board */}
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="flex gap-4 mt-4 overflow-x-auto pb-4">
+        <div className="flex gap-3 mt-4 overflow-x-auto pb-4 -mx-4 px-4 md:mx-0 md:px-0">
           {STAGES.map((stage) => {
             const stageLeads = getLeadsByEtapa(stage.key);
             return (
               <div
                 key={stage.key}
-                className="flex-shrink-0 w-72 bg-white border border-gray-200 rounded-md flex flex-col max-h-[calc(100vh-200px)]"
+                className="flex-shrink-0 w-[240px] md:w-72 bg-white border border-gray-200 rounded-md flex flex-col max-h-[calc(100vh-180px)]"
               >
                 {/* Column header */}
                 <div className="px-4 py-3 border-b border-gray-200 flex items-center justify-between">
@@ -326,8 +326,8 @@ export default function PipelinePage() {
 
       {/* Create / Edit Modal */}
       {modalOpen && (
-        <div className="fixed inset-0 bg-black/30 z-40 flex items-center justify-center">
-          <div className="bg-white rounded-md shadow-lg w-full max-w-md mx-4 overflow-hidden">
+        <div className="fixed inset-0 bg-black/30 z-40 flex items-end sm:items-center justify-center">
+          <div className="bg-white rounded-t-xl sm:rounded-md shadow-lg w-full sm:max-w-md overflow-hidden max-h-[92vh] flex flex-col">
             {/* Modal header */}
             <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
               <h2 className="text-lg font-semibold text-[#1A4A3A]">
@@ -342,7 +342,7 @@ export default function PipelinePage() {
             </div>
 
             {/* Modal body */}
-            <div className="px-6 py-4 space-y-4">
+            <div className="px-6 py-4 space-y-4 overflow-y-auto flex-1">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Nombre

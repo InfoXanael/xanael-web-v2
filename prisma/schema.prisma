@@ -31,6 +31,11 @@ model FormSubmission {
   syncMautic Boolean  @default(false)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+
+  @@index([tipo])
+  @@index([estado])
+  @@index([createdAt(sort: Desc)])
+  @@index([tipo, estado])
 }
 
 model PipelineLead {
@@ -45,6 +50,9 @@ model PipelineLead {
   ultimoContacto  DateTime?
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
+
+  @@index([etapa])
+  @@index([updatedAt(sort: Desc)])
 }
 
 model PilotoSubmission {
@@ -57,4 +65,16 @@ model PilotoSubmission {
   estado           String   @default("nuevo")
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
+}
+
+model DossierDownload {
+  id        String   @id @default(cuid())
+  ip        String
+  country   String?
+  locale    String
+  createdAt DateTime @default(now())
+
+  @@index([createdAt(sort: Desc)])
+  @@index([country])
+  @@index([ip])
 }
