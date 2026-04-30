@@ -50,43 +50,32 @@ export default function MauticPage() {
 
   useEffect(() => {
     async function load() {
-      try {
-        const [cRes, sRes, campRes, eRes] = await Promise.all([
-          fetch("/api/mautic?tipo=contactos"),
-          fetch("/api/mautic?tipo=segmentos"),
-          fetch("/api/mautic?tipo=campanas"),
-          fetch("/api/mautic?tipo=emails"),
-        ]);
+      const [cRes, sRes, campRes, eRes] = await Promise.allSettled([
+        fetch("/api/mautic?tipo=contactos").then((r) => (r.ok ? r.json() : null)),
+        fetch("/api/mautic?tipo=segmentos").then((r) => (r.ok ? r.json() : null)),
+        fetch("/api/mautic?tipo=campanas").then((r) => (r.ok ? r.json() : null)),
+        fetch("/api/mautic?tipo=emails").then((r) => (r.ok ? r.json() : null)),
+      ]);
 
-        if (!cRes.ok || !sRes.ok || !campRes.ok || !eRes.ok) {
-          const errData = await (cRes.ok ? sRes : cRes)
-            .json()
-            .catch(() => ({}));
-          throw new Error(errData.error || "Error al conectar con Mautic");
-        }
+      const cData  = cRes.status    === "fulfilled" ? cRes.value    : null;
+      const sData  = sRes.status    === "fulfilled" ? sRes.value    : null;
+      const campData = campRes.status === "fulfilled" ? campRes.value : null;
+      const eData  = eRes.status    === "fulfilled" ? eRes.value    : null;
 
-        const [cData, sData, campData, eData] = await Promise.all([
-          cRes.json(),
-          sRes.json(),
-          campRes.json(),
-          eRes.json(),
-        ]);
-
-        setTotalContactos(Number(cData.total) || 0);
-        setSegments(sData.segments || []);
-        setCampaigns(campData.campaigns || []);
-        setEmails(eData.emails || []);
-        setTotalEmails(
-          (eData.emails || []).reduce(
-            (sum: number, e: EmailEntry) => sum + e.enviados,
-            0
-          )
-        );
-      } catch (err: unknown) {
-        setError(err instanceof Error ? err.message : "Error de conexión con Mautic");
-      } finally {
-        setLoading(false);
+      const allFailed = !cData && !sData && !campData && !eData;
+      if (allFailed) {
+        setError("No se pudo conectar con Mautic. Comprueba que el servidor está operativo.");
       }
+
+      if (cData)    setTotalContactos(Number(cData.total) || 0);
+      if (sData)    setSegments(sData.segments || []);
+      if (campData) setCampaigns(campData.campaigns || []);
+      if (eData) {
+        setEmails(eData.emails || []);
+        setTotalEmails((eData.emails || []).reduce((sum: number, e: EmailEntry) => sum + e.enviados, 0));
+      }
+
+      setLoading(false);
     }
     load();
   }, []);
@@ -107,9 +96,10 @@ export default function MauticPage() {
         <div className="rounded-md bg-white border border-gray-200 p-10 text-center max-w-md">
           <AlertCircle className="w-10 h-10 text-red-400 mx-auto mb-3" />
           <h2 className="text-lg font-semibold text-[#1A4A3A] mb-2">
-            Error de conexión
+            Mautic no disponible
           </h2>
           <p className="text-sm text-gray-500">{error}</p>
+          <p className="text-xs text-gray-400 mt-3">Revisa los logs del contenedor: <code className="bg-gray-100 px-1 rounded">docker logs mautic-mautic-1 --tail 50</code></p>
         </div>
       </div>
     );
@@ -154,7 +144,7 @@ export default function MauticPage() {
           <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
             <h2 className="text-lg font-semibold text-[#1A4A3A]">Segmentos</h2>
             <a
-              href="http://116.203.230.143/s/segments"
+              href="https://mautic.xanael.es/s/segments"
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs text-[#2D6A4F] hover:underline flex items-center gap-1"
@@ -205,7 +195,7 @@ export default function MauticPage() {
           <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
             <h2 className="text-lg font-semibold text-[#1A4A3A]">Campañas</h2>
             <a
-              href="http://116.203.230.143/s/campaigns"
+              href="https://mautic.xanael.es/s/campaigns"
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs text-[#2D6A4F] hover:underline flex items-center gap-1"
@@ -220,7 +210,7 @@ export default function MauticPage() {
                 No hay campañas activas
               </p>
               <a
-                href="http://116.203.230.143/s/campaigns/new"
+                href="https://mautic.xanael.es/s/campaigns/new"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#2D6A4F] text-white text-sm rounded-md hover:bg-[#245a42] transition-colors"
@@ -279,7 +269,7 @@ export default function MauticPage() {
         <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
           <h2 className="text-lg font-semibold text-[#1A4A3A]">Emails</h2>
           <a
-            href="http://116.203.230.143/s/emails"
+            href="https://mautic.xanael.es/s/emails"
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs text-[#2D6A4F] hover:underline flex items-center gap-1"
