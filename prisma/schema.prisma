@@ -78,3 +78,132 @@ model DossierDownload {
   @@index([country])
   @@index([ip])
 }
+
+// ─── Testing IoT module ───
+
+model TestSite {
+  id           String           @id @default(cuid())
+  nombre       String
+  municipio    String
+  provincia    String
+  direccion    String?
+  coordenadas  String?
+  descripcion  String?
+  fechaInicio  DateTime
+  fechaFin     DateTime?
+  estado       String           @default("activo")
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+  dispositivos TestDispositivo[]
+  mediciones   TestMedicion[]
+  fotos        TestFoto[]
+  incidencias  TestIncidencia[]
+
+  @@index([estado])
+  @@index([createdAt(sort: Desc)])
+}
+
+model TestDispositivo {
+  id               String          @id @default(cuid())
+  siteId           String
+  site             TestSite        @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  nombre           String
+  fabricante       String?
+  modelo           String?
+  tipo             String
+  conectividad     String?
+  numeroSerie      String?
+  posicionBordillo String?
+  fechaInstalacion DateTime
+  fechaRetirada    DateTime?
+  estado           String          @default("activo")
+  notas            String?
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+  mediciones       TestMedicion[]
+  fotos            TestFoto[]
+  incidencias      TestIncidencia[]
+  evaluacion       TestEvaluacion?
+
+  @@index([siteId])
+  @@index([estado])
+  @@index([tipo])
+}
+
+model TestMedicion {
+  id            String           @id @default(cuid())
+  siteId        String
+  site          TestSite         @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  dispositivoId String?
+  dispositivo   TestDispositivo? @relation(fields: [dispositivoId], references: [id], onDelete: SetNull)
+  fecha         DateTime
+  tipo          String
+  valor         Float?
+  unidad        String?
+  descripcion   String?
+  confianza     Float?
+  fuenteDatos   String?
+  createdAt     DateTime         @default(now())
+
+  @@index([siteId])
+  @@index([dispositivoId])
+  @@index([tipo])
+  @@index([fecha(sort: Desc)])
+}
+
+model TestFoto {
+  id            String           @id @default(cuid())
+  siteId        String
+  site          TestSite         @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  dispositivoId String?
+  dispositivo   TestDispositivo? @relation(fields: [dispositivoId], references: [id], onDelete: SetNull)
+  url           String
+  tipo          String
+  descripcion   String?
+  fecha         DateTime         @default(now())
+  autor         String?
+  createdAt     DateTime         @default(now())
+
+  @@index([siteId])
+  @@index([dispositivoId])
+  @@index([tipo])
+}
+
+model TestIncidencia {
+  id            String           @id @default(cuid())
+  siteId        String
+  site          TestSite         @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  dispositivoId String?
+  dispositivo   TestDispositivo? @relation(fields: [dispositivoId], references: [id], onDelete: SetNull)
+  tipo          String
+  severidad     String           @default("media")
+  descripcion   String
+  accionTomada  String?
+  resuelta      Boolean          @default(false)
+  fecha         DateTime         @default(now())
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+
+  @@index([siteId])
+  @@index([dispositivoId])
+  @@index([resuelta])
+}
+
+model TestEvaluacion {
+  id                     String          @id @default(cuid())
+  dispositivoId          String          @unique
+  dispositivo            TestDispositivo @relation(fields: [dispositivoId], references: [id], onDelete: Cascade)
+  fiabilidadDeteccion    Float?
+  resistenciaClimatica   Float?
+  facilidadInstalacion   Float?
+  facilidadMantenimiento Float?
+  autonomiaBateria       Float?
+  calidadDatos           Float?
+  relacionCalidadPrecio  Float?
+  compatibilidadXanael   Float?
+  puntuacionTotal        Float?
+  recomendado            Boolean         @default(false)
+  notas                  String?
+  createdAt              DateTime        @default(now())
+  updatedAt              DateTime        @updatedAt
+}

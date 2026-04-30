@@ -17,6 +17,7 @@ import {
   FlaskConical,
   Menu,
   X,
+  Cpu,
 } from "lucide-react";
 
 interface NavItem {
@@ -35,6 +36,7 @@ const navItems: NavItem[] = [
   { href: "/dashboard/formularios", label: "Formularios", icon: FileText },
   { href: "/dashboard/pipeline", label: "Pipeline", icon: LayoutGrid },
   { href: "/dashboard/forms/piloto", label: "Piloto", icon: FlaskConical },
+  { href: "/dashboard/testing", label: "Testing IoT", icon: Cpu },
   { href: "/dashboard/mautic", label: "Mautic", icon: Send },
   { href: "/dashboard/analytics", label: "Analytics", icon: BarChart3 },
   { href: "/dashboard/configuracion", label: "Configuración", icon: Settings },
@@ -45,6 +47,7 @@ const PAGE_TITLES: Record<string, string> = {
   "/dashboard/formularios": "Formularios",
   "/dashboard/pipeline": "Pipeline",
   "/dashboard/forms/piloto": "Piloto",
+  "/dashboard/testing": "Testing IoT",
   "/dashboard/mautic": "Mautic",
   "/dashboard/analytics": "Analytics",
   "/dashboard/configuracion": "Configuración",
