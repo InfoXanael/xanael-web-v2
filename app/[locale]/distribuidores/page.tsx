@@ -1,9 +1,14 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
+import { buildAlternates } from "@/lib/seo";
 
 export async function generateMetadata() {
-  const t = await getTranslations("Distributors");
+  const [t, locale] = await Promise.all([
+    getTranslations("Distributors"),
+    getLocale(),
+  ]);
   return {
     title: `${t("title")} - Xanael`,
+    alternates: buildAlternates(locale, "/distribuidores"),
   };
 }
 

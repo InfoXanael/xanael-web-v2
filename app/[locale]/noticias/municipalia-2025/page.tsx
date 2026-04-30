@@ -1,12 +1,17 @@
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import NewsSection from "@/components/home/NewsSection";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { buildAlternates } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "XANAEL en Municipalia: Gran acogida del sistema de prevención | Xanael",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  return {
+    title: "XANAEL en Municipalia: Gran acogida del sistema de prevención | Xanael",
+    alternates: buildAlternates(locale, "/noticias/municipalia-2025"),
+  };
+}
 
 export default async function MunicipaliaPage() {
   const t = await getTranslations("NewsMunicipalia");

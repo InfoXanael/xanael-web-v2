@@ -1,12 +1,17 @@
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import NewsSection from "@/components/home/NewsSection";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { buildAlternates } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "XANAEL presenta su póster técnico en EXPOCIDA 2026 | Xanael",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  return {
+    title: "XANAEL presenta su póster técnico en EXPOCIDA 2026 | Xanael",
+    alternates: buildAlternates(locale, "/noticias/expocida-2026-poster"),
+  };
+}
 
 export default async function ExpocidaPosterPage() {
   const t = await getTranslations("NewsExpocidaPoster");

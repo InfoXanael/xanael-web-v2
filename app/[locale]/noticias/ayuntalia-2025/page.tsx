@@ -2,12 +2,17 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { Shield, Leaf, Eye, Target } from "lucide-react";
 import NewsSection from "@/components/home/NewsSection";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { buildAlternates } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "XANAEL en Ayuntalia 2025: primera presentación institucional del sistema | Xanael",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  return {
+    title: "XANAEL en Ayuntalia 2025: primera presentación institucional del sistema | Xanael",
+    alternates: buildAlternates(locale, "/noticias/ayuntalia-2025"),
+  };
+}
 
 const pillarIcons = [Shield, Leaf, Eye, Target];
 

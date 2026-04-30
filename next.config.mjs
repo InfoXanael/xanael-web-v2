@@ -12,6 +12,19 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
+  async redirects() {
+    return [
+      // Páginas huérfanas fuera de [locale] — redirigir a equivalente en /es
+      { source: "/producto", destination: "/es/infraestructuras", permanent: true },
+      { source: "/es/producto", destination: "/es/infraestructuras", permanent: true },
+      { source: "/sectores/ayuntamientos", destination: "/es/infraestructuras", permanent: true },
+      { source: "/es/sectores/ayuntamientos", destination: "/es/infraestructuras", permanent: true },
+      { source: "/sectores/control-de-plagas", destination: "/es/infraestructuras", permanent: true },
+      { source: "/es/sectores/control-de-plagas", destination: "/es/infraestructuras", permanent: true },
+      { source: "/sectores/industria", destination: "/es/infraestructuras", permanent: true },
+      { source: "/es/sectores/industria", destination: "/es/infraestructuras", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

@@ -1,10 +1,18 @@
 import { Link } from "@/i18n/navigation";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { buildAlternates } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("LegalNotice");
-  return { title: t("metaTitle"), description: t("metaDesc") };
+  const [t, locale] = await Promise.all([
+    getTranslations("LegalNotice"),
+    getLocale(),
+  ]);
+  return {
+    title: t("metaTitle"),
+    description: t("metaDesc"),
+    alternates: buildAlternates(locale, "/aviso-legal"),
+  };
 }
 
 export default async function AvisoLegalPage() {

@@ -1,12 +1,17 @@
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import NewsSection from "@/components/home/NewsSection";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import { buildAlternates } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "XANAEL en EXPOCIDA 2026: dos días que marcan un antes y un después | Xanael",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  return {
+    title: "XANAEL en EXPOCIDA 2026: dos días que marcan un antes y un después | Xanael",
+    alternates: buildAlternates(locale, "/noticias/expocida-2026"),
+  };
+}
 
 export default async function Expocida2026Page() {
   const t = await getTranslations("NewsExpocida");
