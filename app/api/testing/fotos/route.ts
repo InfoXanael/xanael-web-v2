@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { put } from "@vercel/blob";
 import { prisma } from "@/lib/prisma";
 import { getSessionUser } from "@/lib/auth";
+import { uploadToVPS } from "@/lib/vps-upload";
 
 export async function GET(request: NextRequest) {
   const user = await getSessionUser();
@@ -45,15 +45,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Faltan campos obligatorios" }, { status: 400 });
   }
 
-  const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
-  const filename = `testing/${siteId}/${Date.now()}-${safeName}`;
-  const blob = await put(filename, file, { access: "public" });
+  const url = await uploadToVPS(file, "testing");
 
   const foto = await prisma.testFoto.create({
     data: {
       siteId,
       dispositivoId: dispositivoId || null,
-      url: blob.url,
+      url,
       tipo,
       descripcion: descripcion || null,
       autor: autor || user.name || user.email || "desconocido",

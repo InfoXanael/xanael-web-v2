@@ -1,14 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { revalidateTag } from "next/cache";
-import { put } from "@vercel/blob";
 import { prisma } from "@/lib/prisma";
 import { sendPilotoNotification } from "@/lib/mailer";
 import { getSessionUser } from "@/lib/auth";
 import { getPilotoSubmissions } from "@/lib/db-queries";
+import { uploadFilesToVPS } from "@/lib/vps-upload";
 
-const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/heic", "image/heif"];
 const MAX_FILES_PER_ZONE = 5;
-const MAX_FILE_SIZE = 4 * 1024 * 1024;
 
 interface ZonaMeta {
   zona: string;
@@ -21,19 +19,6 @@ interface ZonaMeta {
 
 interface ZonaFull extends ZonaMeta {
   fotos: string[];
-}
-
-async function uploadFiles(files: File[]): Promise<string[]> {
-  const urls: string[] = [];
-  for (const file of files) {
-    if (!ALLOWED_TYPES.includes(file.type)) throw new Error(`Tipo no permitido: ${file.name}`);
-    if (file.size > MAX_FILE_SIZE) throw new Error(`Archivo demasiado grande: ${file.name}`);
-    const ext = file.name.split(".").pop() ?? "jpg";
-    const uniqueName = `piloto/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-    const blob = await put(uniqueName, file, { access: "public" });
-    urls.push(blob.url);
-  }
-  return urls;
 }
 
 export async function GET() {
@@ -83,7 +68,7 @@ export async function POST(request: NextRequest) {
         .slice(0, MAX_FILES_PER_ZONE);
       let fotoUrls: string[] = [];
       try {
-        fotoUrls = await uploadFiles(rawFiles);
+        fotoUrls = await uploadFilesToVPS(rawFiles, "piloto");
       } catch (err) {
         return NextResponse.json(
           { error: err instanceof Error ? err.message : "Error subiendo archivo" },
