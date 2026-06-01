@@ -2,18 +2,17 @@ import os
 import json
 import time
 import secrets
-import mimetypes
 import requests
 import psycopg2
 import paramiko
 
-VPS_HOST = "116.203.230.143"
-VPS_USER = "claudeuser"
-VPS_PASSWORD = "UHxpcmPgjihT"
+VPS_HOST = os.environ["VPS_HOST"]
+VPS_USER = os.environ["VPS_USER"]
+VPS_PASSWORD = os.environ["VPS_PASSWORD"]
 VPS_UPLOAD_DIR = "/var/www/media-xanael"
 VPS_PUBLIC_BASE = "https://media.xanael.es"
 
-DATABASE_URL = "postgresql://xanael:xanael2026db@116.203.230.143:5432/xanael_dashboard"
+DATABASE_URL = os.environ["DATABASE_URL"]
 
 def is_vercel_url(url: str) -> bool:
     return "vercel-storage.com" in url
