@@ -29,6 +29,30 @@ export const getFormularios = unstable_cache(
   { revalidate: 60, tags: ["formularios"] }
 );
 
+export const getAllFormularios = unstable_cache(
+  async () => {
+    return prisma.formSubmission.findMany({
+      orderBy: { createdAt: "desc" },
+      select: {
+        id: true,
+        tipo: true,
+        nombre: true,
+        email: true,
+        telefono: true,
+        empresa: true,
+        sector: true,
+        mensaje: true,
+        estado: true,
+        notas: true,
+        syncMautic: true,
+        createdAt: true,
+      },
+    });
+  },
+  ["formularios-all"],
+  { revalidate: 60, tags: ["formularios"] }
+);
+
 export const getPipelineLeads = unstable_cache(
   async () => {
     return prisma.pipelineLead.findMany({
