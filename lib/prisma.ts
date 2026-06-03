@@ -14,7 +14,8 @@ function createPrismaClient() {
     idleTimeoutMillis: 10000,
     connectionTimeoutMillis: 5000,
     keepAlive: true,
-    keepAliveInitialDelayMillis: 0,
+    keepAliveInitialDelayMillis: 55000,
+    allowExitOnIdle: true,
   });
   const adapter = new PrismaPg(pool);
   return new PrismaClient({ adapter });
