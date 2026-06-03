@@ -1,6 +1,21 @@
 import { unstable_cache } from "next/cache";
 import { prisma } from "./prisma";
 
+const formularioSelect = {
+  id: true,
+  tipo: true,
+  nombre: true,
+  email: true,
+  telefono: true,
+  empresa: true,
+  sector: true,
+  mensaje: true,
+  estado: true,
+  notas: true,
+  syncMautic: true,
+  createdAt: true,
+} as const;
+
 export const getFormularios = unstable_cache(
   async (tipo?: string, estado?: string) => {
     const where: Record<string, string> = {};
@@ -9,20 +24,7 @@ export const getFormularios = unstable_cache(
     return prisma.formSubmission.findMany({
       where,
       orderBy: { createdAt: "desc" },
-      select: {
-        id: true,
-        tipo: true,
-        nombre: true,
-        email: true,
-        telefono: true,
-        empresa: true,
-        sector: true,
-        mensaje: true,
-        estado: true,
-        notas: true,
-        syncMautic: true,
-        createdAt: true,
-      },
+      select: formularioSelect,
     });
   },
   ["formularios"],
@@ -33,20 +35,7 @@ export const getAllFormularios = unstable_cache(
   async () => {
     return prisma.formSubmission.findMany({
       orderBy: { createdAt: "desc" },
-      select: {
-        id: true,
-        tipo: true,
-        nombre: true,
-        email: true,
-        telefono: true,
-        empresa: true,
-        sector: true,
-        mensaje: true,
-        estado: true,
-        notas: true,
-        syncMautic: true,
-        createdAt: true,
-      },
+      select: formularioSelect,
     });
   },
   ["formularios-all"],
