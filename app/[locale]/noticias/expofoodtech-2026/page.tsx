@@ -63,7 +63,7 @@ export default async function ExpoFoodTech2026Page() {
               alt={t("caption1")}
               fill
               className="object-cover"
-              style={{ objectPosition: "center 40%" }}
+              style={{ objectPosition: "center 65%" }}
               priority
             />
           </div>
