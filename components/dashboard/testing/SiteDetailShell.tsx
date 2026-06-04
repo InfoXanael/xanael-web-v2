@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Cpu, Activity, Camera, AlertTriangle, Plus, CheckCircle, XCircle, X, ArrowLeft } from "lucide-react";
+import { Cpu, Activity, Camera, AlertTriangle, Plus, CheckCircle, XCircle, X, ArrowLeft, Upload } from "lucide-react";
 
 type Dispositivo = {
   id: string; nombre: string; tipo: string; fabricante: string | null;
@@ -53,6 +53,16 @@ function fmtDT(d: string) {
 
 const inputClass = "w-full border border-gray-200 rounded-md px-3 py-2 text-sm outline-none focus:border-[#2D6A4F] transition-colors bg-white";
 
+const TIPOS_FOTO: { value: string; label: string }[] = [
+  { value: "instalacion",        label: "Instalación" },
+  { value: "deteccion",          label: "Detección" },
+  { value: "incidencia",         label: "Incidencia" },
+  { value: "comparativa",        label: "Comparativa" },
+  { value: "estado_dispositivo", label: "Estado del dispositivo" },
+  { value: "caso_exito",         label: "Caso de éxito" },
+  { value: "otro",               label: "Otro" },
+];
+
 export function SiteDetailShell({ site }: { site: Site }) {
   const router = useRouter();
   const [tab, setTab] = useState<"dispositivos" | "mediciones" | "fotos" | "incidencias">("dispositivos");
@@ -62,6 +72,16 @@ export function SiteDetailShell({ site }: { site: Site }) {
     descripcion: "", dispositivoId: "", accionTomada: "",
   });
   const [saving, setSaving] = useState(false);
+
+  const [uploadOpen, setUploadOpen] = useState(false);
+  const [uploadFiles, setUploadFiles] = useState<File[]>([]);
+  const [uploadPreviews, setUploadPreviews] = useState<string[]>([]);
+  const [uploadForm, setUploadForm] = useState({ dispositivoId: "", tipo: "instalacion", descripcion: "" });
+  const [uploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+  const [uploadDone, setUploadDone] = useState(false);
+  const uploadFileRef = useRef<HTMLInputElement>(null);
 
   async function handleResolve(incId: string, resuelta: boolean) {
     await fetch(`/api/testing/incidencias/${incId}`, {
@@ -87,6 +107,52 @@ export function SiteDetailShell({ site }: { site: Site }) {
     } finally {
       setSaving(false);
     }
+  }
+
+  async function handleUploadSubmit() {
+    if (uploadFiles.length === 0) return;
+    setUploading(true);
+    setUploadProgress(0);
+    setUploadError(null);
+    let count = 0;
+    for (const file of uploadFiles) {
+      const fd = new FormData();
+      fd.append("file", file);
+      fd.append("siteId", site.id);
+      if (uploadForm.dispositivoId) fd.append("dispositivoId", uploadForm.dispositivoId);
+      fd.append("tipo", uploadForm.tipo);
+      if (uploadForm.descripcion) fd.append("descripcion", uploadForm.descripcion);
+      const res = await fetch("/api/testing/fotos", { method: "POST", body: fd });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setUploadError(data.error ?? `Error al subir ${file.name}`);
+        setUploading(false);
+        return;
+      }
+      count++;
+      setUploadProgress(count);
+    }
+    setUploadDone(true);
+    setUploading(false);
+    setTimeout(() => {
+      setUploadOpen(false);
+      setUploadFiles([]);
+      setUploadPreviews([]);
+      setUploadForm({ dispositivoId: "", tipo: "instalacion", descripcion: "" });
+      setUploadDone(false);
+      router.refresh();
+    }, 1000);
+  }
+
+  function handleUploadFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const selected = Array.from(e.target.files ?? []);
+    setUploadFiles(selected);
+    setUploadPreviews(selected.map((f) => URL.createObjectURL(f)));
+  }
+
+  function removeUploadFile(i: number) {
+    setUploadFiles((prev) => prev.filter((_, idx) => idx !== i));
+    setUploadPreviews((prev) => prev.filter((_, idx) => idx !== i));
   }
 
   const openInc = site.incidencias.filter((i) => !i.resuelta).length;
@@ -246,28 +312,41 @@ export function SiteDetailShell({ site }: { site: Site }) {
 
       {/* Fotos */}
       {tab === "fotos" && (
-        site.fotos.length === 0 ? (
-          <div className="bg-white border border-gray-200 rounded-md px-5 py-10 text-center">
-            <Camera size={28} className="mx-auto text-gray-200 mb-2" />
-            <p className="text-sm text-gray-400">No hay fotos.</p>
-            <Link href={`/dashboard/testing/fotos/subir?siteId=${site.id}`} className="text-sm text-[#2D6A4F] hover:underline mt-1 inline-block">Subir fotos</Link>
+        <div>
+          <div className="flex justify-end mb-3">
+            <button
+              onClick={() => { setUploadOpen(true); setUploadError(null); setUploadDone(false); }}
+              className="flex items-center gap-1.5 bg-[#2D6A4F] text-white text-sm px-3 py-2 rounded-md hover:bg-[#1A4A3A] transition-colors font-medium"
+            >
+              <Camera size={14} /> Subir fotos
+            </button>
           </div>
-        ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-            {site.fotos.map((foto) => (
-              <a key={foto.id} href={foto.url} target="_blank" rel="noopener noreferrer" className="group bg-white border border-gray-200 rounded-md overflow-hidden hover:border-[#2D6A4F]/40 transition-colors">
-                <div className="aspect-square bg-gray-100 overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={foto.url} alt={foto.descripcion ?? foto.tipo} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
-                </div>
-                <div className="p-2">
-                  <p className="text-xs font-medium text-gray-700 truncate">{foto.tipo.replace(/_/g, " ")}</p>
-                  {foto.descripcion && <p className="text-xs text-gray-400 truncate">{foto.descripcion}</p>}
-                </div>
-              </a>
-            ))}
-          </div>
-        )
+          {site.fotos.length === 0 ? (
+            <div className="bg-white border border-gray-200 rounded-md px-5 py-10 text-center">
+              <Camera size={28} className="mx-auto text-gray-200 mb-2" />
+              <p className="text-sm text-gray-400">No hay fotos todavía.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+              {site.fotos.map((foto) => (
+                <a key={foto.id} href={foto.url} target="_blank" rel="noopener noreferrer"
+                  className="group bg-white border border-gray-200 rounded-md overflow-hidden hover:border-[#2D6A4F]/40 transition-colors">
+                  <div className="aspect-square bg-gray-100 overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={foto.url} alt={foto.descripcion ?? foto.tipo}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
+                  </div>
+                  <div className="p-2">
+                    <p className="text-xs font-medium text-gray-700 truncate">
+                      {TIPOS_FOTO.find((t) => t.value === foto.tipo)?.label ?? foto.tipo.replace(/_/g, " ")}
+                    </p>
+                    {foto.descripcion && <p className="text-xs text-gray-400 truncate">{foto.descripcion}</p>}
+                  </div>
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
       )}
 
       {/* Incidencias */}
@@ -304,6 +383,90 @@ export function SiteDetailShell({ site }: { site: Site }) {
               </div>
             ))
           )}
+        </div>
+      )}
+
+      {/* Modal upload fotos */}
+      {uploadOpen && (
+        <div className="fixed inset-0 bg-black/40 z-40 flex items-end sm:items-center justify-center p-4">
+          <div className="bg-white rounded-xl shadow-xl w-full sm:max-w-md overflow-hidden max-h-[90vh] flex flex-col">
+            <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
+              <h2 className="text-base font-semibold text-[#1A4A3A]">Subir fotos</h2>
+              <button onClick={() => setUploadOpen(false)} className="text-gray-400 hover:text-gray-600 transition-colors"><X size={18} /></button>
+            </div>
+            <div className="px-6 py-5 space-y-4 overflow-y-auto flex-1">
+              <div>
+                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Dispositivo (opcional)</label>
+                <select value={uploadForm.dispositivoId}
+                  onChange={(e) => setUploadForm((f) => ({ ...f, dispositivoId: e.target.value }))}
+                  className={inputClass}>
+                  <option value="">— Sin dispositivo específico</option>
+                  {site.dispositivos.map((d) => <option key={d.id} value={d.id}>{d.nombre}</option>)}
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Tipo de foto</label>
+                <select value={uploadForm.tipo}
+                  onChange={(e) => setUploadForm((f) => ({ ...f, tipo: e.target.value }))}
+                  className={inputClass}>
+                  {TIPOS_FOTO.map((t) => <option key={t.value} value={t.value}>{t.label}</option>)}
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Descripción</label>
+                <input type="text" value={uploadForm.descripcion}
+                  onChange={(e) => setUploadForm((f) => ({ ...f, descripcion: e.target.value }))}
+                  className={inputClass} placeholder="Descripción opcional" />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Fotos *</label>
+                <div
+                  className="border-2 border-dashed border-gray-200 rounded-md p-5 text-center cursor-pointer hover:border-[#2D6A4F]/40 transition-colors"
+                  onClick={() => uploadFileRef.current?.click()}
+                >
+                  <Upload size={22} className="mx-auto text-gray-300 mb-2" />
+                  <p className="text-sm text-gray-400">Haz clic para seleccionar</p>
+                  <p className="text-xs text-gray-300 mt-1">JPG, PNG, WebP — múltiple selección</p>
+                </div>
+                <input ref={uploadFileRef} type="file" multiple accept="image/*"
+                  className="hidden" onChange={handleUploadFileChange} />
+              </div>
+              {uploadPreviews.length > 0 && (
+                <div className="grid grid-cols-3 gap-2">
+                  {uploadPreviews.map((url, i) => (
+                    <div key={i} className="relative aspect-square rounded-md overflow-hidden border border-gray-200">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={url} alt="" className="w-full h-full object-cover" />
+                      <button onClick={() => removeUploadFile(i)}
+                        className="absolute top-1 right-1 bg-black/50 text-white rounded-full p-0.5 hover:bg-black/70">
+                        <X size={12} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {uploadError && (
+                <div className="bg-red-50 border border-red-200 rounded-md px-4 py-3 text-sm text-red-700">
+                  {uploadError}
+                </div>
+              )}
+            </div>
+            <div className="px-6 py-4 border-t border-gray-100 flex justify-end gap-3">
+              <button onClick={() => setUploadOpen(false)} className="text-sm text-gray-500 hover:text-gray-700 px-3 py-2">Cancelar</button>
+              <button
+                onClick={handleUploadSubmit}
+                disabled={uploading || uploadFiles.length === 0 || uploadDone}
+                className="flex items-center gap-2 bg-[#2D6A4F] text-white text-sm px-5 py-2 rounded-md hover:bg-[#1A4A3A] transition-colors disabled:opacity-50 font-medium"
+              >
+                {uploadDone
+                  ? <><CheckCircle size={14} /> Subidas</>
+                  : uploading
+                  ? `Subiendo ${uploadProgress}/${uploadFiles.length}...`
+                  : <><Upload size={14} /> {uploadFiles.length > 0 ? `Subir ${uploadFiles.length} foto${uploadFiles.length > 1 ? "s" : ""}` : "Subir fotos"}</>
+                }
+              </button>
+            </div>
+          </div>
         </div>
       )}
 
