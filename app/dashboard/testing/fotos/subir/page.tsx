@@ -16,8 +16,13 @@ interface Dispositivo {
 }
 
 const TIPOS_FOTO = [
-  "instalacion", "deteccion", "incidencia", "comparativa",
-  "estado_dispositivo", "caso_exito", "otro",
+  { value: "instalacion",        label: "Instalación" },
+  { value: "deteccion",          label: "Detección" },
+  { value: "incidencia",         label: "Incidencia" },
+  { value: "comparativa",        label: "Comparativa" },
+  { value: "estado_dispositivo", label: "Estado del dispositivo" },
+  { value: "caso_exito",         label: "Caso de éxito" },
+  { value: "otro",               label: "Otro" },
 ];
 
 function SubirFotosForm() {
@@ -32,6 +37,7 @@ function SubirFotosForm() {
   const [uploading, setUploading] = useState(false);
   const [uploaded, setUploaded] = useState(0);
   const [done, setDone] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
   const [form, setForm] = useState({
@@ -72,6 +78,7 @@ function SubirFotosForm() {
     if (!form.siteId || files.length === 0) return;
     setUploading(true);
     setUploaded(0);
+    setError(null);
     let count = 0;
     for (const file of files) {
       const fd = new FormData();
@@ -80,7 +87,13 @@ function SubirFotosForm() {
       if (form.dispositivoId) fd.append("dispositivoId", form.dispositivoId);
       fd.append("tipo", form.tipo);
       if (form.descripcion) fd.append("descripcion", form.descripcion);
-      await fetch("/api/testing/fotos", { method: "POST", body: fd });
+      const res = await fetch("/api/testing/fotos", { method: "POST", body: fd });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setError(data.error ?? `Error al subir ${file.name}`);
+        setUploading(false);
+        return;
+      }
       count++;
       setUploaded(count);
     }
@@ -135,7 +148,7 @@ function SubirFotosForm() {
             onChange={(e) => setForm((f) => ({ ...f, tipo: e.target.value }))}
             className={inputClass}
           >
-            {TIPOS_FOTO.map((t) => <option key={t} value={t}>{t.replace(/_/g, " ")}</option>)}
+            {TIPOS_FOTO.map((t) => <option key={t.value} value={t.value}>{t.label}</option>)}
           </select>
         </div>
 
@@ -192,6 +205,12 @@ function SubirFotosForm() {
         {uploading && (
           <div className="text-sm text-gray-500 text-center">
             Subiendo {uploaded}/{files.length}...
+          </div>
+        )}
+
+        {error && (
+          <div className="bg-red-50 border border-red-200 rounded-md px-4 py-3 text-sm text-red-700">
+            {error}
           </div>
         )}
 
