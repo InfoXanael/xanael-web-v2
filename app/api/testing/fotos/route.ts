@@ -42,22 +42,32 @@ export async function POST(request: NextRequest) {
   const autor = formData.get("autor") as string | null;
 
   if (!file || !siteId || !tipo) {
-    return NextResponse.json({ error: "Faltan campos obligatorios" }, { status: 400 });
+    return NextResponse.json({ error: "Faltan campos obligatorios: file, siteId y tipo son requeridos" }, { status: 400 });
   }
 
-  const url = await uploadToVPS(file, "testing");
+  let url: string;
+  try {
+    url = await uploadToVPS(file, "testing");
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Error desconocido al subir al VPS";
+    return NextResponse.json({ error: message }, { status: 502 });
+  }
 
-  const foto = await prisma.testFoto.create({
-    data: {
-      siteId,
-      dispositivoId: dispositivoId || null,
-      url,
-      tipo,
-      descripcion: descripcion || null,
-      autor: autor || user.name || user.email || "desconocido",
-      fecha: new Date(),
-    },
-  });
-
-  return NextResponse.json(foto, { status: 201 });
+  try {
+    const foto = await prisma.testFoto.create({
+      data: {
+        siteId,
+        dispositivoId: dispositivoId || null,
+        url,
+        tipo,
+        descripcion: descripcion || null,
+        autor: autor || user.name || user.email || "desconocido",
+        fecha: new Date(),
+      },
+    });
+    return NextResponse.json(foto, { status: 201 });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Error guardando en base de datos";
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
 }
