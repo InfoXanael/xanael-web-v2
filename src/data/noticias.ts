@@ -40,4 +40,12 @@ export const noticias: Noticia[] = [
     href: "/noticias/expocida-2026",
     sortDate: "2026-02-28",
   },
+  {
+    slug: "expofoodtech-2026",
+    cardKey: "expofoodtech2026",
+    categoria: "events",
+    imagen: "/images/news/new-5/portada.webp",
+    href: "/noticias/expofoodtech-2026",
+    sortDate: "2026-05-28",
+  },
 ];

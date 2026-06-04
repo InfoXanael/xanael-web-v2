@@ -403,6 +403,20 @@
     "caption5": "Carlos Rubio Carrera — Fundador e CEO do XANAEL",
     "closing": "Obrigado a todos os que se aproximaram do stand, partilharam a sua visão e dedicaram tempo a conhecer o XANAEL. E obrigado à ANECPLA por criar o espaço onde o setor se encontra, reflete e cresce unido. Os testes piloto começam. Os próximos passos chegam em breve. Continuamos."
   },
+  "NewsExpoFoodTech": {
+    "breadcrumb": "Food 4 Future – ExpoFoodTech 2026",
+    "category": "Eventos",
+    "title": "XANAEL na Food 4 Future – ExpoFoodTech 2026: quando a indústria alimentar precisa de infraestrutura sanitária",
+    "date": "28 de maio de 2026",
+    "excerpt": "Mais de 7.000 profissionais da indústria alimentar reunidos em Bilbao. A XANAEL esteve presente com uma mensagem clara: a prevenção de pragas em ambientes industriais alimentares começa pela infraestrutura.",
+    "caption1": "Stand XANAEL na Food 4 Future – ExpoFoodTech 2026, BEC Bilbao",
+    "p1": "Nos dias 27 e 28 de maio de 2026, o BEC de Bilbao tornou-se o epicentro da inovação na indústria alimentar. Mais de 7.000 profissionais reuniram-se na Food 4 Future – ExpoFoodTech. A XANAEL esteve presente.",
+    "caption2": "A equipa XANAEL a apresentar o sistema a profissionais da indústria alimentar",
+    "p2": "A indústria alimentar é um dos ambientes com maiores exigências em matéria de controlo sanitário. Os regulamentos europeus impõem sistemas de gestão integrada de pragas. A XANAEL fornece a camada de infraestrutura que falta.",
+    "p3": "O stand da XANAEL recebeu a visita de diretores de instalações, responsáveis de qualidade e técnicos de higiene de grandes operadores da indústria alimentar.",
+    "caption3": "Food 4 Future – ExpoFoodTech 2026, BEC Bilbao — vista geral",
+    "closing": "A Food 4 Future – ExpoFoodTech confirma que a inovação na indústria alimentar avança para soluções mais inteligentes e preventivas. A XANAEL faz parte desse caminho. Obrigado a todos os que visitaram o stand. Continuamos."
+  },
   "NewsCards": {
     "ayuntalia2025_title": "XANAEL em Ayuntalia 2025: primeira apresentação institucional do sistema",
     "ayuntalia2025_category": "Eventos",
@@ -419,7 +433,11 @@
     "expocida2026_title": "XANAEL na EXPOCIDA 2026: dois dias que marcam um antes e um depois",
     "expocida2026_category": "Eventos",
     "expocida2026_date": "28 de fevereiro de 2026",
-    "expocida2026_excerpt": "Dois dias de conversas reais, perguntas técnicas e debates sobre o futuro da saúde ambiental. O setor concorda: a gestão de pragas já não pode ser apenas reativa."
+    "expocida2026_excerpt": "Dois dias de conversas reais, perguntas técnicas e debates sobre o futuro da saúde ambiental. O setor concorda: a gestão de pragas já não pode ser apenas reativa.",
+    "expofoodtech2026_title": "XANAEL na Food 4 Future – ExpoFoodTech 2026: infraestrutura sanitária para a indústria alimentar",
+    "expofoodtech2026_category": "Eventos",
+    "expofoodtech2026_date": "28 de maio de 2026",
+    "expofoodtech2026_excerpt": "Mais de 7.000 profissionais da indústria alimentar em Bilbao. A XANAEL esteve presente com uma mensagem clara: a prevenção de pragas em ambientes industriais alimentares começa pela infraestrutura."
   },
   "PrivacyPolicy": {
     "metaTitle": "Política de Privacidade | XANAEL",

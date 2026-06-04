@@ -403,6 +403,20 @@
     "caption5": "Carlos Rubio Carrera — Fundador y CEO de XANAEL",
     "closing": "Gracias a todos los que os acercasteis al stand, compartisteis vuestra visión y dedicasteis tiempo a conocer XANAEL. Y gracias a ANECPLA por crear el espacio donde el sector se encuentra, reflexiona y crece unido. Las pruebas piloto comienzan. Los próximos pasos llegan pronto. Seguimos."
   },
+  "NewsExpoFoodTech": {
+    "breadcrumb": "Food 4 Future – ExpoFoodTech 2026",
+    "category": "Eventos",
+    "title": "XANAEL en Food 4 Future – ExpoFoodTech 2026: cuando la industria alimentaria necesita infraestructura sanitaria",
+    "date": "28 de mayo de 2026",
+    "excerpt": "Más de 7.000 profesionales de la industria alimentaria coincidieron en Bilbao. XANAEL estuvo allí con un mensaje claro: la prevención de plagas en entornos industriales alimentarios empieza por la infraestructura.",
+    "caption1": "Stand XANAEL en Food 4 Future – ExpoFoodTech 2026, BEC Bilbao",
+    "p1": "Los días 27 y 28 de mayo de 2026, el BEC de Bilbao se convirtió en el epicentro de la innovación en la industria alimentaria. Más de 7.000 profesionales del sector se dieron cita en Food 4 Future – ExpoFoodTech para explorar el futuro de la automatización, la inteligencia artificial y la tecnología aplicada a la cadena de producción de alimentos. XANAEL estuvo presente.",
+    "caption2": "El equipo XANAEL presentando el sistema a profesionales de la industria alimentaria",
+    "p2": "La industria alimentaria es uno de los entornos con mayor exigencia en materia de control sanitario. Los reglamentos europeos obligan a sistemas de gestión integrada de plagas en cualquier instalación de producción, almacenamiento o distribución de alimentos. XANAEL aporta la capa de infraestructura que falta: una solución permanente integrada en el propio viario de las instalaciones.",
+    "p3": "El stand de XANAEL recibió la visita de directores de instalaciones, responsables de calidad y técnicos de higiene de grandes operadores de la industria alimentaria. El interés fue notable: muchos ya cuentan con sistemas de control de plagas, pero carecen de una solución preventiva estructural que actúe antes de que el problema llegue al interior. Eso es exactamente lo que XANAEL resuelve.",
+    "caption3": "Food 4 Future – ExpoFoodTech 2026, BEC Bilbao — vista general",
+    "closing": "Food 4 Future – ExpoFoodTech confirma que la innovación en la industria alimentaria avanza hacia soluciones más inteligentes, integradas y preventivas. XANAEL forma parte de ese camino. Gracias a todos los que os acercasteis al stand y compartisteis vuestros retos con nosotros. Seguimos."
+  },
   "NewsCards": {
     "ayuntalia2025_title": "XANAEL en Ayuntalia 2025: primera presentación institucional del sistema",
     "ayuntalia2025_category": "Eventos",
@@ -419,7 +433,11 @@
     "expocida2026_title": "XANAEL en EXPOCIDA 2026: dos días que marcan un antes y un después",
     "expocida2026_category": "Eventos",
     "expocida2026_date": "28 de febrero de 2026",
-    "expocida2026_excerpt": "Dos días de conversaciones reales, preguntas técnicas y debates sobre el futuro de la sanidad ambiental. El sector coincide: la gestión de plagas ya no puede ser solo reactiva."
+    "expocida2026_excerpt": "Dos días de conversaciones reales, preguntas técnicas y debates sobre el futuro de la sanidad ambiental. El sector coincide: la gestión de plagas ya no puede ser solo reactiva.",
+    "expofoodtech2026_title": "XANAEL en Food 4 Future – ExpoFoodTech 2026: infraestructura sanitaria para la industria alimentaria",
+    "expofoodtech2026_category": "Eventos",
+    "expofoodtech2026_date": "28 de mayo de 2026",
+    "expofoodtech2026_excerpt": "Más de 7.000 profesionales de la industria alimentaria en Bilbao. XANAEL estuvo presente con un mensaje claro: la prevención de plagas en entornos industriales alimentarios empieza por la infraestructura."
   },
   "PrivacyPolicy": {
     "metaTitle": "Política de Privacidad | XANAEL",
