@@ -55,15 +55,16 @@ export default async function ExpoFoodTech2026Page() {
       {/* Article body */}
       <article className="max-w-[900px] mx-auto px-6">
 
-        {/* Portada */}
+        {/* Portada — dos personas en el balcón del BEC */}
         <figure>
-          <div className="relative w-full aspect-[21/9] bg-[#2A2A2A] rounded-md overflow-hidden">
+          <div className="relative w-full aspect-[4/3] md:aspect-[21/9] bg-[#2A2A2A] rounded-md overflow-hidden">
             <Image
               src="/images/news/new-5/portada.webp"
               alt={t("caption1")}
               fill
               className="object-cover"
-              style={{ objectPosition: "center 50%" }}
+              style={{ objectPosition: "center 40%" }}
+              priority
             />
           </div>
           <figcaption className="mt-3 text-sm text-gray-400 text-center">
@@ -76,14 +77,14 @@ export default async function ExpoFoodTech2026Page() {
           {t("p1")}
         </p>
 
-        {/* Stand + texto 2 — dos columnas */}
+        {/* Prototipo frente + texto 2 */}
         <div className="mt-12 flex flex-col md:flex-row gap-8 items-center">
           <figure className="md:w-[50%]">
             <Image
               src="/images/news/new-5/stand.webp"
               alt={t("caption2")}
-              width={900}
-              height={600}
+              width={600}
+              height={800}
               className="w-full h-auto rounded-md"
             />
             <figcaption className="mt-3 text-sm text-gray-400 text-center">
@@ -91,29 +92,42 @@ export default async function ExpoFoodTech2026Page() {
             </figcaption>
           </figure>
           <div className="md:w-[50%]">
-            <p className="text-gray-600 leading-relaxed">
-              {t("p2")}
-            </p>
+            <p className="text-gray-600 leading-relaxed">{t("p2")}</p>
           </div>
         </div>
 
-        {/* Texto 3 */}
-        <p className="mt-12 text-gray-600 leading-relaxed">
-          {t("p3")}
-        </p>
+        {/* Texto 3 + detalle prototipo */}
+        <div className="mt-12 flex flex-col md:flex-row gap-8 items-center">
+          <div className="md:w-[50%]">
+            <p className="text-gray-600 leading-relaxed">{t("p3")}</p>
+          </div>
+          <figure className="md:w-[50%]">
+            <Image
+              src="/images/news/new-5/stand-detalle.webp"
+              alt={t("caption3")}
+              width={600}
+              height={800}
+              className="w-full h-auto rounded-md"
+            />
+            <figcaption className="mt-3 text-sm text-gray-400 text-center">
+              {t("caption3")}
+            </figcaption>
+          </figure>
+        </div>
 
-        {/* Imagen general */}
+        {/* Imagen instalación industrial — contexto */}
         <figure className="mt-12">
           <div className="relative w-full aspect-[16/9] bg-[#2A2A2A] rounded-md overflow-hidden">
             <Image
-              src="/images/news/new-5/stand-general.webp"
-              alt={t("caption3")}
+              src="/images/ProductSection/img_4.webp"
+              alt={t("caption4")}
               fill
               className="object-cover"
+              style={{ objectPosition: "center 60%" }}
             />
           </div>
           <figcaption className="mt-3 text-sm text-gray-400 text-center">
-            {t("caption3")}
+            {t("caption4")}
           </figcaption>
         </figure>
 
