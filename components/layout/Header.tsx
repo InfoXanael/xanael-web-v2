@@ -105,10 +105,10 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors duration-300 ${
+              className={`text-sm transition-colors duration-300 ${
                 useWhiteText
-                  ? "text-white hover:text-white/80"
-                  : "text-xanael-dark hover:text-xanael-green"
+                  ? "font-bold text-white hover:text-white/80 drop-shadow-sm"
+                  : "font-medium text-xanael-dark hover:text-xanael-green"
               }`}
             >
               {link.label}

@@ -2,16 +2,13 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { Link } from "@/i18n/navigation";
 import { Crosshair, Building2 } from "lucide-react";
 import { useTranslations } from "next-intl";
-
-const defaultImage = "/images/ProductSection/img_1.webp";
 
 export default function ProductSection() {
   const t = useTranslations("Product");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [unlockedViews, setUnlockedViews] = useState<Set<number>>(new Set());
-  const [mainLoaded, setMainLoaded] = useState(false);
 
   const benefits = [
     { icon: Crosshair, title: t("benefit1Title"), description: t("benefit1Desc") },
@@ -23,19 +20,14 @@ export default function ProductSection() {
     { question: t("q2"), answer: t("a2") },
   ];
 
-  const toggle = (i: number) => {
-    const next = openIndex === i ? null : i;
-    setOpenIndex(next);
-    if (next !== null) setUnlockedViews((prev) => new Set(prev).add(next));
-  };
-
-  const activeView = openIndex !== null ? openIndex : -1;
+  const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
 
   return (
-    <section className="py-24 bg-[#F0F4F2]">
+    <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
-          {/* Left column */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+          {/* Left — texto */}
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
               <span className="text-[#1A4A3A] text-lg font-bold leading-none">+</span>
@@ -46,64 +38,45 @@ export default function ProductSection() {
             <h2 className="mt-3 text-4xl font-bold text-[#1A4A3A] leading-tight">
               {t("title")}
             </h2>
-            <p className="mt-5 text-gray-500 leading-relaxed">
-              {t("desc1")}
-            </p>
+            <p className="mt-5 text-gray-500 leading-relaxed">{t("desc1")}</p>
             <p className="mt-3 text-gray-600 leading-relaxed">
               {t("desc2")}
               <br />
               {t("desc2b")}
             </p>
 
-            {/* Benefits card */}
-            <div className="relative mt-8 rounded-md p-8 grid grid-cols-1 sm:grid-cols-2 gap-6 bg-cover bg-center overflow-hidden" style={{ backgroundImage: "url('/images/textura-hormigon.webp')" }}>
-              <div className="absolute inset-0 bg-[#2D6A4F]/90" />
+            {/* Benefits */}
+            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
               {benefits.map((item, i) => {
                 const Icon = item.icon;
                 return (
-                  <div key={i} className="relative">
-                    <Icon className="w-6 h-6 text-white/80 mb-3" strokeWidth={1.5} />
-                    <h3 className="text-white font-semibold">{item.title}</h3>
-                    <p className="mt-1 text-white/75 text-sm leading-relaxed">
-                      {item.description}
-                    </p>
+                  <div key={i} className="flex flex-col gap-2">
+                    <Icon className="w-5 h-5 text-[#2D6A4F]" strokeWidth={1.5} />
+                    <h3 className="text-[#1A4A3A] font-semibold text-sm">{item.title}</h3>
+                    <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
                   </div>
                 );
               })}
             </div>
 
             {/* Accordions */}
-            <div className="mt-8 space-y-3">
+            <div className="mt-8 space-y-2">
               {accordions.map((item, i) => (
-                <div
-                  key={i}
-                  className="relative border border-gray-200 rounded-md overflow-hidden bg-cover bg-center"
-                  style={{ backgroundImage: "url('/images/textura-hormigon.webp')" }}
-                >
-                  <div className="absolute inset-0 bg-white/[0.85]" />
+                <div key={i} className="border-b border-gray-200">
                   <button
                     onClick={() => toggle(i)}
-                    className="relative w-full flex items-center justify-between px-5 py-4 text-left text-[#1A4A3A] font-medium hover:bg-white/50 transition-colors"
+                    className="w-full flex items-center justify-between py-4 text-left text-[#1A4A3A] font-medium text-sm hover:text-[#2D6A4F] transition-colors"
                   >
                     {item.question}
                     <svg
-                      className={`w-4 h-4 shrink-0 transition-transform duration-200 ${
-                        openIndex === i ? "rotate-180" : ""
-                      }`}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
+                      className={`w-4 h-4 shrink-0 transition-transform duration-200 ${openIndex === i ? "rotate-180" : ""}`}
+                      fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M19 9l-7 7-7-7"
-                      />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                     </svg>
                   </button>
                   {openIndex === i && (
-                    <div className="relative px-5 pb-4 text-sm text-gray-500 leading-relaxed whitespace-pre-line">
+                    <div className="pb-4 text-sm text-gray-500 leading-relaxed whitespace-pre-line">
                       {item.answer}
                     </div>
                   )}
@@ -112,60 +85,34 @@ export default function ProductSection() {
             </div>
           </div>
 
-          {/* Right column — dynamic image */}
-          <div className="relative w-full bg-gray-200 rounded-md overflow-hidden">
-            {!mainLoaded && (
-              <div className="absolute inset-0 animate-pulse bg-gray-200 z-10 pointer-events-none" />
-            )}
-            <Image
-              src={defaultImage}
-              alt="Producto Xanael"
-              fill
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              className={`object-cover transition-opacity duration-300 ${
-                activeView === -1 ? "opacity-100" : "opacity-0"
-              }`}
-              onLoad={() => setMainLoaded(true)}
-            />
-            {unlockedViews.has(0) && (
+          {/* Right — bordillo estándar flotante */}
+          <div className="flex items-center justify-center py-12">
+            <Link
+              href="/infraestructuras"
+              className="group relative block"
+              style={{
+                transform: "rotate(-5deg) translateY(-12px)",
+                filter: "drop-shadow(0 40px 60px rgba(0,0,0,0.28))",
+              }}
+            >
               <Image
-                src="/images/ProductSection/img_2.webp"
-                alt="Cómo funciona Xanael"
-                fill
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className={`object-cover transition-opacity duration-300 ${
-                  activeView === 0 ? "opacity-100" : "opacity-0"
-                }`}
+                src="/images/infrastructure/standard_model/bordillo_1.webp"
+                alt="Xanael Modelo Estándar"
+                width={420}
+                height={300}
+                quality={90}
+                sizes="(max-width: 1024px) 70vw, 420px"
+                className="object-contain w-full max-w-[420px] transition-transform duration-500 group-hover:scale-[1.03]"
               />
-            )}
-            {unlockedViews.has(1) && (
-              <div
-                className={`absolute inset-0 flex flex-col transition-opacity duration-300 ${
-                  activeView === 1 ? "opacity-100" : "opacity-0"
-                }`}
-              >
-                <div className="relative w-full h-1/2">
-                  <Image
-                    src="/images/ProductSection/img_3.webp"
-                    alt="Para quién es Xanael"
-                    fill
-                    sizes="(min-width: 1024px) 50vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="h-[2px] bg-[#2D6A4F] shrink-0" />
-                <div className="relative w-full h-1/2">
-                  <Image
-                    src="/images/ProductSection/img_4.webp"
-                    alt="Sectores Xanael"
-                    fill
-                    sizes="(min-width: 1024px) 50vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
+              <div className="absolute inset-0 bg-[#1A4A3A]/0 group-hover:bg-[#1A4A3A]/35 transition-colors duration-400 rounded-sm" />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="bg-white text-[#1A4A3A] font-semibold text-sm px-6 py-2.5 rounded-md shadow-lg">
+                  Ver más
+                </span>
               </div>
-            )}
+            </Link>
           </div>
+
         </div>
       </div>
     </section>

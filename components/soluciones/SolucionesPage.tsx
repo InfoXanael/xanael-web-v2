@@ -122,7 +122,7 @@ export default function SolucionesPage() {
           </nav>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 pb-24 pt-8">
+        <div className="max-w-7xl mx-auto px-6 pb-16 pt-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1A1A1A] tracking-tight leading-tight">
@@ -146,14 +146,19 @@ export default function SolucionesPage() {
                 </Link>
               </div>
             </div>
-            <div className="relative w-full aspect-[4/3] lg:scale-[1.3] origin-center overflow-hidden">
+            <div className="flex items-center justify-center">
               <Image
                 src="/images/infrastructure/compact_model/bordillo_1.webp"
                 alt="Bordillo técnico Xanael"
-                fill
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-contain"
-                style={{ filter: "drop-shadow(0px 20px 40px rgba(0,0,0,0.15))" }}
+                width={400}
+                height={290}
+                quality={90}
+                sizes="(max-width: 1024px) 70vw, 400px"
+                className="object-contain w-full max-w-[400px]"
+                style={{
+                  filter: "drop-shadow(0px 28px 48px rgba(0,0,0,0.20))",
+                  transform: "rotate(-3deg) translateY(-8px)",
+                }}
                 priority
               />
             </div>

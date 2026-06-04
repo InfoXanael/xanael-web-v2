@@ -9,21 +9,22 @@ export default function Hero() {
   const t = useTranslations("Hero");
 
   return (
-    <section className="relative h-screen flex items-center">
+    <section className="relative h-[80vh] flex items-center">
       {/* Background image */}
       <Image
-        src="/images/hero-banner.webp"
+        src="/images/hero-clean2.png"
         fill
         priority
+        quality={95}
         sizes="100vw"
-        alt="Infraestructura urbana inteligente Xanael"
+        alt="Infraestructura urbana sanitaria preventiva Xanael"
         className="object-cover object-center"
       />
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/55" />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/45" />
 
-      <div className="relative z-10 w-full px-6 sm:px-10 lg:px-20">
-        <div className="max-w-2xl">
+      <div className="relative z-10 w-full px-6 sm:px-10 lg:px-20 flex justify-center">
+        <div className="max-w-2xl text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight">
             {t("title")}
           </h1>
@@ -41,7 +42,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            className="mt-10"
+            className="mt-10 flex justify-center"
           >
             <Link
               href="/contacto"

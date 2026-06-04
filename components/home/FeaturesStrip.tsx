@@ -16,17 +16,17 @@ export default function FeaturesStrip() {
   ];
 
   return (
-    <section className="relative z-10 -mt-[88px] pb-12">
-      <div className="bg-[#2D6A4F] shadow-xl">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
-          {features.map((f) => (
-            <div key={f.title} className="flex flex-col gap-3 px-7 py-8">
-              <f.Icon className="w-6 h-6 text-white/80" strokeWidth={1.5} />
-              <h3 className="text-white font-bold text-base">{f.title}</h3>
-              <p className="text-white/75 text-[0.875rem] leading-relaxed">{f.description}</p>
+    <section className="bg-white border-b border-gray-100">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto divide-y sm:divide-y-0 sm:divide-x divide-gray-100">
+        {features.map((f) => (
+          <div key={f.title} className="flex flex-col gap-3 px-8 py-10">
+            <div className="w-10 h-10 rounded-md bg-[#F0F4F2] flex items-center justify-center">
+              <f.Icon className="w-5 h-5 text-[#2D6A4F]" strokeWidth={1.5} />
             </div>
-          ))}
-        </div>
+            <h3 className="text-[#1A1A1A] font-bold text-base mt-1">{f.title}</h3>
+            <p className="text-gray-500 text-sm leading-relaxed">{f.description}</p>
+          </div>
+        ))}
       </div>
     </section>
   );

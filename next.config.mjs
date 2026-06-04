@@ -6,8 +6,13 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 const nextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
-    deviceSizes: [640, 828, 1080, 1280, 1920],
+    deviceSizes: [640, 828, 1080, 1280, 1920, 2560, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 2592000,
+    qualities: [75, 90, 95],
+    remotePatterns: [
+      { protocol: "https", hostname: "img.youtube.com" },
+    ],
   },
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
