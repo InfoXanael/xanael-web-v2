@@ -12,7 +12,7 @@ export default function Hero() {
     <section className="relative h-[80vh] flex items-center">
       {/* Background image */}
       <Image
-        src="/images/hero-clean2.png"
+        src="/images/hero-clean2.webp"
         fill
         priority
         quality={95}

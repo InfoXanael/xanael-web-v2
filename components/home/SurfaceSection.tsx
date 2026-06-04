@@ -52,7 +52,7 @@ export default function SurfaceSection() {
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300">
-                    <Play className="w-7 h-7 text-[#2D6A4F] ml-1" fill="#2D6A4F" />
+                    <Play className="w-6 h-6 text-[#2D6A4F] translate-x-0.5" fill="#2D6A4F" />
                   </div>
                 </div>
               </button>
