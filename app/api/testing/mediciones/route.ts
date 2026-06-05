@@ -69,7 +69,12 @@ export async function POST(request: NextRequest) {
       confianza: item.confianza ?? null,
       fuenteDatos: item.fuenteDatos || "manual",
     }));
-    await prisma.testMedicion.createMany({ data: items });
+    try {
+      await prisma.testMedicion.createMany({ data: items });
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Error guardando mediciones";
+      return NextResponse.json({ error: message }, { status: 500 });
+    }
     revalidateTag("testing");
     return NextResponse.json({ created: items.length }, { status: 201 });
   }
@@ -79,19 +84,25 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Faltan campos obligatorios" }, { status: 400 });
   }
 
-  const medicion = await prisma.testMedicion.create({
-    data: {
-      siteId,
-      dispositivoId: dispositivoId || null,
-      fecha: new Date(fecha),
-      tipo,
-      valor: valor ?? null,
-      unidad: unidad || null,
-      descripcion: descripcion || null,
-      confianza: confianza ?? null,
-      fuenteDatos: fuenteDatos || "manual",
-    },
-  });
+  let medicion;
+  try {
+    medicion = await prisma.testMedicion.create({
+      data: {
+        siteId,
+        dispositivoId: dispositivoId || null,
+        fecha: new Date(fecha),
+        tipo,
+        valor: valor ?? null,
+        unidad: unidad || null,
+        descripcion: descripcion || null,
+        confianza: confianza ?? null,
+        fuenteDatos: fuenteDatos || "manual",
+      },
+    });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Error guardando medición";
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
 
   revalidateTag("testing");
   return NextResponse.json(medicion, { status: 201 });

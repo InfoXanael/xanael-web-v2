@@ -185,7 +185,7 @@ export function SiteDetailShell({ site }: { site: Site }) {
         {[
           { label: "Dispositivos", value: site.dispositivos.length, accent: false },
           { label: "Mediciones", value: site.mediciones.length + (site.mediciones.length === 50 ? "+" : ""), accent: false },
-          { label: "Fotos", value: site.fotos.length, accent: false },
+          { label: "Fotos", value: site.fotos.length + (site.fotos.length === 100 ? "+" : ""), accent: false },
           { label: "Inc. abiertas", value: openInc, accent: openInc > 0 },
         ].map(({ label, value, accent }) => (
           <div key={label} className="bg-white border border-gray-200 rounded-md px-4 py-3">

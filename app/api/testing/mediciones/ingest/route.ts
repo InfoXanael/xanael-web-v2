@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { revalidateTag } from "next/cache";
 
 // Endpoint autenticado por API key para recibir datos de dispositivos IoT
 export async function POST(request: NextRequest) {
@@ -30,5 +31,6 @@ export async function POST(request: NextRequest) {
   }
 
   await prisma.testMedicion.createMany({ data });
+  revalidateTag("testing");
   return NextResponse.json({ ingested: data.length }, { status: 201 });
 }
