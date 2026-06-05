@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getSessionUser } from "@/lib/auth";
 import { uploadToVPS } from "@/lib/vps-upload";
+import { revalidateTag } from "next/cache";
 
 export async function GET(request: NextRequest) {
   const user = await getSessionUser();
@@ -65,6 +66,7 @@ export async function POST(request: NextRequest) {
         fecha: new Date(),
       },
     });
+    revalidateTag("testing-sites");
     return NextResponse.json(foto, { status: 201 });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Error guardando en base de datos";

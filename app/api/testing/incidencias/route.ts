@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getSessionUser } from "@/lib/auth";
+import { revalidateTag } from "next/cache";
 
 export async function GET(request: NextRequest) {
   const user = await getSessionUser();
@@ -52,5 +53,6 @@ export async function POST(request: NextRequest) {
     },
   });
 
+  revalidateTag("testing-sites");
   return NextResponse.json(incidencia, { status: 201 });
 }
