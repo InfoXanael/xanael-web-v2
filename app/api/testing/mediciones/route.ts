@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getSessionUser } from "@/lib/auth";
+import { revalidateTag } from "next/cache";
 
 export async function GET(request: NextRequest) {
   const user = await getSessionUser();
@@ -69,6 +70,7 @@ export async function POST(request: NextRequest) {
       fuenteDatos: item.fuenteDatos || "manual",
     }));
     await prisma.testMedicion.createMany({ data: items });
+    revalidateTag("testing");
     return NextResponse.json({ created: items.length }, { status: 201 });
   }
 
@@ -91,5 +93,6 @@ export async function POST(request: NextRequest) {
     },
   });
 
+  revalidateTag("testing");
   return NextResponse.json(medicion, { status: 201 });
 }

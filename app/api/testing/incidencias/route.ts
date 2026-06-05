@@ -53,6 +53,7 @@ export async function POST(request: NextRequest) {
     },
   });
 
+  revalidateTag("testing");
   revalidateTag("testing-sites");
   return NextResponse.json(incidencia, { status: 201 });
 }

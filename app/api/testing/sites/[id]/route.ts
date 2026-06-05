@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getSessionUser } from "@/lib/auth";
+import { revalidateTag } from "next/cache";
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   const user = await getSessionUser();
@@ -42,6 +43,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   if (estado !== undefined) data.estado = estado;
 
   const site = await prisma.testSite.update({ where: { id: params.id }, data });
+  revalidateTag("testing");
   return NextResponse.json(site);
 }
 
@@ -50,5 +52,6 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
   if (!user) return NextResponse.json({ error: "No autorizado" }, { status: 401 });
 
   await prisma.testSite.delete({ where: { id: params.id } });
+  revalidateTag("testing");
   return NextResponse.json({ ok: true });
 }

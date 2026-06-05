@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getSessionUser } from "@/lib/auth";
+import { revalidateTag } from "next/cache";
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   const user = await getSessionUser();
@@ -42,5 +43,6 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   if (notas !== undefined) data.notas = notas;
 
   const dispositivo = await prisma.testDispositivo.update({ where: { id: params.id }, data });
+  revalidateTag("testing");
   return NextResponse.json(dispositivo);
 }

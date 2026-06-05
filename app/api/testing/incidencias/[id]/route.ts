@@ -34,6 +34,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   if (resuelta !== undefined) data.resuelta = resuelta;
 
   const incidencia = await prisma.testIncidencia.update({ where: { id: params.id }, data });
+  revalidateTag("testing");
   revalidateTag("testing-sites");
   return NextResponse.json(incidencia);
 }
