@@ -21,9 +21,60 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "¿Qué es XANAEL?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "XANAEL es una infraestructura urbana sanitaria preventiva: un bordillo técnico prefabricado de hormigón con cavidad interior que se integra en el viario urbano para controlar de forma permanente la presencia de roedores y plagas en superficie.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Cómo funciona el bordillo técnico de XANAEL?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "El bordillo XANAEL incorpora una cavidad interior accesible que permite instalar cebos, trampas o sensores de monitorización. Al estar integrado en el bordillo del viario, actúa de forma continua y discreta sin alterar la estética del espacio público.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Para quién está diseñado XANAEL?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "XANAEL está dirigido a ayuntamientos, gestores municipales, empresas de control de plagas y promotores de obra urbana que necesiten soluciones preventivas integradas en la propia infraestructura de la ciudad.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿En qué se diferencia XANAEL del control de plagas tradicional?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "A diferencia del control de plagas reactivo, XANAEL es una solución preventiva y permanente integrada en el mobiliario urbano. No requiere intervenciones puntuales visibles y permite la monitorización continua del perímetro urbano sin alterar la vía pública.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Dónde está disponible XANAEL?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "XANAEL opera desde Tudela (Navarra), España, y está disponible para ayuntamientos y entidades de toda España. Para distribución internacional, contacta con info@xanael.es.",
+      },
+    },
+  ],
+};
+
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <Hero />
       <FeaturesStrip />
       <SurfaceSection />

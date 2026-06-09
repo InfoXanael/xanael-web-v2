@@ -13,6 +13,34 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Bordillo Técnico Antirroedores XANAEL",
+  description:
+    "Bordillo técnico prefabricado de hormigón con cavidad interior diseñado para el control permanente de roedores y plagas en perímetros urbanos. Se integra en el viario urbano existente.",
+  image: "https://xanael.es/images/infrastructure/standard_model/bordillo_1.webp",
+  brand: {
+    "@type": "Brand",
+    name: "XANAEL",
+  },
+  category: "Infraestructura urbana sanitaria",
+  manufacturer: {
+    "@type": "Organization",
+    name: "XANAEL",
+    url: "https://xanael.es",
+  },
+  url: "https://xanael.es/es/infraestructuras",
+};
+
 export default function Page() {
-  return <SolucionesPage />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
+      <SolucionesPage />
+    </>
+  );
 }
