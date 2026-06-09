@@ -33,6 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@xanael_es",
     title: "Xanael - Infraestructura Urbana Sanitaria Preventiva",
     description:
       "Infraestructura urbana sanitaria preventiva que prepara la ciudad frente a plagas en superficie. Prevén, monitoriza y actúa de forma segura y sostenible.",
