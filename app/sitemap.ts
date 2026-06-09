@@ -21,6 +21,7 @@ const PUBLIC_ROUTES: Array<{
   { path: "/distribuidores", priority: 0.7, changeFrequency: "monthly" },
   { path: "/piloto", priority: 0.8, changeFrequency: "monthly" },
   { path: "/blog/control-plagas-urbanas", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/blog/que-es-xanael", priority: 0.9, changeFrequency: "monthly" },
   { path: "/cookies", priority: 0.3, changeFrequency: "yearly" },
   { path: "/aviso-legal", priority: 0.3, changeFrequency: "yearly" },
   { path: "/politica-privacidad", priority: 0.3, changeFrequency: "yearly" },
