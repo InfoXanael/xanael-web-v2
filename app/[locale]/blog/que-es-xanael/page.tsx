@@ -40,7 +40,7 @@ const articleSchema = {
     "@id": "https://xanael.es/es/blog/que-es-xanael",
   },
   about: [
-    { "@type": "Thing", name: "Bordillo técnico antirroedores" },
+    { "@type": "Thing", name: "Bordillo técnico para control de roedores" },
     { "@type": "Thing", name: "Infraestructura urbana sanitaria" },
     { "@type": "Thing", name: "Control integrado de plagas urbanas" },
     { "@type": "Thing", name: "Prevención estructural de roedores" },

@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Infraestructuras - Xanael",
     description:
-      "Bordillo técnico antirroedores. Infraestructura prefabricada de hormigón integrada en el viario urbano.",
+      "Bordillo técnico para el control de roedores. Infraestructura prefabricada de hormigón integrada en el viario urbano con cámara interior accesible.",
     alternates: buildAlternates(locale, "/infraestructuras"),
   };
 }
@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
-  name: "Bordillo Técnico Antirroedores XANAEL",
+  name: "Bordillo Técnico XANAEL para Control de Roedores",
   description:
     "Bordillo técnico prefabricado de hormigón con cavidad interior diseñado para el control permanente de roedores y plagas en perímetros urbanos. Se integra en el viario urbano existente.",
   image: "https://xanael.es/images/infrastructure/standard_model/bordillo_1.webp",
