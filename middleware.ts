@@ -4,10 +4,11 @@ import { routing } from "./i18n/routing";
 
 const intlMiddleware = createIntlMiddleware(routing);
 
-const AUTH_SECRET = process.env.AUTH_SECRET ?? "xanael-dashboard-secret-2026";
+const AUTH_SECRET = process.env.AUTH_SECRET ?? "";
 
 async function isValidSession(value: string): Promise<boolean> {
   try {
+    if (!AUTH_SECRET) return false;
     const dot = value.indexOf(".");
     if (dot === -1) return false;
     const payload = value.slice(0, dot);

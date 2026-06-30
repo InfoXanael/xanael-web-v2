@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
 
   const { email, password } = await req.json();
 
-  const user = validateCredentials(email, password);
+  const user = await validateCredentials(email, password);
   if (!user) {
     return NextResponse.json(
       { error: "Credenciales incorrectas" },
